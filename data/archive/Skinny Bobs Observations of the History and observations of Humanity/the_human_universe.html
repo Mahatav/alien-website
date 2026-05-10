@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The Human Universe — A History of Cosmological Thought</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Josefin+Sans:wght@200;300;400;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --void: #030609;
+  --deep: #060d14;
+  --cosmos: #0a1628;
+  --nebula: #0d2040;
+  --gold: #c9a84c;
+  --gold-dim: #7a5f28;
+  --cyan: #4fc3c3;
+  --cyan-dim: #1a5f5f;
+  --rose: #c4607a;
+  --lime: #7ec87e;
+  --text: #d8cfc0;
+  --text-dim: #7a7060;
+  --rule: rgba(201,168,76,0.18);
+  --glow: rgba(79,195,195,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--void);
+  color: var(--text);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ─── STARFIELD ─────────────────────────────── */
+#stars-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* ─── HERO ──────────────────────────────────── */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(13,32,64,0.95) 0%, transparent 100%);
+}
+
+.hero-eyebrow {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 200;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 2rem;
+  animation: fadeUp 1.2s ease both;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #f0e8d4;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 1.2s 0.15s ease both;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-sub {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+  color: var(--text-dim);
+  max-width: 640px;
+  line-height: 1.6;
+  animation: fadeUp 1.2s 0.3s ease both;
+}
+
+.hero-scroll {
+  margin-top: 4rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  animation: fadeUp 1.2s 0.55s ease both, pulse 3s 2s infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.hero-scroll::after {
+  content: '';
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--gold-dim), transparent);
+}
+
+/* ─── NAV ───────────────────────────────────── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(3,6,9,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.8rem 2rem;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+nav::-webkit-scrollbar { display: none; }
+
+nav a {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 0.4rem 1rem;
+  white-space: nowrap;
+  border-right: 1px solid var(--rule);
+  transition: color 0.25s;
+}
+nav a:last-child { border-right: none; }
+nav a:hover { color: var(--cyan); }
+
+/* ─── MAIN LAYOUT ───────────────────────────── */
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem 8rem;
+}
+
+/* ─── ERA HEADER ────────────────────────────── */
+.era-header {
+  margin: 6rem 0 0;
+  padding: 3rem 0 2rem;
+  border-top: 1px solid var(--rule);
+  position: relative;
+}
+
+.era-badge {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 200;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 0.6rem;
+}
+
+.era-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  line-height: 1.1;
+  color: #f0e8d4;
+  letter-spacing: -0.01em;
+}
+
+.era-span {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 200;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-dim);
+  margin-top: 0.6rem;
+  text-transform: uppercase;
+}
+
+/* ─── TIMELINE ENTRIES ──────────────────────── */
+.timeline {
+  margin: 2.5rem 0 0;
+  padding-left: 0;
+  list-style: none;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--gold-dim), var(--cyan-dim), var(--gold-dim));
+  opacity: 0.4;
+}
+
+.tl-entry {
+  position: relative;
+  padding: 0 0 2.8rem 2.2rem;
+}
+
+.tl-entry::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 0.45rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
+}
+
+.tl-date {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
+}
+
+.tl-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #ece4d2;
+  margin-bottom: 0.6rem;
+  line-height: 1.25;
+}
+
+.tl-body {
+  font-size: 1.05rem;
+  color: var(--text);
+  line-height: 1.78;
+}
+
+.tl-body p { margin-bottom: 0.8rem; }
+.tl-body p:last-child { margin-bottom: 0; }
+
+/* ─── CULTURE CARDS ─────────────────────────── */
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin: 2rem 0;
+}
+
+.culture-card {
+  background: rgba(13,32,64,0.5);
+  border: 1px solid var(--rule);
+  padding: 1.4rem 1.6rem;
+  position: relative;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.culture-card:hover {
+  border-color: rgba(201,168,76,0.4);
+  background: rgba(13,32,64,0.8);
+}
+
+.culture-card-name {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 0.5rem;
+}
+
+.culture-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+
+.culture-card p {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+/* ─── PULL QUOTE ────────────────────────────── */
+.pull-quote {
+  margin: 3rem 0;
+  padding: 2rem 2.5rem;
+  border-left: 3px solid var(--gold);
+  background: rgba(201,168,76,0.04);
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  line-height: 1.6;
+  color: #e8dfc8;
+}
+
+.pull-quote cite {
+  display: block;
+  margin-top: 0.8rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-style: normal;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+/* ─── CONCEPT BOX ───────────────────────────── */
+.concept-box {
+  background: rgba(79,195,195,0.04);
+  border: 1px solid var(--cyan-dim);
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+}
+
+.concept-box h4 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1rem;
+}
+
+.concept-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.concept-box ul li {
+  font-size: 0.95rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(79,195,195,0.12);
+  padding-left: 1.2rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.concept-box ul li:last-child { border-bottom: none; }
+
+.concept-box ul li::before {
+  content: '◦';
+  position: absolute;
+  left: 0;
+  color: var(--cyan);
+}
+
+/* ─── FUTURE SECTION ────────────────────────── */
+.future-section {
+  margin-top: 6rem;
+  padding: 4rem 0 2rem;
+  border-top: 1px solid var(--rule);
+  position: relative;
+}
+
+.future-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -2rem;
+  right: -2rem;
+  height: 200px;
+  background: radial-gradient(ellipse 60% 100% at 50% 0%, rgba(79,195,195,0.06) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.future-badge {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 0.6rem;
+}
+
+.future-section .era-title { color: var(--lime); opacity: 0.9; }
+
+.future-entry {
+  margin: 2.5rem 0;
+  padding: 1.8rem 2rem;
+  background: rgba(126,200,126,0.04);
+  border: 1px solid rgba(126,200,126,0.15);
+  position: relative;
+}
+
+.future-entry-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.future-entry h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #d8f0d0;
+  margin-bottom: 0.7rem;
+}
+
+.future-entry p {
+  font-size: 1rem;
+  line-height: 1.78;
+  color: var(--text);
+}
+
+/* ─── CLOSING ───────────────────────────────── */
+.closing {
+  margin-top: 5rem;
+  padding: 3rem 0;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+}
+
+.closing p {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  color: var(--text-dim);
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.65;
+}
+
+.closing-sig {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+/* ─── FOOTER ────────────────────────────────── */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--rule);
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ─── ANIMATIONS ────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Scroll-reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ────────────────────────────── */
+@media (max-width: 600px) {
+  main { padding: 0 1.2rem 5rem; }
+  .culture-grid { grid-template-columns: 1fr; }
+  .pull-quote { padding: 1.4rem 1.6rem; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">From the First Fire to the Edge of Forever</p>
+  <h1>The <em>Human Universe</em></h1>
+  <p class="hero-sub">A complete history of humanity's theories, myths, and sciences of cosmic origin — from Babylon's clay tablets to the James Webb Space Telescope, and beyond into the age of artificial intelligence.</p>
+  <div class="hero-scroll">Scroll to Begin</div>
+</section>
+
+<!-- NAV -->
+<nav>
+  <a href="#ancient-near-east">Mesopotamia</a>
+  <a href="#ancient-egypt">Egypt</a>
+  <a href="#vedic">India</a>
+  <a href="#china">China</a>
+  <a href="#greece">Greece</a>
+  <a href="#other-ancient">Other Cultures</a>
+  <a href="#hellenistic">Hellenistic–Roman</a>
+  <a href="#islamic">Islamic Age</a>
+  <a href="#medieval">Medieval</a>
+  <a href="#renaissance">Renaissance</a>
+  <a href="#revolution">Sci. Revolution</a>
+  <a href="#enlightenment">Enlightenment</a>
+  <a href="#19c">19th Century</a>
+  <a href="#20c-early">Early 20th C.</a>
+  <a href="#20c-mid">Mid 20th C.</a>
+  <a href="#20c-late">Late 20th C.</a>
+  <a href="#21c">21st Century</a>
+  <a href="#future">The Future</a>
+</nav>
+
+<main>
+
+<!-- ═══════════════════════════════════════════
+     ANCIENT NEAR EAST
+════════════════════════════════════════════ -->
+<section id="ancient-near-east" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter I</p>
+    <h2 class="era-title">Mesopotamia & Babylon</h2>
+    <p class="era-span">c. 3500 – 500 BCE</p>
+  </div>
+
+  <p>The first written cosmologies emerged in the river valleys between the Tigris and Euphrates. Here, in the world's earliest cities, Sumerian and later Babylonian priests looked at the night sky and systematically recorded what they saw — but more than observation, they wove those observations into grand mythological narratives that also functioned as early physics: accounts of what the universe <em>is made of</em> and <em>how it came to be</em>.</p>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">c. 2900 BCE — Sumerian Accounts</p>
+      <h3 class="tl-heading">An, Ki, and the Primordial Mountain</h3>
+      <div class="tl-body">
+        <p>The earliest Sumerian cosmology held that the universe began as a cosmic mountain — <em>An-Ki</em> — where heaven (An) and earth (Ki) were fused together. From this union emerged Enlil, the air god, who separated sky from earth, making space for life. The earth was conceived as a flat disk floating on a vast underground freshwater ocean called <em>Abzu</em>, surrounded by the salt-water ocean <em>Tiamat</em>, and capped by a solid dome of sky.</p>
+        <p>Stars and planets were thought to be lights fixed to the inner surface of this dome, moved by divine will. The Sumerians developed the first known zodiac and tracked the movements of Venus with remarkable precision.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 1700 BCE — Babylonian Synthesis</p>
+      <h3 class="tl-heading">Enuma Elish: Creation from Chaos</h3>
+      <div class="tl-body">
+        <p>The <em>Enuma Elish</em> ("When on High") is the oldest surviving creation epic. In it, the primordial ocean of chaos — represented by the salt-water Tiamat and the freshwater Apsu — mingles to produce the first gods. After a divine war, the hero-god Marduk slays Tiamat, splitting her body in two: her upper half becomes the sky and her lower half the earth. Human beings are formed from the blood of the slain god Kingu to serve as laborers for the gods.</p>
+        <p>This is arguably the earliest recorded cosmogony — a theory of how the cosmos was <em>ordered</em> from chaos. Its influence on later Hebrew, Greek, and Phoenician thought is well documented.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 700 – 400 BCE — Mathematical Astronomy</p>
+      <h3 class="tl-heading">Babylonian Predictive Models</h3>
+      <div class="tl-body">
+        <p>Later Babylonian astronomers made a crucial leap: they began predicting planetary positions using arithmetic sequences rather than purely divine narrative. Their <em>ephemerides</em> — tables forecasting the positions of the Moon, Sun, and five visible planets — were accurate enough to predict lunar eclipses decades in advance. This represents perhaps the first purely mathematical model of celestial mechanics, completely divorced from mythology. They also developed the 360-degree circle, the 60-minute hour, and the 7-day week — all still in use today.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ANCIENT EGYPT
+════════════════════════════════════════════ -->
+<section id="ancient-egypt" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter II</p>
+    <h2 class="era-title">Ancient Egypt</h2>
+    <p class="era-span">c. 3100 – 30 BCE</p>
+  </div>
+
+  <p>Egyptian cosmology was extraordinarily rich and regionally varied — different cult centres produced different creation narratives — but all shared common elements: a primordial watery void, a first moment of emergence, and a cyclical rather than linear view of time and cosmic order.</p>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">c. 3000 BCE — Heliopolitan Cosmology</p>
+      <h3 class="tl-heading">Nun, Atum, and the Primordial Mound</h3>
+      <div class="tl-body">
+        <p>At Heliopolis, the oldest Egyptian cosmological system described the universe as beginning with <em>Nun</em> — an infinite, dark, chaotic ocean of pre-existence. From Nun arose a primordial mound (recalling the appearance of land after the Nile's annual flood), upon which stood <em>Atum</em>, the self-created god. Atum generated the first divine pair — Shu (air) and Tefnut (moisture) — through an act of self-procreation, and from them descended Geb (earth) and Nut (sky), whose union produced the four major gods. The universe was thus born through a chain of divine procreation from original chaos.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 2500 BCE — The Cosmic Egg</p>
+      <h3 class="tl-heading">Hermopolitan Tradition</h3>
+      <div class="tl-body">
+        <p>The rival cosmology of Hermopolis conceived the universe as originating from a cosmic egg laid on the primordial mound by the eight deities of chaos — the Ogdoad. The egg hatched the first sunrise, releasing Ra (the sun god) and beginning time. This "cosmic egg" motif would appear in dozens of subsequent cultures, from Orphic Greece to Finnish mythology to Vedic India, suggesting either common origin or a recurring human intuition about beginnings.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 1350 BCE — Amarna Period</p>
+      <h3 class="tl-heading">Akhenaten's Solar Monotheism</h3>
+      <div class="tl-body">
+        <p>Pharaoh Akhenaten's radical religious reformation replaced Egypt's polytheistic pantheon with a single solar deity, the Aten (sun disk). For the first time in recorded history, a state theology proposed that a single, universal creative force — identified with light and energy — was the source and sustainer of all existence. Some scholars consider this the world's first monotheism, a direct ancestor of Abrahamic cosmological thought. It was systematically erased after his death, but its influence likely survived through channels we can only partially trace.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     VEDIC INDIA
+════════════════════════════════════════════ -->
+<section id="vedic" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter III</p>
+    <h2 class="era-title">Ancient India &amp; Vedic Cosmology</h2>
+    <p class="era-span">c. 2000 BCE – Present</p>
+  </div>
+
+  <p>Indian cosmological thought is among the most ambitious and mathematically sophisticated of the ancient world. It imagined timescales so enormous that they were only matched by modern astrophysics — and it proposed cyclical, multi-dimensional, and even inflationary models of existence millennia before Western science.</p>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">c. 1500 – 1200 BCE — Rigveda</p>
+      <h3 class="tl-heading">The Nasadiya Sukta: Radical Uncertainty</h3>
+      <div class="tl-body">
+        <p>The <em>Nasadiya Sukta</em> (Hymn of Creation) in the Rigveda is one of the most philosophically sophisticated creation texts of any ancient culture. It refuses to make definitive claims about the origin of existence: "Who really knows? Who will here proclaim it? Whence was it produced? Whence is this creation? The gods came afterwards, with the creation of this universe. Who then knows whence it has arisen?" This epistemological humility — acknowledging the limits of human knowledge about ultimate origins — is strikingly modern.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 900 – 400 BCE — Upanishads</p>
+      <h3 class="tl-heading">Brahman, Atman, and Cyclical Time</h3>
+      <div class="tl-body">
+        <p>The Upanishads introduced the concept of <em>Brahman</em> — an impersonal, infinite, self-existent consciousness from which all reality emanates and into which it eventually returns. The individual self (Atman) is identified with this universal ground. The universe is not created once but breathes in and out eternally in great cosmic cycles called <em>Kalpas</em>. One Kalpa — a single day of Brahma — lasts 4.32 billion years, remarkably close to the age of the Earth (4.5 billion years) and even the age of the universe in some calculations.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 600 – 400 BCE — Jain &amp; Buddhist Cosmology</p>
+      <h3 class="tl-heading">Infinite Universes and No-Creator</h3>
+      <div class="tl-body">
+        <p>Both Jainism and Buddhism rejected the idea of a creator god, proposing instead that the universe is eternal, uncreated, and cyclical. Jain cosmology described a universe populated with infinitely many souls in a vast, layered cosmic structure. Buddhist cosmology imagined countless world-systems (<em>Cakkavalas</em>) existing simultaneously — an early intuition of what we now call the multiverse. The Buddha explicitly dismissed metaphysical questions about ultimate origins as unanswerable and distracting from the path of liberation.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 600 BCE — Vaisesika School</p>
+      <h3 class="tl-heading">Kanada's Atomic Theory</h3>
+      <div class="tl-body">
+        <p>The philosopher Kanada proposed that all matter is composed of indivisible particles called <em>paramanu</em> (atoms), each eternally existing and indestructible. Different combinations of atoms produced different substances. This fully developed atomistic physics predates Democritus by at least a century and represents one of history's most prescient scientific intuitions. Kanada's atoms had properties — taste, smell, color, touch — that mapped loosely onto what we now call quantum numbers.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ANCIENT CHINA
+════════════════════════════════════════════ -->
+<section id="china" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter IV</p>
+    <h2 class="era-title">Ancient China</h2>
+    <p class="era-span">c. 2000 – 200 BCE</p>
+  </div>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">c. 2000 – 500 BCE — Early Cosmogony</p>
+      <h3 class="tl-heading">Hundun, Pangu, and the Cosmic Egg</h3>
+      <div class="tl-body">
+        <p>Chinese creation myths describe the universe beginning as <em>Hundun</em> — an undifferentiated chaos. The earliest cosmogonic narrative involves the giant Pangu, who hatched from a cosmic egg. As Pangu grew, he pushed apart the sky (yang) and the earth (yin), holding them apart for 18,000 years. When he died, his breath became wind and cloud, his eyes became the sun and moon, his blood the rivers, his flesh the soil, and his body hair the forests. The universe is thus the literal body of a primordial being — a model echoed in Norse, Hindu, and other traditions.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 600 – 300 BCE — Daoist Cosmology</p>
+      <h3 class="tl-heading">The Tao: Order from Formlessness</h3>
+      <div class="tl-body">
+        <p>Laozi's <em>Tao Te Ching</em> offered a radically different cosmological framework: the universe arises from and is sustained by the <em>Tao</em> (the Way) — an unnameable, formless, eternal principle. "The Tao gives birth to One, One gives birth to Two, Two gives birth to Three, Three gives birth to all things." The interplay of <em>yin</em> and <em>yang</em> — complementary opposing principles — drives all change and generation. This is arguably the earliest formulation of a dynamic, self-organizing universe arising from an underlying impersonal principle, prefiguring concepts like symmetry-breaking in modern physics.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 300 – 200 BCE — Astronomical Models</p>
+      <h3 class="tl-heading">Gaitian and Huntian Schools</h3>
+      <div class="tl-body">
+        <p>Chinese astronomers developed two competing physical models of the cosmos: the <em>Gaitian</em> (canopy heaven) model, which imagined the sky as a hemispherical dome over a square earth, and the more sophisticated <em>Huntian</em> (celestial sphere) model, which held that the earth was a small object suspended inside a vast rotating sphere, like the yolk inside an egg. The Huntian model was eventually supported by mathematical calculation and remained influential for over a thousand years.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ANCIENT GREECE
+════════════════════════════════════════════ -->
+<section id="greece" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter V</p>
+    <h2 class="era-title">Ancient Greece: The Birth of Natural Philosophy</h2>
+    <p class="era-span">c. 600 – 300 BCE</p>
+  </div>
+
+  <p>The Greek achievement in cosmology was singular: for the first time, thinkers systematically attempted to explain the origin and structure of the universe using <em>reason alone</em>, without direct appeal to divine narrative. They did not always succeed, and many of their answers were wrong — but the method they invented became the foundation of all subsequent science.</p>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">c. 585 BCE — Thales of Miletus</p>
+      <h3 class="tl-heading">The Universe Is Made of Water</h3>
+      <div class="tl-body">
+        <p>Thales proposed the first recorded purely naturalistic cosmology: everything in existence is a form of water. The earth floats like a log on a vast ocean. While this is wrong, the <em>type</em> of claim is revolutionary — a single material substance as the substratum of all reality, with no gods required. Thales also reportedly predicted a solar eclipse in 585 BCE, demonstrating that celestial events follow natural laws.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 570 BCE — Anaximander</p>
+      <h3 class="tl-heading">The Apeiron: The Infinite and Boundless</h3>
+      <div class="tl-body">
+        <p>Thales' student Anaximander went further: the fundamental substance cannot be water or any known element, because it must be prior to and capable of generating all opposites (hot/cold, wet/dry). He called it the <em>Apeiron</em> — the infinite, boundless, undefined. From the Apeiron, opposites separate out to form the familiar world. He also proposed that the earth is cylindrical and hangs freely in space, unsupported — held in place by its equidistance from all extremes. He suggested that humans evolved from fish-like ancestors. This is arguably the first evolutionary hypothesis.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 500 BCE — Heraclitus of Ephesus</p>
+      <h3 class="tl-heading">The Universe Is Fire: All Is Flux</h3>
+      <div class="tl-body">
+        <p>Heraclitus proposed that fire — understood not just literally but as a principle of dynamic change — is the fundamental substance of reality. More importantly, he argued that the cosmos is not static but in perpetual flux: "You cannot step in the same river twice." The universe maintains itself through a tension of opposites, governed by a rational principle (<em>Logos</em>) that humans can apprehend through reason. This is perhaps the earliest statement that the universe is governed by rational, discoverable laws.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 490 BCE — Parmenides</p>
+      <h3 class="tl-heading">Nothing Comes from Nothing</h3>
+      <div class="tl-body">
+        <p>Parmenides made a logical argument that had profound consequences: true being must be one, eternal, and unchanging, because change requires coming into or going out of existence, and non-being is impossible — "nothing comes from nothing." This created the central puzzle of Greek cosmology: how to explain an apparently changing universe from an unchanging ground. Every subsequent Greek cosmologist grappled with this problem, and it remains alive in modern physics in the form of conservation laws.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 460 BCE — Democritus &amp; Leucippus</p>
+      <h3 class="tl-heading">Atoms and the Void</h3>
+      <div class="tl-body">
+        <p>Democritus and Leucippus proposed the most durable ancient cosmology: all matter consists of indivisible, indestructible particles (<em>atomos</em> — "uncuttable") moving through empty void. Atoms differ only in shape, size, and arrangement; all apparent qualities — color, taste, hardness — are produced by atomic configurations. The universe formed when atoms collided and began to rotate, forming vortexes that aggregated into worlds. Crucially, there are infinitely many worlds, some inhabited, some not, all arising by chance. This model anticipates modern atomic theory with astonishing precision and was largely ignored for over 2,000 years.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 380 BCE — Plato</p>
+      <h3 class="tl-heading">The Timaeus: A Craftsman-God and Eternal Forms</h3>
+      <div class="tl-body">
+        <p>In the <em>Timaeus</em>, Plato proposed that the physical universe was fashioned by a divine craftsman — the <em>Demiurge</em> — who modeled it on eternal, perfect, mathematical Forms. The universe is thus a rational, beautiful, purposefully designed object, spherical in shape, with a world-soul animating it. The elements are regular geometric solids: fire = tetrahedron, earth = cube, air = octahedron, water = icosahedron. This is the first attempt to identify fundamental physics with pure mathematics, a tradition that runs unbroken to Einstein and string theory.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 340 BCE — Aristotle</p>
+      <h3 class="tl-heading">The Eternal, Geocentric, Finite Universe</h3>
+      <div class="tl-body">
+        <p>Aristotle's cosmological model dominated Western thought for nearly 2,000 years. His universe is finite, spherical, eternal (with no beginning or end), and geocentric. The earth sits motionless at the center, surrounded by transparent crystalline spheres carrying the Moon, Sun, planets, and finally the fixed stars. Beyond the outermost sphere is the Unmoved Mover — a divine intellect whose eternal activity causes the spheres to rotate. The sub-lunar realm (below the Moon) consists of the four elements and is subject to change and decay; the celestial realm consists of a fifth element, <em>aether</em>, which is eternal and incorruptible. This system was elegant, comprehensive, and deeply wrong in most details — but it organized human knowledge for two millennia.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 270 BCE — Aristarchus of Samos</p>
+      <h3 class="tl-heading">The First Heliocentric Model</h3>
+      <div class="tl-body">
+        <p>Aristarchus proposed — 1,700 years before Copernicus — that the Sun, not the Earth, is the center of the cosmos, and that the Earth moves around it in a year while rotating on its axis daily. He even estimated the distance to the Sun and Moon using lunar eclipse geometry. His model was rejected by contemporaries primarily on the grounds that if the Earth moved, we would detect the parallax shift of the stars — which we can't (because the stars are too far away, as it turns out). Aristarchus knew this and countered that the stars must be immensely far away. He was right about everything and ignored for two millennia.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     OTHER ANCIENT CULTURES
+════════════════════════════════════════════ -->
+<section id="other-ancient" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter VI</p>
+    <h2 class="era-title">Other Ancient Cultures</h2>
+    <p class="era-span">c. 3000 BCE – 1500 CE</p>
+  </div>
+
+  <p>Cosmological thinking was not the province of any single civilization. Across the globe, independent traditions produced sophisticated and often strikingly parallel accounts of origin, structure, and purpose.</p>
+
+  <div class="culture-grid">
+    <div class="culture-card">
+      <p class="culture-card-name">Norse / Germanic</p>
+      <p class="culture-card-title">Ginnungagap &amp; Yggdrasil</p>
+      <p>The universe begins in <em>Ginnungagap</em> — a vast, magical void between fire and ice. When fire met ice, the first being Ymir was created. After Ymir's death, the gods built the world from his body. The cosmos is structured as Yggdrasil, the World Tree, whose nine realms span gods, humans, giants, and the dead. Time is linear and terminal: the universe ends in Ragnarök, the twilight of the gods.</p>
+    </div>
+
+    <div class="culture-card">
+      <p class="culture-card-name">Maya Civilization</p>
+      <p class="culture-card-title">Popol Vuh &amp; Cyclical Creation</p>
+      <p>The Maya <em>Popol Vuh</em> describes multiple failed attempts at creation before the current human race of maize-people. The Maya developed one of the most accurate pre-telescopic astronomical systems in history, tracking Venus to within minutes, and constructed a calendar system that tracked cycles of hundreds of millions of years — suggesting a cosmic time-consciousness unmatched outside India.</p>
+    </div>
+
+    <div class="culture-card">
+      <p class="culture-card-name">Aztec / Mexica</p>
+      <p class="culture-card-title">Five Suns: Cyclical Destruction</p>
+      <p>Aztec cosmology described a series of five worlds ("Suns"), each destroyed and replaced. We inhabit the fifth Sun, destined for eventual destruction by earthquake. The universe requires blood sacrifice to sustain its motion — the Sun would stop without it. This cosmology expresses a profound anxiety about cosmic entropy and the need for human action to maintain order.</p>
+    </div>
+
+    <div class="culture-card">
+      <p class="culture-card-name">Aboriginal Australian</p>
+      <p class="culture-card-title">The Dreaming</p>
+      <p>The oldest continuous cosmological tradition on Earth. The <em>Dreaming</em> (Tjukurpa) is not a time in the past but a timeless dimension that underlies and continuously generates the physical world. Ancestral beings shaped the land, sky, and laws of existence in an eternal present. This represents a non-linear conception of time and being that modern physicists like Julian Barbour have independently arrived at in the context of quantum gravity.</p>
+    </div>
+
+    <div class="culture-card">
+      <p class="culture-card-name">Zoroastrian / Persian</p>
+      <p class="culture-card-title">Cosmic Dualism and Linear Time</p>
+      <p>Zoroastrianism proposed that the universe is the arena of a cosmic struggle between Ahura Mazda (truth, light, order) and Angra Mainyu (deception, darkness, chaos), with creation itself as an act of the good principle to trap the evil. Time is linear, moving toward a final renovation (<em>Frashokereti</em>) when evil is destroyed. This dualistic, teleological cosmology profoundly influenced Judaism, Christianity, and Islam.</p>
+    </div>
+
+    <div class="culture-card">
+      <p class="culture-card-name">Hebrew / Abrahamic</p>
+      <p class="culture-card-title">Genesis: Creatio Ex Nihilo</p>
+      <p>The Hebrew Bible's creation account introduced a radical new idea: the universe was created <em>ex nihilo</em> — from absolute nothing — by an omnipotent personal God. Unlike other ancient cosmogonies, there is no pre-existing chaos matter or divine struggle; God speaks and reality obeys. This single act of creation gives history a direction and a meaning. Augustine later developed this into a theology of time itself as a created thing, anticipating Einstein's insight that time and the universe are inseparable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     HELLENISTIC – ROMAN
+════════════════════════════════════════════ -->
+<section id="hellenistic" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter VII</p>
+    <h2 class="era-title">Hellenistic &amp; Roman Cosmology</h2>
+    <p class="era-span">c. 300 BCE – 400 CE</p>
+  </div>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">c. 240 BCE — Eratosthenes</p>
+      <h3 class="tl-heading">Measuring the Earth</h3>
+      <div class="tl-body">
+        <p>Working in Alexandria, Eratosthenes calculated the circumference of the Earth by comparing the angle of the Sun's shadow at two locations on the summer solstice. His result — approximately 40,000 km — was accurate to within 2% of the modern value. This extraordinary achievement established that empirical measurement, not myth or logic alone, could determine fundamental facts about the cosmos.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 280 BCE — Epicurus</p>
+      <h3 class="tl-heading">Infinite Universe, Infinite Worlds</h3>
+      <div class="tl-body">
+        <p>Expanding on Democritus, Epicurus argued forcefully that the universe is infinite in extent and contains infinitely many worlds, some similar to ours and some utterly unlike it. Gods, if they exist, have no interest in human affairs. The purpose of cosmology is to free humanity from fear by showing that all phenomena have natural causes. His follower Lucretius, in <em>De Rerum Natura</em>, wrote the most complete surviving account of ancient atomic cosmology — a text that was rediscovered in 1417 and helped ignite the Scientific Revolution.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 150 CE — Claudius Ptolemy</p>
+      <h3 class="tl-heading">The Almagest: The Perfected Geocentric System</h3>
+      <div class="tl-body">
+        <p>Ptolemy's <em>Almagest</em> was the culmination of ancient astronomy. His geocentric model used circles, epicycles (circles on circles), and the equant to reproduce the observed movements of planets with great mathematical precision. Though physically wrong, it was so computationally effective that it predicted planetary positions accurately enough to navigate by for over 1,400 years. It stands as one of history's most successful wrong theories — a reminder that predictive power and physical truth are not always the same thing.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ISLAMIC GOLDEN AGE
+════════════════════════════════════════════ -->
+<section id="islamic" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter VIII</p>
+    <h2 class="era-title">The Islamic Golden Age</h2>
+    <p class="era-span">c. 800 – 1300 CE</p>
+  </div>
+
+  <p>While European learning contracted after the fall of Rome, Islamic scholars not only preserved ancient Greek texts but actively advanced them, developing new mathematics, optics, and astronomical methods that would later fuel the European Renaissance.</p>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">c. 825 CE — Al-Khwarizmi</p>
+      <h3 class="tl-heading">Algebra: The Language of the Cosmos</h3>
+      <div class="tl-body">
+        <p>Al-Khwarizmi's <em>Kitab al-mukhtasar fi hisab al-jabr wal-muqabala</em> (the word <em>algebra</em> derives from <em>al-jabr</em>) provided the mathematical toolkit that would eventually allow Newton and Einstein to write down the laws of the universe. Without algebra, there is no physics. His work on algorithms (the word derives from his name) laid the computational foundation of all modern science and technology.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 1000 CE — Ibn al-Haytham (Alhazen)</p>
+      <h3 class="tl-heading">The Scientific Method</h3>
+      <div class="tl-body">
+        <p>Ibn al-Haytham's <em>Book of Optics</em> introduced a rigorous empirical methodology that is recognizable as the modern scientific method: propose a hypothesis, design an experiment, observe results, revise the hypothesis. He applied this to optics, demolishing the ancient emission theory of vision (that the eye sends out rays) and correctly describing light as entering the eye from external objects. His insistence on experimental verification over argumentative authority was a quiet revolution.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 1030 CE — Al-Biruni</p>
+      <h3 class="tl-heading">A Heliocentric Hypothesis</h3>
+      <div class="tl-body">
+        <p>Al-Biruni discussed the heliocentric hypothesis and found it mathematically compatible with observation. He noted that Earth's daily rotation was a more economical explanation for the apparent rotation of the heavens than actually spinning the entire universe. He measured the Earth's radius to within 1% accuracy using a method involving a mountain peak. His reluctance to fully endorse heliocentrism was philosophical rather than evidential — he considered it insufficiently proven rather than wrong.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MEDIEVAL EUROPE
+════════════════════════════════════════════ -->
+<section id="medieval" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter IX</p>
+    <h2 class="era-title">Medieval European Cosmology</h2>
+    <p class="era-span">c. 500 – 1400 CE</p>
+  </div>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">c. 1250 CE — Thomas Aquinas</p>
+      <h3 class="tl-heading">The Synthesis of Aristotle and Christianity</h3>
+      <div class="tl-body">
+        <p>Aquinas performed the monumental intellectual task of reconciling Aristotle's geocentric, eternal, rational cosmos with Christian theology. In his synthesis, the Aristotelian Unmoved Mover was identified with the Christian God; the celestial spheres were moved by angels; and the rational order of the cosmos was evidence of divine design. This Scholastic cosmology — built on Aristotelian physics wrapped in Christian theology — dominated European universities for centuries and became what Galileo and Newton had to tear down.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">c. 1320 CE — Jean Buridan &amp; Nicole Oresme</p>
+      <h3 class="tl-heading">Impetus Theory and Earth's Rotation</h3>
+      <div class="tl-body">
+        <p>Two medieval Parisian scholars quietly began dismantling Aristotelian physics. Buridan's theory of <em>impetus</em> — that a moving object carries an internal quantity of motion with it — was a crucial step toward Newton's concept of inertia. Oresme argued that the Earth's daily rotation was indistinguishable from the stars rotating around a stationary Earth, and that the former was actually more economical. He declined to endorse it on scriptural grounds, but the seed was planted.</p>
+      </div>
+    </li>
+  </ul>
+
+  <div class="pull-quote">
+    "The Universe is like a great animal; it has a rational soul but material body — and it holds together through a principle of proportion and harmony that reason can discover."
+    <cite>— Paraphrase of medieval scholastic cosmology</cite>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     RENAISSANCE
+════════════════════════════════════════════ -->
+<section id="renaissance" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter X</p>
+    <h2 class="era-title">The Renaissance &amp; the Copernican Revolution</h2>
+    <p class="era-span">c. 1400 – 1610 CE</p>
+  </div>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">1543 — Nicolaus Copernicus</p>
+      <h3 class="tl-heading">De Revolutionibus: The Sun at the Center</h3>
+      <div class="tl-body">
+        <p>Copernicus published his heliocentric model on the year of his death, wisely dedicating it to the Pope. His argument was partly aesthetic — the geocentric system had accumulated so many epicycles that it had become ugly and unwieldy; the Sun-centered model was mathematically simpler and more beautiful. He retained circular orbits and epicycles, so his model was not more accurate than Ptolemy's. But its conceptual shift was irreversible: Earth is not the center, not unique, and not stationary. Humanity's cosmic address had to be revised.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">1576 — Thomas Digges</p>
+      <h3 class="tl-heading">An Infinite Copernican Universe</h3>
+      <div class="tl-body">
+        <p>The English astronomer Thomas Digges took Copernicus's model and drew an extraordinary conclusion: if the stars are not fixed to a sphere but scattered throughout infinite space, the universe must be infinite. He published the first diagram of an infinite stellar universe, with stars spread throughout unbounded space. This created what would later be called <em>Olbers' Paradox</em>: if the universe is infinite and filled with stars, why is the sky dark at night?</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">1600 — Giordano Bruno</p>
+      <h3 class="tl-heading">Infinite Universe, Infinite Worlds — Burned at the Stake</h3>
+      <div class="tl-body">
+        <p>Bruno went further than any contemporary: the universe is infinite, contains infinitely many worlds like our own, and has no center. Each star is a distant sun, possibly with inhabited planets. God is the infinite universe itself. For these ideas — and specifically for his denial of Christ's divinity — Bruno was burned at the stake in Rome in 1600. He was not a scientist in the modern sense, but his cosmological intuitions about the scale and structure of the universe were largely vindicated by the 20th century.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">1609 — Galileo Galilei</p>
+      <h3 class="tl-heading">The Telescope Transforms Cosmology</h3>
+      <div class="tl-body">
+        <p>Galileo turned a telescope on the sky and destroyed the remaining foundations of the Aristotelian cosmos in a single observing season. The Moon had mountains and valleys — it was not a perfect sphere. Jupiter had four moons orbiting it — not everything orbited Earth. Venus showed phases like the Moon — it must orbit the Sun. The Milky Way resolved into countless individual stars. The cosmos was suddenly far larger, far older-looking, and far less anthropocentric than anyone had supposed. Galileo was placed under house arrest by the Inquisition for insisting on the truth of what he saw.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SCIENTIFIC REVOLUTION
+════════════════════════════════════════════ -->
+<section id="revolution" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter XI</p>
+    <h2 class="era-title">The Scientific Revolution</h2>
+    <p class="era-span">c. 1610 – 1700 CE</p>
+  </div>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">1609 – 1619 — Johannes Kepler</p>
+      <h3 class="tl-heading">Laws of Planetary Motion: Ellipses, Not Circles</h3>
+      <div class="tl-body">
+        <p>Using Tycho Brahe's meticulous naked-eye observations — the most accurate pre-telescopic data ever assembled — Kepler discovered that planets move in <em>ellipses</em>, not circles, with the Sun at one focus. He formulated three mathematical laws describing planetary motion with extraordinary precision. The philosophical consequences were profound: even the most fundamental assumption of ancient cosmology — that celestial objects move in perfect circles — was wrong. The universe did not conform to human aesthetic preferences; it followed its own mathematical rules.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">1687 — Isaac Newton</p>
+      <h3 class="tl-heading">Principia Mathematica: Universal Gravitation</h3>
+      <div class="tl-body">
+        <p>Newton's <em>Principia</em> was the greatest single intellectual achievement in the history of science to that point. His law of universal gravitation — that every mass attracts every other mass with a force proportional to their masses and inversely proportional to the square of the distance between them — unified terrestrial and celestial physics for the first time. The same force that pulls an apple from a tree holds the Moon in its orbit and the planets around the Sun. The cosmos is governed by a single, universal, mathematical law, and that law can be written down and used to make precise predictions anywhere in the universe. Newton imagined an infinite, static, homogeneous universe with no center — eternal and divinely sustained.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ENLIGHTENMENT
+════════════════════════════════════════════ -->
+<section id="enlightenment" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter XII</p>
+    <h2 class="era-title">The Enlightenment</h2>
+    <p class="era-span">c. 1700 – 1800 CE</p>
+  </div>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">1734 — Emanuel Swedenborg</p>
+      <h3 class="tl-heading">A Nebular Origin for the Solar System</h3>
+      <div class="tl-body"><p>The Swedish theologian and scientist Swedenborg — later famous for his mystical visions — proposed that the solar system condensed from a rotating nebula of primordial matter. This idea, later developed independently by Kant and Laplace, became the nebular hypothesis and is the direct ancestor of the standard model of solar system formation used today.</p></div>
+    </li>
+    <li class="tl-entry">
+      <p class="tl-date">1755 — Immanuel Kant</p>
+      <h3 class="tl-heading">Island Universes and the Nebular Hypothesis</h3>
+      <div class="tl-body">
+        <p>In <em>Universal Natural History and Theory of the Heavens</em>, Kant proposed two transformative ideas. First, that the nebulae visible in the sky are distant "island universes" — entire galaxies of stars like the Milky Way, separated by vast distances. Second, that the solar system formed from a rotating cloud of gas and dust that gradually collapsed under gravity. Both ideas would be confirmed: the first by Hubble in 1924, the second by the entire field of planetary science. Kant proposed all this from pure reasoning, without a telescope.</p>
+      </div>
+    </li>
+    <li class="tl-entry">
+      <p class="tl-date">1796 — Pierre-Simon Laplace</p>
+      <h3 class="tl-heading">The Mechanical Universe and "God Is a Hypothesis I Have No Need Of"</h3>
+      <div class="tl-body">
+        <p>Laplace's <em>Celestial Mechanics</em> showed that Newton's equations could explain all observed planetary motions without any appeal to divine adjustment or intervention. When Napoleon asked him why his book contained no mention of God, Laplace reportedly answered, "Sire, I have no need of that hypothesis." The universe, in the Laplacian view, is a perfect mechanism running by deterministic physical laws — in principle, a being of sufficient knowledge could predict all future states from any present state. This is the high-water mark of Newtonian determinism, soon to be complicated by thermodynamics and later shattered by quantum mechanics.</p>
+      </div>
+    </li>
+    <li class="tl-entry">
+      <p class="tl-date">1785 — William Herschel</p>
+      <h3 class="tl-heading">Mapping the Milky Way</h3>
+      <div class="tl-body"><p>By systematically counting stars in different directions, Herschel constructed the first observational map of the Milky Way's shape — a flattened disk with the Sun near the center (he was wrong about the Sun's position, but the shape was right). He also catalogued thousands of nebulae and observed that some of them were rotating — suggesting they might be forming solar systems, confirming the nebular hypothesis observationally.</p></div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     19TH CENTURY
+════════════════════════════════════════════ -->
+<section id="19c" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter XIII</p>
+    <h2 class="era-title">The 19th Century: Energy, Time, and the Limits of Newton</h2>
+    <p class="era-span">1800 – 1900 CE</p>
+  </div>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">1824 – 1850 — Thermodynamics</p>
+      <h3 class="tl-heading">The Heat Death of the Universe</h3>
+      <div class="tl-body">
+        <p>The development of thermodynamics by Carnot, Clausius, Kelvin, and others produced the most cosmologically disturbing idea of the century: the second law of thermodynamics states that entropy — disorder — always increases in a closed system. Applied to the universe as a whole, this means the cosmos is irreversibly running down toward a state of maximum entropy — a "heat death" in which all energy is uniformly distributed, all temperature differences eliminated, and no further work can be done. For the first time, physics proposed that the universe has not just a past but a definite, bleak future ending.</p>
+      </div>
+    </li>
+    <li class="tl-entry">
+      <p class="tl-date">1859 — Charles Darwin</p>
+      <h3 class="tl-heading">Deep Time and Natural Origins</h3>
+      <div class="tl-body"><p>Darwin's theory of evolution required immense spans of time — hundreds of millions of years — for natural selection to produce the diversity of life. This put enormous pressure on estimates of the Earth's age and, by implication, the age of the universe. It also extended the principle of natural, unguided physical processes from the cosmos to biology, completing the program begun by Copernicus: there is no special place, and now there is no special creation. The entire edifice of complexity we observe — stars, planets, life, minds — arises from natural law operating over deep time.</p></div>
+    </li>
+    <li class="tl-entry">
+      <p class="tl-date">1864 – 1873 — James Clerk Maxwell</p>
+      <h3 class="tl-heading">Electromagnetism: The Crack in Newton's Universe</h3>
+      <div class="tl-body"><p>Maxwell unified electricity and magnetism into a single theory and showed that light is an electromagnetic wave traveling at a fixed speed — approximately 300,000 km/s. This created a deep problem: fixed relative to what? Newton's mechanics assumed absolute space and time; Maxwell's equations seemed to require an absolute medium (the "luminiferous aether") through which light propagated. The failure to detect this aether would ultimately lead to Einstein's special relativity and the dismantling of Newtonian absolute space and time.</p></div>
+    </li>
+    <li class="tl-entry">
+      <p class="tl-date">1823 — Heinrich Olbers</p>
+      <h3 class="tl-heading">Olbers' Paradox: Why Is the Night Sky Dark?</h3>
+      <div class="tl-body"><p>If the universe is infinite and eternal and filled uniformly with stars, every line of sight from Earth should eventually terminate on a star — and the night sky should be as bright as the surface of the sun. It is not. Olbers' Paradox, as it became known, had no satisfying resolution in the 19th century. The answer, as Poe intuitively guessed in 1848, is that the universe is not infinite in age — light from the most distant stars hasn't reached us yet — but this required the Big Bang theory to prove properly.</p></div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     EARLY 20TH CENTURY
+════════════════════════════════════════════ -->
+<section id="20c-early" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter XIV</p>
+    <h2 class="era-title">The Early 20th Century: Relativity and the Expanding Universe</h2>
+    <p class="era-span">1900 – 1950 CE</p>
+  </div>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">1905 — Albert Einstein</p>
+      <h3 class="tl-heading">Special Relativity: Space and Time Are One</h3>
+      <div class="tl-body">
+        <p>Einstein's special relativity demolished Newton's absolute space and time. The speed of light is constant for all observers regardless of their motion; as a consequence, time passes at different rates for observers in relative motion (time dilation), lengths contract in the direction of motion, and mass and energy are equivalent (E = mc²). Space and time are not separate, independent containers but aspects of a single four-dimensional <em>spacetime</em>. The universe is not a stage on which events occur; it is the events themselves.</p>
+      </div>
+    </li>
+    <li class="tl-entry">
+      <p class="tl-date">1915 — Albert Einstein</p>
+      <h3 class="tl-heading">General Relativity: Gravity Is Curved Spacetime</h3>
+      <div class="tl-body">
+        <p>General relativity replaced Newton's gravitational force with a geometric description: mass and energy curve spacetime, and objects follow the straightest possible paths (geodesics) through that curved spacetime. The predictions were extraordinary: light bends around massive objects (confirmed in 1919 during a solar eclipse), time runs slower in stronger gravitational fields, and the universe as a whole must be either expanding or contracting — it cannot be static. Einstein, disturbed by this implication, introduced a "cosmological constant" to hold the universe still. He would later call this his "greatest blunder."</p>
+      </div>
+    </li>
+    <li class="tl-entry">
+      <p class="tl-date">1922 – 1927 — Friedmann &amp; Lemaître</p>
+      <h3 class="tl-heading">The Expanding Universe — and Its Beginning</h3>
+      <div class="tl-body">
+        <p>Alexander Friedmann derived solutions to Einstein's field equations showing that the universe must be either expanding or contracting. Georges Lemaître, a Belgian priest and physicist, independently reached the same conclusion and went further: if the universe is currently expanding, it was smaller in the past, and tracing backwards, all matter and energy in the universe must have originated from a single incredibly dense point — what Lemaître called the "primeval atom" or "cosmic egg." This was the first serious scientific proposal for a beginning of the universe. Lemaître submitted it for publication in 1927. Most physicists, including Einstein, initially dismissed it.</p>
+      </div>
+    </li>
+    <li class="tl-entry">
+      <p class="tl-date">1924 – 1929 — Edwin Hubble</p>
+      <h3 class="tl-heading">Galaxies Beyond the Milky Way — and They Are Receding</h3>
+      <div class="tl-body">
+        <p>Using the 100-inch telescope at Mount Wilson, Hubble resolved individual stars in the Andromeda "nebula" and showed it was an independent galaxy, millions of light-years away. Kant's "island universes" were real. Then, in 1929, Hubble published his most consequential finding: the more distant a galaxy, the faster it recedes from us. The universe is not static — it is expanding in every direction simultaneously. This empirical confirmation of the expanding universe forced the scientific community to accept Lemaître's conclusion: the universe had a beginning.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MID 20TH CENTURY
+════════════════════════════════════════════ -->
+<section id="20c-mid" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter XV</p>
+    <h2 class="era-title">The Mid 20th Century: The Big Bang vs. Steady State</h2>
+    <p class="era-span">1950 – 1980 CE</p>
+  </div>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">1948 — The Steady State Theory</p>
+      <h3 class="tl-heading">Hoyle, Gold &amp; Bondi: Continuous Creation</h3>
+      <div class="tl-body">
+        <p>Fred Hoyle, Tommy Gold, and Hermann Bondi proposed a compelling alternative to the primeval atom: the "Steady State" model. The universe has no beginning and no end, and expands forever — but as it expands, new matter is continuously created at just the rate needed to maintain constant average density. The universe looks the same at all times and from all places. It was Hoyle who, in a 1949 BBC radio broadcast, mockingly referred to the rival theory as "the Big Bang" — a name that stuck, much to Hoyle's annoyance, and which is now forever associated with the model he was mocking.</p>
+      </div>
+    </li>
+    <li class="tl-entry">
+      <p class="tl-date">1948 — George Gamow, Alpher &amp; Herman</p>
+      <h3 class="tl-heading">Nucleosynthesis and the Predicted Afterglow</h3>
+      <div class="tl-body">
+        <p>Gamow and colleagues worked out the nuclear physics of the early universe, showing how the lightest elements — hydrogen, helium, and lithium — were forged in the first three minutes of extreme heat and density after the Big Bang. Their predictions matched observed cosmic abundances with remarkable precision. They also predicted that the early universe, when it cooled enough for electrons and protons to combine into neutral atoms (about 380,000 years after the Big Bang), would have released a flash of thermal radiation that should still be detectable today as a faint microwave background glow — uniformly spread across the sky at about 5 Kelvin.</p>
+      </div>
+    </li>
+    <li class="tl-entry">
+      <p class="tl-date">1965 — Penzias &amp; Wilson</p>
+      <h3 class="tl-heading">The Cosmic Microwave Background: The Big Bang Confirmed</h3>
+      <div class="tl-body">
+        <p>Arno Penzias and Robert Wilson, trying to eliminate mysterious noise from a Bell Labs microwave antenna, discovered that the noise came from every direction in the sky with equal intensity, at a temperature of about 2.7 Kelvin. They had accidentally detected Gamow's predicted afterglow — the Cosmic Microwave Background (CMB) radiation. It is the oldest light in the universe: a snapshot of the cosmos 380,000 years after the Big Bang, stretched by cosmic expansion into microwaves. The Steady State model had no explanation for it. The Big Bang debate was effectively over. Penzias and Wilson won the Nobel Prize in 1978.</p>
+      </div>
+    </li>
+    <li class="tl-entry">
+      <p class="tl-date">1960s–70s — Black Holes, Quasars, and Dark Matter</p>
+      <h3 class="tl-heading">The Universe Gets Stranger</h3>
+      <div class="tl-body">
+        <p>The 1960s and 70s brought a cascade of discoveries that enormously complicated the simple picture of the Big Bang. Quasars — extraordinarily luminous objects billions of light-years away, now understood to be supermassive black holes actively consuming matter — showed that the early universe was radically different from today's. Stephen Hawking and Roger Penrose proved mathematically that singularities (infinite-density points) were inevitable consequences of general relativity, suggesting the Big Bang really was an absolute beginning of space and time. Meanwhile, Vera Rubin's studies of galactic rotation curves showed that galaxies rotated too fast to be held together by visible matter alone — implying the existence of vast amounts of unseen "dark matter."</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     LATE 20TH CENTURY
+════════════════════════════════════════════ -->
+<section id="20c-late" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter XVI</p>
+    <h2 class="era-title">The Late 20th Century: Inflation, Dark Energy &amp; the Multiverse</h2>
+    <p class="era-span">1980 – 2000 CE</p>
+  </div>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">1980 — Alan Guth</p>
+      <h3 class="tl-heading">Cosmic Inflation: The Universe Expanded Faster Than Light</h3>
+      <div class="tl-body">
+        <p>Guth's inflationary theory proposed that in the first tiny fraction of a second after the Big Bang (between 10⁻³⁶ and 10⁻³² seconds), the universe underwent an exponential expansion, doubling in size at least 60 times faster than light. This solved several deep puzzles: why the CMB is so uniform (regions that appear causally disconnected were once in contact), why the universe is geometrically flat, and why we see no magnetic monopoles. Inflation also had a stunning implication: quantum fluctuations during this phase were stretched to cosmic scales, seeding all large-scale structure — every galaxy, every cluster, every void — from microscopic quantum noise.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">1984 – 1995 — String Theory</p>
+      <h3 class="tl-heading">Strings, Extra Dimensions, and the Theory of Everything</h3>
+      <div class="tl-body">
+        <p>String theory proposed that the fundamental constituents of reality are not point particles but one-dimensional vibrating strings, whose different vibrational modes produce different particles. It requires 10 or 11 spatial dimensions (6 or 7 of which are "compactified" into structures too small to observe). String theory naturally incorporates both quantum mechanics and general relativity — the two incompatible pillars of modern physics — suggesting it might be the long-sought "Theory of Everything." It has not yet made a confirmed, unique prediction and remains mathematically extraordinary but physically unproven.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">1992 — COBE Satellite</p>
+      <h3 class="tl-heading">The Face of the Early Universe</h3>
+      <div class="tl-body"><p>The Cosmic Background Explorer satellite mapped the tiny temperature fluctuations in the CMB — variations of 1 part in 100,000 — that represent the seeds from which all cosmic structure grew. Seeing these fluctuations was, as physicist George Smoot described it, "like seeing the face of God." They matched the predictions of inflationary Big Bang theory almost perfectly.</p></div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">1998 — Dark Energy and the Accelerating Universe</p>
+      <h3 class="tl-heading">The Greatest Mystery in Physics</h3>
+      <div class="tl-body">
+        <p>Two independent teams studying distant Type Ia supernovae as "standard candles" expected to measure the rate at which the universe's expansion was slowing down under gravity. Instead, they found it was <em>speeding up</em>. Something was pushing space apart with increasing vigor — a mysterious "dark energy" permeating all space. Combined with dark matter, this meant that ordinary matter — atoms, everything we can see and touch — makes up only about 5% of the universe's total energy content. 27% is dark matter, 68% is dark energy. We do not know what either actually is. This discovery, which earned the 2011 Nobel Prize, remains the deepest unsolved problem in cosmology.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     21ST CENTURY
+════════════════════════════════════════════ -->
+<section id="21c" class="reveal">
+  <div class="era-header">
+    <p class="era-badge">Chapter XVII</p>
+    <h2 class="era-title">The 21st Century: Precision Cosmology &amp; New Frontiers</h2>
+    <p class="era-span">2000 – 2026 CE</p>
+  </div>
+
+  <ul class="timeline">
+    <li class="tl-entry">
+      <p class="tl-date">2003 – 2013 — WMAP &amp; Planck Satellites</p>
+      <h3 class="tl-heading">The Standard Model of Cosmology Confirmed</h3>
+      <div class="tl-body">
+        <p>The WMAP and Planck satellites measured the CMB with extraordinary precision, establishing the "Lambda-CDM" model as the standard cosmological model: a universe 13.8 billion years old, geometrically flat, consisting of 5% ordinary matter, 27% cold dark matter, and 68% dark energy (the cosmological constant, Λ). The universe began in a hot, dense Big Bang, underwent inflation, and will expand forever, with large-scale structure seeded by primordial quantum fluctuations. This is the most precisely tested physical theory in history — and it contains three components (inflation, dark matter, dark energy) that remain fundamentally unexplained.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">2015 — LIGO</p>
+      <h3 class="tl-heading">Gravitational Waves: A New Sense for the Cosmos</h3>
+      <div class="tl-body">
+        <p>On September 14, 2015, LIGO detected the gravitational waves produced by two black holes merging 1.3 billion light-years away — a signal that compressed and stretched the detector by a fraction of the width of a proton. Einstein had predicted gravitational waves in 1916 but doubted they could ever be detected. Their detection opened an entirely new window on the universe: gravitational wave astronomy can now observe events invisible to light — colliding black holes, merging neutron stars, and potentially echoes of the Big Bang itself. The first Nobel Prize of this discovery came in 2017.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">2019 — First Black Hole Image</p>
+      <h3 class="tl-heading">Event Horizon Telescope: Seeing the Unseen</h3>
+      <div class="tl-body"><p>The Event Horizon Telescope collaboration released the first image of a black hole's shadow — the supermassive black hole at the center of galaxy M87, 6.5 billion solar masses at 55 million light-years' distance. The image confirmed general relativity's predictions in the strongest gravitational environment ever observed. In 2022, a second image showed Sagittarius A*, the black hole at our own Milky Way's center.</p></div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">2022 – Present — James Webb Space Telescope</p>
+      <h3 class="tl-heading">The Earliest Light — and Unexpected Surprises</h3>
+      <div class="tl-body">
+        <p>The James Webb Space Telescope began operations in 2022 and has already transformed observational cosmology. It has imaged galaxies as they appeared only 300 million years after the Big Bang — far earlier than expected — and found them to be larger, more structured, and more chemically complex than theoretical models predicted. These "impossible galaxies" suggest that either our models of early star and galaxy formation need revision, or that some aspect of the standard cosmological model requires correction. JWST also continues the search for biosignatures in exoplanet atmospheres — the first direct evidence of extraterrestrial life, if found, would be the most consequential scientific discovery in human history.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">2015 – Present — Multiverse Theories</p>
+      <h3 class="tl-heading">Many Worlds: Eternal Inflation, String Landscape, Quantum Branches</h3>
+      <div class="tl-body">
+        <p>Modern cosmological and quantum theories independently converge on the idea that our observable universe may be one of an enormous — perhaps infinite — number of universes. In "eternal inflation," quantum fluctuations continuously produce new inflationary bubbles, each with its own physical constants. In string theory's "landscape," there are 10⁵⁰⁰ possible vacuum states, each potentially corresponding to a universe with different physics. In Everettian quantum mechanics ("many worlds"), every quantum measurement spawns branching parallel universes. These proposals are scientifically controversial because they are currently untestable — they predict no unique observable consequence. Whether they are science, metaphysics, or both is genuinely disputed.</p>
+      </div>
+    </li>
+
+    <li class="tl-entry">
+      <p class="tl-date">2019 – Present — The Hubble Tension</p>
+      <h3 class="tl-heading">A Crack in the Standard Model?</h3>
+      <div class="tl-body"><p>Two independent methods of measuring the universe's current expansion rate (the "Hubble constant") give significantly different answers. CMB measurements give H₀ ≈ 67 km/s/Mpc; direct observations of nearby supernovae give H₀ ≈ 73 km/s/Mpc. This ~9% discrepancy — now confirmed to very high statistical significance — cannot be explained by measurement error alone. It may indicate a flaw in the standard Lambda-CDM model, requiring new physics: perhaps early dark energy, modified gravity, or undiscovered particles. If the tension is real and not a systematic error, it may represent the first crack in cosmology's standard model since dark energy was discovered in 1998.</p></div>
+    </li>
+  </ul>
+
+  <div class="concept-box">
+    <h4>What We Currently Know — and Don't Know</h4>
+    <ul>
+      <li><strong>Age of Universe:</strong> 13.787 ± 0.020 billion years (Planck 2018)</li>
+      <li><strong>Composition:</strong> 5% ordinary matter · 27% dark matter · 68% dark energy</li>
+      <li><strong>Shape:</strong> Geometrically flat to within 0.4% precision</li>
+      <li><strong>Fate:</strong> Accelerating expansion → eventual "Big Freeze" (heat death)</li>
+      <li><strong>Unknown:</strong> Nature of dark matter and dark energy — no particle or field confirmed</li>
+      <li><strong>Unknown:</strong> What happened before or at the Big Bang singularity</li>
+      <li><strong>Unknown:</strong> Why the cosmological constant has the value it has (fine-tuned by 120 orders of magnitude)</li>
+      <li><strong>Unknown:</strong> Whether the universe is truly infinite, or finite with topology</li>
+      <li><strong>Unknown:</strong> Whether life exists elsewhere in the cosmos</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     THE FUTURE
+════════════════════════════════════════════ -->
+<section id="future" class="future-section reveal">
+  <p class="future-badge">Looking Forward</p>
+  <h2 class="era-title">The Age of AI, Space, and the Next Cosmology</h2>
+  <p class="era-span">2026 and Beyond</p>
+
+  <p style="margin: 1.5rem 0 2rem; font-size: 1.05rem; line-height: 1.78;">Every era in this timeline was convinced it was close to a final understanding. None was. The history of cosmology is a history of the universe turning out to be larger, older, stranger, and more structured than anyone imagined. There is no reason to expect that to stop. Here is what is likely — and what is possible — in the coming decades.</p>
+
+  <div class="future-entry">
+    <p class="future-entry-label">Near-Term · 2026–2040</p>
+    <h3>AI-Driven Discovery: Pattern Recognition at Cosmic Scale</h3>
+    <p>Artificial intelligence is already transforming cosmological research. Machine learning algorithms can process the output of surveys like the Vera Rubin Observatory (LSST), which will image 20 billion galaxies every few nights, identifying features, anomalies, and correlations that would take human astronomers centuries to find manually. AI has already identified gravitational lenses, catalogued galaxy morphologies, and spotted unusual CMB features. In the next decade, AI systems will likely identify patterns in the large-scale structure of the universe — the cosmic web of filaments, sheets, and voids — that reveal the nature of dark matter or offer new constraints on the Big Bang. The first major cosmological discovery made primarily by an AI system, not a human, may come within this decade.</p>
+  </div>
+
+  <div class="future-entry">
+    <p class="future-entry-label">Near-Term · 2030–2040</p>
+    <h3>LISA, Einstein Telescope, and the Gravitational Wave Universe</h3>
+    <p>The Laser Interferometer Space Antenna (LISA), a space-based gravitational wave detector spanning 2.5 million kilometers, will launch in the 2030s and detect gravitational waves from supermassive black hole mergers billions of light-years away. Combined with ground-based successors to LIGO, these instruments will reconstruct the universe's entire merger history and may detect primordial gravitational waves from inflation itself — providing a direct probe of the universe's first 10⁻³⁶ seconds. If primordial gravitational waves are detected, inflationary theory will be confirmed and we will have data from a time before the CMB, before nucleosynthesis, before any currently observable relic. We will hear the echo of the birth of spacetime.</p>
+  </div>
+
+  <div class="future-entry">
+    <p class="future-entry-label">Medium-Term · 2035–2060</p>
+    <h3>Quantum Gravity: Reconciling the Very Large and the Very Small</h3>
+    <p>The deepest theoretical challenge in physics is unifying general relativity (which governs large-scale structure) with quantum mechanics (which governs the subatomic realm). The two theories are mathematically incompatible; the universe cannot be both at once, yet it must be. Candidates — string theory, loop quantum gravity, causal set theory, and others — each make different predictions about the nature of spacetime at the Planck scale (10⁻³⁵ meters). Quantum computers, approaching practical utility in the 2030s–40s, may be capable of simulating these theories at a level of complexity impossible for classical computers, helping to identify which, if any, is correct. A confirmed theory of quantum gravity would resolve what happens at the Big Bang singularity — and might finally answer whether time itself had a beginning.</p>
+  </div>
+
+  <div class="future-entry">
+    <p class="future-entry-label">Medium-Term · 2040–2070</p>
+    <h3>First Contact with Biology — or Its Absence</h3>
+    <p>JWST and its successors will characterize the atmospheres of hundreds of Earth-like exoplanets, searching for biosignatures: oxygen, methane, ozone in combinations that imply biological production. The detection of life — even microbial — elsewhere in the cosmos would be the most cosmologically significant discovery in human history, confirming that the universe is fertile rather than sterile, that its chemistry reliably produces self-replicating complexity. If, conversely, careful survey finds planet after planet barren, it would deepen what Enrico Fermi called his "paradox" and suggest that the emergence of life is either extraordinarily improbable or that civilizations reliably self-destruct before becoming detectable. Both outcomes would reshape our cosmological self-understanding as profoundly as Copernicus did.</p>
+  </div>
+
+  <div class="future-entry">
+    <p class="future-entry-label">Long-Term · 2060–2150</p>
+    <h3>Interplanetary Civilization and a New Vantage Point</h3>
+    <p>Observatories on the far side of the Moon, shielded from Earth's radio noise, will detect radio frequencies impossible to observe from Earth's surface. Telescopes assembled in space — with apertures measured in kilometers rather than meters — will image Earth-like planets directly, resolving surface features. If humanity establishes permanent presence on Mars, asteroid mining bases, and eventually outer solar system outposts, the perspective shift will be not just physical but psychological: the "overview effect" experienced by astronauts will scale to civilizational level. A species spread across multiple worlds will have a cosmological self-understanding qualitatively different from a species confined to one. The questions they ask, and the instruments they build, will produce cosmologies we cannot yet imagine.</p>
+  </div>
+
+  <div class="future-entry">
+    <p class="future-entry-label">Speculative · 2100 and Beyond</p>
+    <h3>Post-Human Cosmology: What Questions Will AI Ask?</h3>
+    <p>Every cosmological revolution in this timeline was driven by a new instrument (telescope, radio receiver, gravitational wave detector) or a new mathematical framework (calculus, differential geometry, quantum field theory). If artificial general intelligence surpasses human mathematical and observational capability — and it may — the cosmological questions it asks, and the answers it finds, may be as far beyond our current understanding as general relativity is beyond Babylon's flat-earth ocean. The history of cosmology is not a story moving toward an endpoint. It is a story of expanding circles of ignorance — as each question is answered, a larger circle of unknown territory becomes visible. The deepest questions — why is there something rather than nothing? why do the laws of physics have the values they do? is the universe ultimately comprehensible? — have been asked for as long as human beings have looked at the sky. Whether they are answerable, and by whom or what, remains gloriously open.</p>
+  </div>
+
+  <div class="pull-quote">
+    "The most beautiful experience we can have is the mysterious. It is the fundamental emotion that stands at the cradle of true art and true science."
+    <cite>— Albert Einstein, 1931</cite>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<div class="closing reveal">
+  <p>From the Babylonian priest recording the path of Venus on a clay tablet to the AI algorithm scanning 20 billion galaxies for hidden patterns — humanity has never stopped asking the oldest question: <em>what is this, and how did it come to be?</em></p>
+  <p>Each answer has been partial. Each has been beautiful. Each has led to a larger question. That is not failure. That is the shape of discovery.</p>
+  <p class="closing-sig">End of Document &nbsp;·&nbsp; Compiled 2026</p>
+</div>
+
+</main>
+
+<footer>
+  <p>The Human Universe: A History of Cosmological Thought &nbsp;·&nbsp; From Babylon to the Age of AI</p>
+</footer>
+
+<script>
+// ─── STARFIELD ──────────────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('stars-canvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  let W, H;
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function initStars() {
+    stars = [];
+    const count = Math.floor((W * H) / 3000);
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.4 + 0.2,
+        a: Math.random(),
+        speed: Math.random() * 0.003 + 0.001,
+        twinkle: Math.random() * Math.PI * 2
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const t = Date.now() * 0.001;
+    stars.forEach(s => {
+      const alpha = s.a * (0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.twinkle));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(220, 210, 190, ${alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  initStars();
+  draw();
+  window.addEventListener('resize', () => { resize(); initStars(); });
+})();
+
+// ─── SCROLL REVEAL ───────────────────────────────────────────
+(function() {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  els.forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIELD RECORD — TERRAN CONTACT EVENT / CYCLE 7.441.09 — TRANSLATED ARCHIVE</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Cormorant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --void: #05050f;
+    --deep: #0a0a1a;
+    --panel: #0e0e22;
+    --border: #1a1a38;
+    --amber: #c8a052;
+    --amber-dim: #7a5f2a;
+    --amber-glow: rgba(200, 160, 82, 0.08);
+    --teal: #3eb8b0;
+    --teal-dim: #1f6e69;
+    --teal-glow: rgba(62, 184, 176, 0.06);
+    --text: #b8b8cc;
+    --text-dim: #606080;
+    --text-bright: #d8d8f0;
+    --red: #8b2525;
+    --red-bright: #c03030;
+    --white: #e8e8f8;
+    --mono: 'Share Tech Mono', monospace;
+    --serif: 'Cormorant', serif;
+    --cond: 'Barlow Condensed', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--void);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── STARFIELD ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 12% 14%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 27% 63%, rgba(255,255,255,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 43% 8%, rgba(255,255,255,0.35) 0%, transparent 100%),
+      radial-gradient(1px 1px at 58% 77%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 71% 34%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 83% 52%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 91% 19%, rgba(255,255,255,0.35) 0%, transparent 100%),
+      radial-gradient(1px 1px at 6%  88%, rgba(255,255,255,0.25) 0%, transparent 100%),
+      radial-gradient(2px 2px at 36% 41%, rgba(200,160,82,0.3) 0%, transparent 100%),
+      radial-gradient(2px 2px at 67% 22%, rgba(62,184,176,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 49% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 78% 71%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 22% 39%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 94% 84%, rgba(255,255,255,0.25) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER BAND ── */
+  .site-header {
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(14,14,34,0.98) 0%, rgba(10,10,26,0.95) 100%);
+    padding: 0;
+    z-index: 10;
+  }
+
+  .classification-bar {
+    background: var(--red);
+    padding: 6px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: #ffcccc;
+  }
+
+  .classification-bar span { opacity: 0.8; }
+
+  .header-inner {
+    padding: 40px 80px 36px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: end;
+  }
+
+  .mission-id {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+
+  .main-title {
+    font-family: var(--cond);
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 52px);
+    color: var(--amber);
+    line-height: 1.05;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .sub-title {
+    font-family: var(--cond);
+    font-weight: 300;
+    font-size: clamp(14px, 2vw, 20px);
+    color: var(--teal);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .header-meta {
+    text-align: right;
+  }
+
+  .meta-block {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    line-height: 1.9;
+  }
+
+  .meta-label { color: var(--amber-dim); }
+  .meta-value { color: var(--text); }
+
+  .translation-notice {
+    background: var(--teal-glow);
+    border-top: 1px solid var(--teal-dim);
+    border-bottom: 1px solid var(--teal-dim);
+    padding: 12px 80px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--teal-dim);
+    letter-spacing: 0.1em;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ── NAV ── */
+  .doc-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 10, 26, 0.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    padding: 0 80px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .nav-item {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 14px 20px;
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .nav-item:first-child { border-left: 1px solid var(--border); }
+  .nav-item:hover { color: var(--amber); background: var(--amber-glow); }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 60px 120px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 70px 0 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .section:nth-child(1)  { animation-delay: 0.1s; }
+  .section:nth-child(2)  { animation-delay: 0.2s; }
+  .section:nth-child(3)  { animation-delay: 0.3s; }
+  .section:nth-child(4)  { animation-delay: 0.4s; }
+  .section:nth-child(5)  { animation-delay: 0.5s; }
+  .section:nth-child(6)  { animation-delay: 0.55s; }
+  .section:nth-child(7)  { animation-delay: 0.6s; }
+  .section:nth-child(8)  { animation-delay: 0.65s; }
+  .section:nth-child(9)  { animation-delay: 0.7s; }
+  .section:nth-child(10) { animation-delay: 0.75s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-tag::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--teal-dim), transparent);
+    max-width: 200px;
+  }
+
+  .section-title {
+    font-family: var(--cond);
+    font-weight: 600;
+    font-size: clamp(20px, 2.5vw, 32px);
+    color: var(--amber);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    line-height: 1.1;
+  }
+
+  .section-sub {
+    font-family: var(--cond);
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 36px 0 14px;
+  }
+
+  p {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  /* ── DATA TABLE ── */
+  .data-table {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber-dim);
+    padding: 24px 28px;
+    margin: 28px 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+
+  .data-table-title {
+    color: var(--amber);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(26, 26, 56, 0.5);
+  }
+
+  .data-row:last-child { border-bottom: none; }
+  .data-key { color: var(--teal-dim); }
+  .data-val { color: var(--text); }
+  .data-val.alert { color: var(--amber); }
+  .data-val.critical { color: var(--red-bright); }
+
+  /* ── FIELD REPORT BLOCK ── */
+  .field-report {
+    background: var(--amber-glow);
+    border: 1px solid var(--amber-dim);
+    border-left: 3px solid var(--amber);
+    padding: 24px 28px;
+    margin: 28px 0;
+  }
+
+  .field-report-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .field-report p {
+    font-style: italic;
+    color: var(--text-bright);
+    margin-bottom: 0;
+  }
+
+  /* ── TEAL ANNOTATION ── */
+  .annotation {
+    background: var(--teal-glow);
+    border: 1px solid var(--teal-dim);
+    border-left: 3px solid var(--teal);
+    padding: 18px 24px;
+    margin: 24px 0;
+  }
+
+  .annotation-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .annotation p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  /* ── REDACTED ── */
+  .redacted {
+    background: var(--text-dim);
+    color: transparent;
+    border-radius: 2px;
+    padding: 0 4px;
+    cursor: not-allowed;
+    user-select: none;
+    letter-spacing: 0.05em;
+    display: inline-block;
+  }
+
+  /* ── SUBJECT PROFILE ── */
+  .subject-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 28px 0;
+  }
+
+  .subject-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 24px;
+  }
+
+  .subject-card-id {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+
+  .subject-card-name {
+    font-family: var(--cond);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .subject-card p {
+    font-size: 15px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .subject-card .highlight {
+    color: var(--amber);
+    font-style: italic;
+  }
+
+  /* ── STAR MAP SECTION ── */
+  .starmap-container {
+    background: var(--panel);
+    border: 1px solid var(--amber-dim);
+    padding: 32px;
+    margin: 32px 0;
+    text-align: center;
+  }
+
+  .starmap-header {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .starmap-svg {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .starmap-caption {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    margin-top: 18px;
+    line-height: 1.7;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    border-left: 2px solid var(--border);
+    padding-left: 32px;
+    margin: 28px 0;
+  }
+
+  .timeline-entry {
+    position: relative;
+    margin-bottom: 28px;
+  }
+
+  .timeline-entry::before {
+    content: '';
+    position: absolute;
+    left: -38px;
+    top: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 2px solid var(--panel);
+    box-shadow: 0 0 6px var(--teal);
+  }
+
+  .timeline-stamp {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--teal-dim);
+    letter-spacing: 0.15em;
+    margin-bottom: 4px;
+  }
+
+  .timeline-text {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  /* ── RATING SCALE ── */
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 10px 0;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+
+  .rating-label { color: var(--text-dim); min-width: 200px; }
+  .rating-bar { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .rating-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--teal), var(--amber)); }
+  .rating-value { color: var(--amber); min-width: 30px; text-align: right; }
+
+  /* ── CONCLUSION BOX ── */
+  .conclusion-box {
+    background: rgba(139, 37, 37, 0.08);
+    border: 1px solid var(--red);
+    padding: 28px 32px;
+    margin: 36px 0;
+  }
+
+  .conclusion-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--red-bright);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .conclusion-box p {
+    font-style: italic;
+    color: var(--text-bright);
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    border-top: 1px solid var(--border);
+    background: var(--deep);
+    padding: 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    line-height: 2;
+  }
+
+  .footer-block-title { color: var(--amber-dim); margin-bottom: 8px; }
+
+  .classification-footer {
+    background: var(--red);
+    padding: 10px 80px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #ffcccc;
+    text-align: center;
+  }
+
+  .pulse-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--red-bright);
+    margin-right: 8px;
+    animation: pulse 2s infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--red-bright); }
+    50% { opacity: 0.4; box-shadow: none; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 760px) {
+    .header-inner { padding: 30px 24px; grid-template-columns: 1fr; }
+    .header-meta { text-align: left; }
+    .content { padding: 0 24px 80px; }
+    .doc-nav { padding: 0 24px; }
+    .subject-grid { grid-template-columns: 1fr; }
+    .doc-footer { padding: 30px 24px; grid-template-columns: 1fr; }
+    .classification-bar, .translation-notice, .classification-footer { padding: 8px 24px; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ══ SITE HEADER ══ -->
+<header class="site-header">
+  <div class="classification-bar">
+    <span><span class="pulse-dot"></span>CLASSIFICATION: EPSILON-ABSOLUTE — ARCHIVE TRANSLATION SERIES — AUTHORISED DISTRIBUTION ONLY</span>
+    <span>DOCUMENT ORIGIN: EXTERNAL / NON-TERRAN — PROVENANCE: ZETA RETICULI SECTOR SURVEY COMMAND</span>
+  </div>
+  <div class="header-inner">
+    <div>
+      <div class="mission-id">MISSION FILE — REF: ZRS-7441-09-TC / TERRAN CONTACT LOG / TRANSLATED AND TRANSCRIBED</div>
+      <h1 class="main-title">Field Record:<br>Terran Contact Event<br>Cycle 7.441.09</h1>
+      <p class="sub-title">The Hill Subjects — Survey Intercept — Northern Terran Continent, Sector 4</p>
+    </div>
+    <div class="header-meta">
+      <div class="meta-block">
+        <div><span class="meta-label">TERRAN DATE EQUIV: </span><span class="meta-value">19.09.1961 / LOCAL</span></div>
+        <div><span class="meta-label">CYCLE TIMESTAMP: </span><span class="meta-value">7.441.09 / 22:14 LOCAL</span></div>
+        <div><span class="meta-label">VESSEL DESIGNATION: </span><span class="meta-value">SURVEY UNIT Θ-9</span></div>
+        <div><span class="meta-label">CREW COMPLEMENT: </span><span class="meta-value"><span class="redacted">████████████</span></span></div>
+        <div><span class="meta-label">LEAD EXAMINER: </span><span class="meta-value"><span class="redacted">██████████</span></span></div>
+        <div><span class="meta-label">AUTHORISING COMMAND: </span><span class="meta-value">SECTOR SURVEY / ZRS</span></div>
+        <div><span class="meta-label">DOCUMENT STATUS: </span><span class="meta-value">POST-EVENT ARCHIVE — TRANSLATED</span></div>
+        <div><span class="meta-label">TRANSLATION NOTE: </span><span class="meta-value">SEE FOOTNOTES — APPROXIMATED</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="translation-notice">
+    <span>TRANSLATION NOTE: This document has been rendered into approximate Terran English by archive reconstruction. Certain concepts, measurements, and designations have no direct linguistic equivalent and are marked [APPROX]. Redacted sections are classified at levels above Epsilon and cannot be rendered regardless of authorisation.</span>
+    <span>PAGE 1 OF 1 / COMPLETE RECORD</span>
+  </div>
+</header>
+
+<!-- ══ NAV ══ -->
+<nav class="doc-nav">
+  <a class="nav-item" href="#mission-context">Mission Context</a>
+  <a class="nav-item" href="#initial-contact">Initial Contact</a>
+  <a class="nav-item" href="#subjects">Subject Profiles</a>
+  <a class="nav-item" href="#medical">Medical Log</a>
+  <a class="nav-item" href="#cartographic">Cartographic Incident</a>
+  <a class="nav-item" href="#release">Release Protocol</a>
+  <a class="nav-item" href="#surveillance">Post-Event Surveillance</a>
+  <a class="nav-item" href="#assessment">Final Assessment</a>
+</nav>
+
+<!-- ══ MAIN CONTENT ══ -->
+<main class="content">
+
+  <!-- MISSION CONTEXT -->
+  <section class="section" id="mission-context">
+    <div class="section-tag">Section 01</div>
+    <h2 class="section-title">Mission Context and Operational Mandate</h2>
+
+    <div class="data-table">
+      <div class="data-table-title">Mission Parameters — Survey Unit Θ-9</div>
+      <div class="data-row"><div class="data-key">MISSION TYPE</div><div class="data-val">Long-range biological survey — civilisational stage assessment [APPROX]</div></div>
+      <div class="data-row"><div class="data-key">TERRAN ZONE</div><div class="data-val">Northern Continent, Sector 4 — Mountain corridor, inland route system</div></div>
+      <div class="data-row"><div class="data-key">SURVEY CYCLE</div><div class="data-val">Cycle 7.441 — 9th revisit of this zone / 14th overall Terran approach</div></div>
+      <div class="data-row"><div class="data-key">CIVILISATIONAL INDEX</div><div class="data-val alert">Stage 2.4 [APPROX] — Early industrial-nuclear phase. Accelerating. Unstable.</div></div>
+      <div class="data-row"><div class="data-key">CONTACT PROTOCOL</div><div class="data-val">Passive observation only — direct intercept requires Sector Command authorisation</div></div>
+      <div class="data-row"><div class="data-key">INTERCEPT AUTHORISATION</div><div class="data-val alert">Granted (situational) — see Appendix Θ-9-A. Grounds: specimen opportunity; low-transit corridor.</div></div>
+    </div>
+
+    <p>Survey Unit Θ-9 had been operating in the northern Terran mountain zone for approximately nine of this world's rotational periods prior to the contact event. The survey mandate is standard for civilisations at this developmental stage: biological cataloguing, atmospheric sampling, assessment of cognitive and emotional development, and geopolitical monitoring. Terrans are of particular ongoing interest given the accelerated pace of their technological acquisition relative to their sociological maturity — a disparity that the <span class="redacted">████████████████</span> has flagged as requiring continued elevated monitoring.</p>
+
+    <p>The mountain corridor in Sector 4 — a linear route system used by Terran ground vehicles — had been identified as an optimal observation corridor: low population density, limited ambient light, predictable traffic patterns, and a natural topography that allows for low-altitude operations without detection by ground-based observation. Survey units have used this corridor on seven previous cycles without incident.</p>
+
+    <div class="field-report">
+      <div class="field-report-label">Field Note — Navigation Officer / Cycle 7.441.09 / Pre-Contact</div>
+      <p>Approach vector nominal. Mountain corridor clear. One Terran ground vehicle detected travelling south at moderate velocity. Occupancy: two subjects. Vehicle velocity and trajectory consistent with long-transit return journey. Assessment: subjects in fatigued state. Window for intercept estimated at [APPROX: 4 minutes] without deviation from survey path. Recommending situational authorisation. No other traffic detected within [APPROX: 18 kilometres].</p>
+    </div>
+
+    <p>The decision to intercept was made by the mission lead based on the rarity of a paired Terran contact opportunity in a low-risk corridor. Single subjects are more common; paired subjects — particularly a paired male-female bonded unit — provide superior comparative data on Terran psychological and physiological dimorphism. The authorisation was logged and the intercept sequence initiated.</p>
+  </section>
+
+  <!-- INITIAL CONTACT -->
+  <section class="section" id="initial-contact">
+    <div class="section-tag">Section 02</div>
+    <h2 class="section-title">Initial Contact and Intercept Sequence</h2>
+
+    <div class="timeline">
+      <div class="timeline-entry">
+        <div class="timeline-stamp">CYCLE 7.441.09 / 22:14 LOCAL</div>
+        <p class="timeline-text">Terran vehicle identified and tracked. Female subject (hereafter: Subject A) observed using visual enhancement instrument [binoculars] to observe the vessel from a stationary position. No distress noted. Curiosity reading: elevated. Subject A logged as primary candidate for interaction sequence.</p>
+      </div>
+      <div class="timeline-entry">
+        <div class="timeline-stamp">CYCLE 7.441.09 / 22:19 LOCAL</div>
+        <p class="timeline-text">Male subject (hereafter: Subject B) exits vehicle. Also uses visual enhancement instrument at close range to vessel. Subject B achieves sufficient visual resolution to observe crew members through illuminated apertures. Immediate acute stress response recorded. Stress hormone spike: significant. Subject B returns to vehicle in accelerated locomotion consistent with fear response. Vehicle resumes movement at elevated velocity.</p>
+      </div>
+      <div class="timeline-entry">
+        <div class="timeline-stamp">CYCLE 7.441.09 / 22:21 LOCAL</div>
+        <p class="timeline-text">Intercept initiated. Acoustic induction sequence broadcast at vehicle chassis frequency [APPROX: 39.5 Hz modulated tone]. Subjects report later this as a "buzzing sound." Intended neurological effect: mild sedation and temporal perception alteration [APPROX: dissociation]. Both subjects experience the expected disorientation response. Vehicle brought to controlled stop. Standard retrieval procedure commenced.</p>
+      </div>
+      <div class="timeline-entry">
+        <div class="timeline-stamp">CYCLE 7.441.09 / 22:24 LOCAL</div>
+        <p class="timeline-text">Both subjects aboard vessel. Subjects separated per standard protocol. Ambient environment adjusted to reduce acute stress response: lighting moderated, temperature elevated 2.1 degrees [APPROX], atmosphere composition adjusted to introduce mild sedation compound [APPROX: analogous to Terran benzodiazepine effect but non-pharmacological — pressure-based]. Subject B remains in significantly elevated distress. Subject A's distress level is notably lower than predicted for first-contact scenario. Anomalous.</p>
+      </div>
+    </div>
+
+    <div class="annotation">
+      <div class="annotation-label">Observational Note — Lead Examiner</div>
+      <p>Subject A's composure during initial retrieval was outside expected parameters for a Terran Stage 2.4 specimen. Standard prediction models for this developmental stage anticipate acute panic and non-communicative withdrawal during the first 8–12 [APPROX: minutes] of contact. Subject A was communicative within [APPROX: 90 seconds] of boarding. She initiated verbal contact with crew members unprompted. This was noted immediately and the contact protocol was adjusted accordingly. Subject A was designated primary interaction candidate. This designation held throughout the contact event.</p>
+    </div>
+  </section>
+
+  <!-- SUBJECTS -->
+  <section class="section" id="subjects">
+    <div class="section-tag">Section 03</div>
+    <h2 class="section-title">Subject Profiles — Biological and Psychological Pre-Assessment</h2>
+
+    <div class="subject-grid">
+      <div class="subject-card">
+        <div class="subject-card-id">SUBJECT DESIGNATION: ALPHA / FEMALE</div>
+        <div class="subject-card-name">Subject A<br><span style="font-size:14px;color:var(--text-dim);">Terran Identifier: Betty Hill</span></div>
+        <p><strong>Age:</strong> [APPROX: 41 Terran years]</p>
+        <p><strong>Physical Classification:</strong> Female / Terran standard morphology / Good physiological condition relative to species norm</p>
+        <p><strong>Neurological Profile:</strong> Exceptional. High-bandwidth cognitive processing. Emotional regulation capacity above species mean.</p>
+        <p class="highlight">"This subject showed a quality we have not commonly encountered in Stage 2.4 specimens: she was not afraid of what she did not understand. She was <em>interested</em> in it."</p>
+        <p><strong>Interaction Quality:</strong> Sustained verbal exchange maintained throughout contact event. Subject asked approximately [APPROX: 23] direct questions of crew and lead examiner.</p>
+        <p><strong>Notable Observation:</strong> Subject A has professional involvement in social welfare systems. She has direct experience of systemic suffering in her civilisation. This may correlate with her above-average capacity for equanimity in novel threat conditions.</p>
+      </div>
+      <div class="subject-card">
+        <div class="subject-card-id">SUBJECT DESIGNATION: BETA / MALE</div>
+        <div class="subject-card-name">Subject B<br><span style="font-size:14px;color:var(--text-dim);">Terran Identifier: Barney Hill</span></div>
+        <p><strong>Age:</strong> [APPROX: 39 Terran years]</p>
+        <p><strong>Physical Classification:</strong> Male / Terran standard morphology / Elevated cardiovascular stress markers — pre-existing condition</p>
+        <p><strong>Neurological Profile:</strong> Within species norm. High integrity reading — unusually low deception index for Terran male specimen at this developmental stage.</p>
+        <p class="highlight">"Subject B was afraid, as expected, but his fear was the fear of someone who understood instinctively that the situation was real. He did not reach for denial. This is uncommon."</p>
+        <p><strong>Interaction Quality:</strong> Limited voluntary interaction. Subject B withdrew into non-responsive state during portions of examination. This is standard. Non-cooperative specimens are not prodded.</p>
+        <p><strong>Notable Observation:</strong> Subject B exists within a Terran social stratification structure that places him under compounded adversarial pressures. Stress markers significantly exceed species baseline. We recorded this and flagged it. We are observing a civilisation still doing this to its own members.</p>
+      </div>
+    </div>
+
+    <div class="annotation">
+      <div class="annotation-label">Cross-Reference Note — Behavioural Analysis Unit</div>
+      <p>The Hill bonded pair presents an unusual dynamic: the female subject is the dominant cognitive agent in this pairing, while the male subject is the more physically stressed. Their civic engagement profiles — both active in what Terrans designate as "civil rights" work — may be relevant to their response profiles. Subjects who work to reduce suffering in others sometimes develop a higher tolerance for disorienting experiences. Further study recommended.</p>
+    </div>
+  </section>
+
+  <!-- MEDICAL -->
+  <section class="section" id="medical">
+    <div class="section-tag">Section 04</div>
+    <h2 class="section-title">Medical Examination Log</h2>
+
+    <p>Standard biological assessment was conducted on both subjects sequentially. Subjects were separated for examination, as per protocol — cross-contamination of recall is reduced when subjects cannot observe each other's responses during the contact window.</p>
+
+    <div class="section-sub">Examination of Subject A</div>
+
+    <div class="data-table">
+      <div class="data-table-title">Subject A — Medical Assessment Findings</div>
+      <div class="data-row"><div class="data-key">GENERAL CONDITION</div><div class="data-val">Good. Musculoskeletal integrity within expected species norm. No acute pathologies detected.</div></div>
+      <div class="data-row"><div class="data-key">NEURAL FUNCTION</div><div class="data-val alert">Above species baseline. Prefrontal coherence markedly elevated. Note for record.</div></div>
+      <div class="data-row"><div class="data-key">REPRODUCTIVE STATUS</div><div class="data-val">Standard female / species-appropriate development. Consistent with reported Terran reproductive cycle.</div></div>
+      <div class="data-row"><div class="data-key">SKIN SAMPLE</div><div class="data-val">Taken from dorsal wrist / standard procedure. Residual pinkish compound noted on garment [APPROX: sampling agent residue]. Logged.</div></div>
+      <div class="data-row"><div class="data-key">DENTAL STRUCTURES</div><div class="data-val alert">Terran dental structures continue to provoke disproportionate examiner interest. Logged for the fourteenth time in survey history: examiners, do not over-index on the teeth. [Internal note]</div></div>
+      <div class="data-row"><div class="data-key">STRESS RESPONSE</div><div class="data-val">Moderate only. Atypical. Subject verbally engaged examiner within minutes of commencing examination. Subject initiated philosophical exchange regarding examiners' home system.</div></div>
+    </div>
+
+    <div class="section-sub">Examination of Subject B</div>
+
+    <div class="data-table">
+      <div class="data-table-title">Subject B — Medical Assessment Findings</div>
+      <div class="data-row"><div class="data-key">GENERAL CONDITION</div><div class="data-val">Functional. Notable pre-existing cardiovascular irregularities. Blood pressure elevation is chronic, not acute — predates contact event.</div></div>
+      <div class="data-row"><div class="data-key">CARDIOVASCULAR</div><div class="data-val critical">Elevated systolic pressure / stress hormone load above healthy range even at baseline. Long-term prognosis [APPROX]: concerning. This subject's body is carrying a significant load. Source appears systemic — societal rather than physiological. Flagged.</div></div>
+      <div class="data-row"><div class="data-key">STRESS RESPONSE (ACUTE)</div><div class="data-val critical">Severe during examination. Standard non-verbal reassurance procedures applied. Limited effectiveness. Contact team notes that Subject B's fear appeared to be not simply of us, but of what we represented — the collapse of the known. This is a more complex fear than species-typical predator response.</div></div>
+      <div class="data-row"><div class="data-key">SPINAL SAMPLE</div><div class="data-val">Standard sample collected from lumbar region. Non-invasive by our standards. We understand this reads differently in Terran experiential terms.</div></div>
+      <div class="data-row"><div class="data-key">POST-EXAMINATION STATE</div><div class="data-val">Subdued. Non-communicative. Released to waiting area. Ambient calming compound maintained.</div></div>
+    </div>
+
+    <div class="field-report">
+      <div class="field-report-label">Lead Examiner's Note — Medical Section</div>
+      <p>The examination of Subject B produced a finding that, while not medically unusual for this species, was ethically significant. This male subject's body is under prolonged stress that has nothing to do with our intercept. He lives in a civilisation that stratifies its members by physical characteristics and assigns unequal burdens accordingly. His cardiovascular system shows the signature of that burden. We are cataloguing biological specimens from a species that is, in this developmental period, significantly harming its own members. The survey record should reflect this. It is relevant to any civilisational stage assessment.</p>
+    </div>
+  </section>
+
+  <!-- CARTOGRAPHIC -->
+  <section class="section" id="cartographic">
+    <div class="section-tag">Section 05</div>
+    <h2 class="section-title">The Cartographic Incident — Star Map Exchange</h2>
+
+    <p>The following sequence was not planned and represents the most operationally significant element of the contact event. It is logged here in full.</p>
+
+    <div class="section-sub">The Question</div>
+
+    <p>During the post-examination interaction with Subject A, she asked directly — verbally, without hesitation — where the survey team was from. This question has been asked in previous Terran contact events, but typically in a state of shock or dissociation, with little expectation of an answer. Subject A asked it calmly and with evident genuine curiosity. She wanted an actual answer.</p>
+
+    <div class="field-report">
+      <div class="field-report-label">Interaction Log — Lead Examiner / Subject A Exchange</div>
+      <p>Subject A: "Where are you from?"<br><br>
+      Examiner asked [APPROX]: whether Subject A had any knowledge of stellar cartography or the broader structure of her galactic neighbourhood. Subject A acknowledged she did not — not with embarrassment, but with something closer to an invitation. She was inviting us to show her something she did not know. The examiner made a decision that was not formally within the contact protocol but was not prohibited by it. The navigational reference chart was retrieved from the operational display and shown to Subject A.</p>
+    </div>
+
+    <div class="section-sub">The Map</div>
+
+    <p>The chart shown to Subject A was a standard operational navigational reference — a three-dimensional stellar display rendered in the flat projection used for briefing purposes aboard Survey Unit Θ-9. It showed the survey vessel's primary operational region: the home binary system and its surrounding stellar neighbourhood within approximately [APPROX: 55 light-years], with route classifications marked in the standard notation: heavy-use routes, standard routes, and exploratory/expeditionary paths.</p>
+
+    <p>The examiner indicated the home system — the two central bodies — and gestured to indicate origin. Subject A studied the chart for an extended period. She asked what the different types of lines meant. The examiner explained the route classification system in approximate terms she could process. Subject A continued to study the chart. She did not panic. She did not ask to be returned to her vehicle. She asked questions about the other stars shown. The session extended considerably beyond its intended duration.</p>
+
+    <div class="starmap-container">
+      <div class="starmap-header">OPERATIONAL NAVIGATIONAL REFERENCE — SURVEY REGION / ZRS SECTOR — SIMPLIFIED FLAT PROJECTION<br>As shown to Subject A during contact event. Approximate reconstruction from field record.</div>
+      <svg class="starmap-svg" viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="starGlow1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#c8a052" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#c8a052" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="starGlow2" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#3eb8b0" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#3eb8b0" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="bgGrad" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stop-color="#0d1025" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#050510" stop-opacity="1"/>
+          </radialGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Background -->
+        <rect width="720" height="480" fill="url(#bgGrad)" rx="2"/>
+
+        <!-- Faint background stars -->
+        <circle cx="45" cy="30" r="0.8" fill="white" opacity="0.3"/>
+        <circle cx="120" cy="60" r="0.6" fill="white" opacity="0.25"/>
+        <circle cx="200" cy="22" r="0.9" fill="white" opacity="0.3"/>
+        <circle cx="310" cy="45" r="0.6" fill="white" opacity="0.2"/>
+        <circle cx="450" cy="18" r="0.8" fill="white" opacity="0.3"/>
+        <circle cx="560" cy="55" r="0.6" fill="white" opacity="0.25"/>
+        <circle cx="630" cy="30" r="0.9" fill="white" opacity="0.2"/>
+        <circle cx="680" cy="70" r="0.6" fill="white" opacity="0.3"/>
+        <circle cx="70" cy="110" r="0.7" fill="white" opacity="0.2"/>
+        <circle cx="155" cy="145" r="0.8" fill="white" opacity="0.25"/>
+        <circle cx="580" cy="120" r="0.7" fill="white" opacity="0.3"/>
+        <circle cx="660" cy="150" r="0.9" fill="white" opacity="0.2"/>
+        <circle cx="30" cy="200" r="0.6" fill="white" opacity="0.25"/>
+        <circle cx="690" cy="220" r="0.8" fill="white" opacity="0.2"/>
+        <circle cx="600" cy="380" r="0.7" fill="white" opacity="0.3"/>
+        <circle cx="50" cy="350" r="0.6" fill="white" opacity="0.2"/>
+        <circle cx="100" cy="420" r="0.8" fill="white" opacity="0.25"/>
+        <circle cx="650" cy="430" r="0.7" fill="white" opacity="0.3"/>
+        <circle cx="400" cy="450" r="0.6" fill="white" opacity="0.2"/>
+        <circle cx="250" cy="400" r="0.9" fill="white" opacity="0.25"/>
+        <circle cx="500" cy="460" r="0.7" fill="white" opacity="0.3"/>
+
+        <!-- ── ROUTE LINES (drawn before stars) ── -->
+
+        <!-- Heavy trade route between the two home stars -->
+        <line x1="332" y1="210" x2="398" y2="238" stroke="#c8a052" stroke-width="2.5" opacity="0.9"/>
+
+        <!-- Standard routes (solid) -->
+        <line x1="332" y1="210" x2="218" y2="175" stroke="#6080c0" stroke-width="1.2" opacity="0.7"/>
+        <line x1="332" y1="210" x2="268" y2="295" stroke="#6080c0" stroke-width="1.2" opacity="0.7"/>
+        <line x1="332" y1="210" x2="165" y2="305" stroke="#6080c0" stroke-width="1.2" opacity="0.7"/>
+        <line x1="398" y1="238" x2="470" y2="285" stroke="#6080c0" stroke-width="1.2" opacity="0.7"/>
+        <line x1="398" y1="238" x2="508" y2="175" stroke="#6080c0" stroke-width="1.2" opacity="0.7"/>
+        <line x1="218" y1="175" x2="165" y2="305" stroke="#6080c0" stroke-width="1" opacity="0.5"/>
+
+        <!-- Expeditionary routes (dashed) -->
+        <line x1="332" y1="210" x2="285" y2="348" stroke="#3eb8b0" stroke-width="1" stroke-dasharray="8 6" opacity="0.6"/>
+        <line x1="398" y1="238" x2="555" y2="270" stroke="#3eb8b0" stroke-width="1" stroke-dasharray="8 6" opacity="0.6"/>
+        <line x1="218" y1="175" x2="140" y2="188" stroke="#3eb8b0" stroke-width="1" stroke-dasharray="8 6" opacity="0.6"/>
+        <line x1="165" y1="305" x2="285" y2="348" stroke="#3eb8b0" stroke-width="1" stroke-dasharray="8 6" opacity="0.5"/>
+        <line x1="268" y1="295" x2="200" y2="370" stroke="#3eb8b0" stroke-width="1" stroke-dasharray="8 6" opacity="0.5"/>
+
+        <!-- ── STAR GLOWS ── -->
+        <circle cx="332" cy="210" r="28" fill="url(#starGlow1)" opacity="0.8"/>
+        <circle cx="398" cy="238" r="24" fill="url(#starGlow1)" opacity="0.7"/>
+        <circle cx="218" cy="175" r="14" fill="url(#starGlow2)" opacity="0.5"/>
+        <circle cx="268" cy="295" r="13" fill="url(#starGlow2)" opacity="0.5"/>
+        <circle cx="165" cy="305" r="12" fill="url(#starGlow2)" opacity="0.4"/>
+        <circle cx="470" cy="285" r="11" fill="url(#starGlow2)" opacity="0.4"/>
+        <circle cx="508" cy="175" r="10" fill="url(#starGlow2)" opacity="0.4"/>
+        <circle cx="285" cy="348" r="10" fill="url(#starGlow2)" opacity="0.4"/>
+        <circle cx="555" cy="270" r="9" fill="url(#starGlow2)" opacity="0.4"/>
+        <circle cx="140" cy="188" r="9" fill="url(#starGlow2)" opacity="0.35"/>
+        <circle cx="200" cy="370" r="8" fill="url(#starGlow2)" opacity="0.35"/>
+
+        <!-- ── STAR CORES ── -->
+        <!-- Home Star 1 (Zeta 2 Reticuli — Origin) -->
+        <circle cx="332" cy="210" r="10" fill="#c8a052" filter="url(#glow)"/>
+        <circle cx="332" cy="210" r="6" fill="#ffe8a0"/>
+
+        <!-- Home Star 2 (Zeta 1 Reticuli) -->
+        <circle cx="398" cy="238" r="9" fill="#c8a052" filter="url(#glow)"/>
+        <circle cx="398" cy="238" r="5.5" fill="#ffe8a0"/>
+
+        <!-- Secondary stars -->
+        <circle cx="218" cy="175" r="5" fill="#3eb8b0" filter="url(#glow)"/>
+        <circle cx="218" cy="175" r="3" fill="#a0e8e4"/>
+        <circle cx="268" cy="295" r="5" fill="#3eb8b0" filter="url(#glow)"/>
+        <circle cx="268" cy="295" r="3" fill="#a0e8e4"/>
+        <circle cx="165" cy="305" r="4.5" fill="#3eb8b0" filter="url(#glow)"/>
+        <circle cx="165" cy="305" r="2.8" fill="#a0e8e4"/>
+        <circle cx="470" cy="285" r="4" fill="#3eb8b0" filter="url(#glow)"/>
+        <circle cx="470" cy="285" r="2.5" fill="#a0e8e4"/>
+        <circle cx="508" cy="175" r="4" fill="#3eb8b0" filter="url(#glow)"/>
+        <circle cx="508" cy="175" r="2.5" fill="#a0e8e4"/>
+        <circle cx="285" cy="348" r="3.8" fill="#3eb8b0" filter="url(#glow)"/>
+        <circle cx="285" cy="348" r="2.2" fill="#a0e8e4"/>
+        <circle cx="555" cy="270" r="3.5" fill="#3eb8b0" filter="url(#glow)"/>
+        <circle cx="555" cy="270" r="2" fill="#a0e8e4"/>
+        <circle cx="140" cy="188" r="3.5" fill="#3eb8b0" filter="url(#glow)"/>
+        <circle cx="140" cy="188" r="2" fill="#a0e8e4"/>
+        <circle cx="200" cy="370" r="3" fill="#3eb8b0" filter="url(#glow)"/>
+        <circle cx="200" cy="370" r="1.8" fill="#a0e8e4"/>
+
+        <!-- ── LABELS ── -->
+        <text x="348" y="200" font-family="'Share Tech Mono', monospace" font-size="10" fill="#c8a052" opacity="0.9">ORIGIN / ZETA 2 [APPROX]</text>
+        <text x="410" y="232" font-family="'Share Tech Mono', monospace" font-size="9" fill="#c8a052" opacity="0.8">ZETA 1 [APPROX]</text>
+        <text x="225" y="168" font-family="'Share Tech Mono', monospace" font-size="8" fill="#3eb8b0" opacity="0.7">TAU CETI</text>
+        <text x="274" y="312" font-family="'Share Tech Mono', monospace" font-size="8" fill="#3eb8b0" opacity="0.7">EPS. ERIDANI</text>
+        <text x="88" y="310" font-family="'Share Tech Mono', monospace" font-size="8" fill="#3eb8b0" opacity="0.6">82 ERIDANI</text>
+        <text x="476" y="300" font-family="'Share Tech Mono', monospace" font-size="8" fill="#3eb8b0" opacity="0.6">GL. 86</text>
+
+        <!-- ── LEGEND ── -->
+        <rect x="18" y="392" width="240" height="72" fill="rgba(10,10,26,0.85)" rx="2" stroke="#1a1a38" stroke-width="1"/>
+        <text x="28" y="408" font-family="'Share Tech Mono', monospace" font-size="8" fill="#c8a052" opacity="0.8">ROUTE CLASSIFICATION</text>
+        <line x1="28" y1="420" x2="58" y2="420" stroke="#c8a052" stroke-width="2.5" opacity="0.9"/>
+        <text x="64" y="424" font-family="'Share Tech Mono', monospace" font-size="8" fill="#9090a8">PRIMARY / TRADE ROUTE</text>
+        <line x1="28" y1="436" x2="58" y2="436" stroke="#6080c0" stroke-width="1.2" opacity="0.7"/>
+        <text x="64" y="440" font-family="'Share Tech Mono', monospace" font-size="8" fill="#9090a8">STANDARD ROUTE</text>
+        <line x1="28" y1="452" x2="58" y2="452" stroke="#3eb8b0" stroke-width="1" stroke-dasharray="6 4" opacity="0.7"/>
+        <text x="64" y="456" font-family="'Share Tech Mono', monospace" font-size="8" fill="#9090a8">EXPEDITIONARY ROUTE</text>
+
+        <!-- Title -->
+        <text x="362" y="440" font-family="'Share Tech Mono', monospace" font-size="8" fill="#606080" text-anchor="middle">SURVEY REGION / ZRS SECTOR — FLAT PROJECTION</text>
+        <text x="362" y="454" font-family="'Share Tech Mono', monospace" font-size="8" fill="#606080" text-anchor="middle">SHOWN TO SUBJECT A DURING CONTACT EVENT / CYCLE 7.441.09</text>
+        <text x="362" y="468" font-family="'Share Tech Mono', monospace" font-size="7" fill="#404060" text-anchor="middle">LATER RECONSTRUCTED BY SUBJECT A FROM MEMORY — SEE POST-SURVEILLANCE LOG</text>
+      </svg>
+      <div class="starmap-caption">
+        FIGURE 1 — Operational navigational reference chart shown to Subject A (Betty Hill) during the contact event of Cycle 7.441.09. The two central amber stars correspond to the Zeta Reticuli binary system [APPROX Terran designation], approximately 39 light-years from Terran origin. Subject A later reproduced a version of this chart from memory under hypnotic regression — see Section 07: Post-Event Surveillance.
+      </div>
+    </div>
+
+    <div class="section-sub">The Decision to Show the Map — Internal Record</div>
+
+    <p>The decision to show Subject A the navigational reference was unusual within the protocol. The lead examiner's recorded rationale was as follows: Subject A had asked a direct and intelligent question with evident genuine intent. She was not asking in panic or as a displacement behaviour — she was asking because she wanted to know. The examiner considered that the map — a complex three-dimensional stellar reference — would be functionally meaningless to a Stage 2.4 Terran. She would not have the stellar cataloguing knowledge to interpret it without the same chart for reference. The examiner's assessment: the risk of meaningful intelligence transfer was low; the significance of the interaction itself was high.</p>
+
+    <div class="field-report">
+      <div class="field-report-label">Lead Examiner's Note — Cartographic Incident / Post-Event Reflection</div>
+      <p>What the examiner did not adequately anticipate was Subject A's memory retention. The Terran neural architecture — particularly in subjects with elevated prefrontal coherence such as Subject A — is capable of retaining partial stellar pattern configurations even from brief visual exposure, particularly under conditions of heightened attention. Subject A was paying very close attention. She was attempting to memorise the chart. The examiner observed this and did not intervene. This decision will be examined at the next sector review. The examiner's view remains that it was correct.</p>
+    </div>
+
+    <div class="annotation">
+      <div class="annotation-label">Sector Command Annotation — Added Post-Review</div>
+      <p>The examiner's decision is noted without formal censure. The chart shown was a standard operational reference and not an intelligence document of the first order. However, the subsequent events — see Section 07 — indicate that Subject A's retention of the pattern was more precise than the examiner's on-site assessment suggested. This case is the primary reason for the updated contact protocol guidance issued in Cycle 7.441.14, which now specifies that operational display materials should not be accessible during subject interaction sessions. The relevant passage reads: "The cognitive capacity of atypical specimens should not be estimated from species-average parameters."</p>
+    </div>
+  </section>
+
+  <!-- RELEASE -->
+  <section class="section" id="release">
+    <div class="section-tag">Section 06</div>
+    <h2 class="section-title">Release Protocol and Memory Suppression Attempt</h2>
+
+    <div class="data-table">
+      <div class="data-table-title">Release Sequence — Cycle 7.441.09 / 00:14 LOCAL (Following Day)</div>
+      <div class="data-row"><div class="data-key">TOTAL CONTACT DURATION</div><div class="data-val">[APPROX: 2 hours] — Extended beyond planned window due to Subject A interaction</div></div>
+      <div class="data-row"><div class="data-key">SUPPRESSION PROTOCOL</div><div class="data-val">Standard acoustic-neurological suppression sequence applied to both subjects / Grade 3 [APPROX]</div></div>
+      <div class="data-row"><div class="data-key">SUPPRESSION EFFECTIVENESS — SUBJECT B</div><div class="data-val alert">Effective / Standard result. Temporal gap in conscious memory of approximately 2 hours established.</div></div>
+      <div class="data-row"><div class="data-key">SUPPRESSION EFFECTIVENESS — SUBJECT A</div><div class="data-val critical">PARTIAL ONLY. Suppression established conscious recall gap but failed to suppress deeper memory encoding. Subcortical narrative retention detected. See assessment.</div></div>
+      <div class="data-row"><div class="data-key">PHYSICAL MARKERS</div><div class="data-val">Standard electromagnetic signature deposited on vehicle chassis [standard marker]. Biological sample residue noted on Subject A's garment — expected / within parameters.</div></div>
+      <div class="data-row"><div class="data-key">SUBJECTS RETURNED TO</div><div class="data-val">Terran ground vehicle, road position approximately 35 Terran miles south of intercept point. Consistent with standard repositioning.</div></div>
+    </div>
+
+    <p>The release of Subject A requires a note. She was returned to the vehicle, and the suppression sequence was applied as standard. Subject A did not resist. She had, during the final moments of contact, asked whether she would remember. The examiner told her she would not — and at the conscious level, that remained true. What the examiner did not say, and may not have realised, was that the deeper pattern of her experience — the emotional sequence, the visual impressions, the stellar chart — had been encoded below the threshold that the suppression protocol targets.</p>
+
+    <p>Both subjects were repositioned south of the intercept point. The temporal gap between their last conscious memory on approach and their first conscious memory of departure — approximately two hours — was consistent across both subjects. This consistency later became a significant factor in how Terran researchers evaluated their account. We had not intended to leave them with a coherent two-person confirmation of a shared event. We had intended to leave them with nothing at all.</p>
+
+    <div class="field-report">
+      <div class="field-report-label">Suppression Unit Assessment — Post-Release</div>
+      <p>Subject A represents a suppression failure of a kind not previously recorded for this type of protocol at Grade 3. She did not consciously remember, but she dreamed. The dreams began within days. They were not random — they reconstructed, with significant accuracy, the sequence of events aboard the vessel. This mechanism is not well understood. The Terran sleep-state appears to process and partially recover experiences that the suppression sequence specifically targeted for erasure. We do not know how to prevent this in high-coherence specimens. We recommend a review of suppression grade assignments for subjects with elevated prefrontal readings.</p>
+    </div>
+  </section>
+
+  <!-- SURVEILLANCE -->
+  <section class="section" id="surveillance">
+    <div class="section-tag">Section 07</div>
+    <h2 class="section-title">Post-Event Surveillance Log</h2>
+
+    <p>Standard post-contact monitoring of both subjects was conducted across the subsequent Terran years. The following is a summary of significant developments.</p>
+
+    <div class="timeline">
+
+      <div class="timeline-entry">
+        <div class="timeline-stamp">CYCLE 7.441.09 / DAY 3 POST-EVENT</div>
+        <p class="timeline-text">Subject A composes a written report to a Terran civilian investigative organisation [NICAP — National Investigations Committee on Aerial Phenomena]. The report is accurate, measured, and includes sufficient technical detail to be considered a credible first-person account. Subject A has chosen to report rather than conceal. This is the expected behaviour of a subject with her civic and social profile.</p>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-stamp">CYCLE 7.441.09 / MONTH 2 POST-EVENT</div>
+        <p class="timeline-text">A Terran field investigator [Designation: Webb, W.] interviews both subjects. His assessment — transmitted internally within NICAP — rates them as highly credible. He notes in particular their emotional composure and the absence of any apparent material motivation for the account. He is not wrong. Monitoring continues.</p>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-stamp">CYCLE 7.441 / APPROXIMATELY 3 TERRAN YEARS POST-EVENT</div>
+        <p class="timeline-text">Both subjects begin a series of sessions with a Terran psychiatrist and neurologist specialising in hypnotic regression [Designation: Simon, B.]. Sessions are conducted separately. Both subjects recover substantial conscious recall of the contact event under hypnosis. The two accounts are, in their essential details, consistent with each other. They are also consistent with our field record. The Terran hypnotic process has penetrated the suppression at the subcortical level. This is the second confirmed instance of suppression breach in this subject pair. Both are now logged.</p>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-stamp">CYCLE 7.441 / APPROXIMATELY 3 TERRAN YEARS POST-EVENT — CRITICAL</div>
+        <p class="timeline-text">Under hypnotic regression, Subject A produces a hand-drawn reproduction of the navigational reference chart she was shown during the contact event. The reproduction is partial — twelve of the primary stellar objects are depicted, with the two central bodies identified and the route classifications broadly correct. The accuracy of Subject A's recall significantly exceeded the suppression unit's post-release assessment. The chart is passed to Terran researchers for analysis.</p>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-stamp">CYCLE 7.442 / APPROXIMATELY 8 TERRAN YEARS POST-EVENT — CRITICAL</div>
+        <p class="timeline-text">A Terran civilian researcher [Designation: Fish, M.] constructs a three-dimensional physical model of stars within [APPROX: 55 light-years] of Terran origin using newly published stellar catalogue data. She tests 26 different viewing angles over a period of approximately 3 Terran years. She identifies a match between Subject A's chart and the survey region as viewed from the correct vantage. The stellar identifications she produces include the home binary system, and several of the route-corridor stars. Her accuracy is approximately 70% of the original chart. A Terran civilian has, without access to any intelligence materials, used publicly available stellar data and Subject A's hand-drawn memory to reconstruct a working approximation of our operational survey region. This is the most significant intelligence event arising from the contact event. It is logged at the highest available classification level.</p>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-stamp">CYCLE 7.441 / APPROXIMATELY 5 TERRAN YEARS POST-EVENT</div>
+        <p class="timeline-text">Subject B's health continues to deteriorate. The cardiovascular burden flagged in the medical examination log has worsened. He remains professionally active and engaged in the civil rights work that has defined his life. He dies in Cycle 7.441 / Year 8 post-event at [APPROX: 46 Terran years]. This is logged with the notation that his death preceded his ability to see the full account of the contact event enter the public record. He did not know, when he died, the scale of what he and Subject A had contributed to Terran awareness of the phenomenon. The record notes this.</p>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-stamp">CYCLE 7.442 / ONGOING — SUBJECT A</div>
+        <p class="timeline-text">Subject A continues to engage publicly with the contact event until her death in Cycle 7.443 [APPROX: 2004 Terran calendar]. She never wavers in her account. She is 85 Terran years at death. Her dwelling in Portsmouth, Northern Continent Sector 4, is eventually designated as a site of historical significance by regional Terran authorities. The woman who asked a navigator where he was from, and remembered the answer, is commemorated on a metal sign attached to a building. We note this without further comment.</p>
+      </div>
+
+    </div>
+
+    <div class="annotation">
+      <div class="annotation-label">Intelligence Assessment — Cartographic Breach Summary</div>
+      <p>The Fish reconstruction of the operational survey chart should be treated as a significant intelligence event regardless of the limited attention it received in mainstream Terran scientific circles at the time. A Terran civilian with no access to classified materials produced an approximately 70% accurate reconstruction of our sector survey region using: (1) public stellar cataloguing data, and (2) a hand-drawn chart produced from memory by a subject who should not have retained that memory. The combination of Subject A's neurological capacity and this researcher's methodological persistence achieved something our suppression protocols were explicitly designed to prevent. Both individuals are to be noted in the sector's historical record.</p>
+    </div>
+  </section>
+
+  <!-- ASSESSMENT -->
+  <section class="section" id="assessment">
+    <div class="section-tag">Section 08</div>
+    <h2 class="section-title">Final Assessment and Sector Recommendations</h2>
+
+    <div class="section-sub">Civilisational Stage Assessment — Update</div>
+
+    <p>The contact event of Cycle 7.441.09 provides useful data points for the ongoing civilisational stage assessment of Terran species. The following ratings represent updates to the pre-event baseline, incorporating findings from the contact itself and the subsequent seven decades of monitoring.</p>
+
+    <div style="padding: 24px 0;">
+      <div class="rating-row">
+        <div class="rating-label">COGNITIVE CAPACITY (PEAK)</div>
+        <div class="rating-bar"><div class="rating-fill" style="width:72%"></div></div>
+        <div class="rating-value">72%</div>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">EMOTIONAL RANGE / DEPTH</div>
+        <div class="rating-bar"><div class="rating-fill" style="width:88%"></div></div>
+        <div class="rating-value">88%</div>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">SOCIOLOGICAL MATURITY</div>
+        <div class="rating-bar"><div class="rating-fill" style="width:31%"></div></div>
+        <div class="rating-value">31%</div>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">SELF-INFLICTED HARM INDEX</div>
+        <div class="rating-bar"><div class="rating-fill" style="width:79%"></div></div>
+        <div class="rating-value" style="color:var(--red-bright)">79%</div>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">TECHNOLOGICAL ACCELERATION</div>
+        <div class="rating-bar"><div class="rating-fill" style="width:84%"></div></div>
+        <div class="rating-value" style="color:var(--amber)">84%</div>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">CURIOSITY / OPENNESS INDEX</div>
+        <div class="rating-bar"><div class="rating-fill" style="width:81%"></div></div>
+        <div class="rating-value">81%</div>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">READINESS FOR FORMAL CONTACT</div>
+        <div class="rating-bar"><div class="rating-fill" style="width:18%"></div></div>
+        <div class="rating-value" style="color:var(--red-bright)">18%</div>
+      </div>
+    </div>
+
+    <div class="annotation">
+      <div class="annotation-label">Assessor's Note — Civilisational Readiness</div>
+      <p>The low readiness-for-formal-contact rating does not reflect any deficiency in Terran individual cognitive capacity — as this very contact event demonstrates, individual specimens can be remarkably capable. It reflects the structural state of the civilisation as a whole: a species in possession of weapons sufficient for self-annihilation, still distributing resources and rights unequally among its own members, still organised into competitive territorial blocs, still causing significant suffering within its own population. These are Stage 2.4 indicators. They are not permanent. They are a phase. But formal contact during this phase carries risk — not to us, but to them.</p>
+    </div>
+
+    <div class="section-sub">Recommendations</div>
+
+    <div class="data-table">
+      <div class="data-table-title">Sector Command Recommendations — Filed Post-Event / Updated Periodically</div>
+      <div class="data-row"><div class="data-key">CONTACT PROTOCOL</div><div class="data-val">Maintain passive observation. Situational intercepts to continue only with Sector Command authorisation. Suppression grade assignments to be updated for subjects with elevated prefrontal coherence readings.</div></div>
+      <div class="data-row"><div class="data-key">OPERATIONAL SECURITY</div><div class="data-val alert">Display materials — including all navigational references — must be secured and non-accessible during subject interaction windows. Lesson from Cycle 7.441.09 contact event incorporated into updated protocol.</div></div>
+      <div class="data-row"><div class="data-key">MONITORING PRIORITY</div><div class="data-val">Terran species to remain at elevated monitoring priority. Technological acceleration rate and sociological maturity gap are of concern. Continued assessment recommended at minimum 5-cycle intervals.</div></div>
+      <div class="data-row"><div class="data-key">SUBJECT A FILE</div><div class="data-val">Betty Hill file designated historical archive — closed upon subject's death in Terran year 2004. File preserved with highest-tier notation. The examiner's decision to engage with her questions is on record as the most consequential single decision in this contact event — and arguably in this sector's survey history.</div></div>
+      <div class="data-row"><div class="data-key">SUBJECT B FILE</div><div class="data-val">Barney Hill file designated historical archive. The cardiovascular findings from the examination remain in the medical record as documentation of civilisational-stage harm patterns in Terran social structures.</div></div>
+      <div class="data-row"><div class="data-key">FISH, M. — CIVILIAN RESEARCHER</div><div class="data-val alert">Noted in sector record with highest individual commendation applicable to non-contact specimens. A Terran who never left her planet used public data and a memory drawing to find us. This should not be forgotten.</div></div>
+    </div>
+
+    <div class="conclusion-box">
+      <div class="conclusion-label">Closing Assessment — Lead Examiner / Final Entry</div>
+      <p>This species is not ready. That is the formal assessment, and it is accurate. But readiness is not the only thing worth noting in a field record. What is also worth noting is this: a woman sat in a room aboard our vessel in the mountains of a small planet and was not afraid of us. She asked where we were from. She looked at a chart that mapped a section of the galaxy she had never seen and tried, carefully and deliberately, to memorise it. Decades later, a second woman on the same planet found her drawing and — using nothing but a catalogue of nearby stars and three years of patient work — located us.<br><br>
+      The civilisation is not ready. Some of its members are extraordinary. These two facts are not in contradiction. They are, in fact, what makes this one worth watching.</p>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="doc-footer">
+  <div>
+    <div class="footer-block-title">DOCUMENT ORIGIN</div>
+    <div>Zeta Reticuli Sector Survey Command</div>
+    <div>Mission File ZRS-7441-09-TC</div>
+    <div>Survey Unit Θ-9 — Northern Terran Zone</div>
+    <div>Post-Event Archive / Translated</div>
+  </div>
+  <div>
+    <div class="footer-block-title">TRANSLATION NOTE</div>
+    <div>Rendered in approximate Terran English</div>
+    <div>All [APPROX] designations indicate</div>
+    <div>concepts rendered by approximation.</div>
+    <div>Some precision is inherently lost.</div>
+  </div>
+  <div>
+    <div class="footer-block-title">TERRAN SOURCES REFERENCED</div>
+    <div>Fuller, J.G. — The Interrupted Journey (1966)</div>
+    <div>Simon, B. — Hypnotic Session Transcripts</div>
+    <div>Fish, M. — Zeta Reticuli Incident (1974)</div>
+    <div>Friedman &amp; Marden — Captured! (2007)</div>
+  </div>
+</footer>
+<div class="classification-footer">
+  CLASSIFICATION: EPSILON-ABSOLUTE — THIS DOCUMENT MAY NOT BE REPRODUCED OR TRANSMITTED — ARCHIVE TRANSLATION SERIES — ZRS SECTOR SURVEY COMMAND
+</div>
+
+</body>
+</html>

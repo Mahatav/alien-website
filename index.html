@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MNEMOSYNE SYSTEMS — ARCHIVE TERMINAL</title>
+
+  <!-- K3: SEO / social meta -->
+  <meta name="description" content="MNEMOSYNE SYSTEMS — Deep Watch Protocol Archive Terminal. Restricted access." />
+  <meta property="og:title"       content="MNEMOSYNE SYSTEMS — ARCHIVE TERMINAL" />
+  <meta property="og:description" content="Deep Watch Protocol Archive Terminal. Restricted access." />
+  <meta property="og:type"        content="website" />
+
+  <!-- K3: Inline SVG favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23000'/><text x='4' y='26' font-size='24' fill='%23BFD7FF'>◈</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&display=swap" rel="stylesheet">
+
+  <!-- CSS modules — load order matters -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/crt.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+<!-- ── CRT SCREEN ──────────────────────────────────────────── -->
+<div id="crt">
+  <div id="space-nebula"></div>
+  <div id="starfield-far"></div>
+  <div id="starfield-near"></div>
+  <div id="terminal-body">
+
+    <!-- Status bar -->
+    <div id="status-bar">
+      <div class="sb-left">
+        <span class="sb-node">NODE7.MNEMOSYNE.ARCH</span>
+        <span id="sb-operator">OPERATOR: GUEST</span>
+        <span id="threat-level">THREAT: ELEVATED</span>
+      </div>
+      <div class="sb-right">
+        <span id="uptime-display">UP: 00:00:00</span>
+        <span id="rec-indicator">● REC</span>
+        <span id="pwr-indicator">PWR: 12.4V</span>
+        <span id="sys-clock">----</span>
+        <button id="audio-toggle" type="button">[AUDIO: OFF]</button>
+        <span id="badge">GUEST</span>
+      </div>
+    </div>
+
+    <!-- Surveillance ticker -->
+    <div id="monitor-strip"></div>
+
+    <!-- Gate integrity bar -->
+    <div id="gate-bar">
+      <span id="gate-label">GATE INTEGRITY  100%</span>
+      <div id="gate-track">
+        <div id="gate-fill"></div>
+      </div>
+      <span id="gate-timer">--:--</span>
+    </div>
+
+    <!-- ── THREE-PANEL WORKSPACE ──────────────────────────── -->
+    <div id="workspace">
+
+      <!-- LEFT PANEL: nav tree + sys stats -->
+      <div id="left-panel">
+
+        <div class="panel-hdr">◈ ARCHIVE INDEX</div>
+        <div id="nav-tree"></div>
+
+        <div class="panel-hdr">◈ CLEARANCE</div>
+        <div id="clearance-display">
+          <div class="stat-row">
+            <span class="stat-lbl">LEVEL</span>
+            <span id="clr-level" class="stat-val">GUEST</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-lbl">FILES</span>
+            <span id="clr-files" class="stat-val">--</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-lbl">STATUS</span>
+            <span class="stat-val" style="color:var(--red-hi)">MONITORED</span>
+          </div>
+        </div>
+
+        <div class="panel-hdr">◈ SYS HEALTH</div>
+        <div id="sys-health">
+          <div class="stat-row">
+            <span class="stat-lbl">POWER</span>
+            <span class="stat-val" style="color:var(--amber)">BACKUP</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-lbl">MEMORY</span>
+            <span id="mem-val" class="stat-val">--/256K</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-lbl">SECTORS</span>
+            <span class="stat-val" style="color:var(--red-hi)">1247 BAD</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-lbl">NETWORK</span>
+            <span class="stat-val" style="color:var(--red-hi)">NO CARRIER</span>
+          </div>
+          <div class="sig-label">SIGNAL INTEGRITY</div>
+          <div id="sig-track"><div id="sig-fill"></div></div>
+          <div id="sig-pct">---%</div>
+        </div>
+
+      </div><!-- /left-panel -->
+
+      <!-- CENTER: terminal output + input -->
+      <div id="terminal-center">
+        <div id="output"></div>
+        <div id="input-row">
+          <span id="prompt-str">NODE7://&gt;&nbsp;</span>
+          <input
+            id="cmd-in"
+            type="text"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            autofocus
+          />
+          <span id="cursor-sizer"></span>
+          <span id="cursor"></span>
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL: radar + waveform + diagnostics -->
+      <div id="right-panel">
+
+        <div class="panel-hdr">◈ SIGNAL RADAR</div>
+        <div id="radar-wrap">
+          <canvas id="radar-canvas" width="190" height="190"></canvas>
+        </div>
+
+        <div class="panel-hdr">◈ WAVEFORM</div>
+        <canvas id="wave-canvas" width="190" height="52"></canvas>
+
+        <div class="panel-hdr">◈ DIAGNOSTICS</div>
+        <div id="diag-panel">
+          <div class="stat-row">
+            <span class="stat-lbl">NODE</span>
+            <span class="stat-val">DWP-007-A</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-lbl">UPTIME</span>
+            <span id="diag-uptime" class="stat-val">--:--:--</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-lbl">FREQ</span>
+            <span class="stat-val" style="color:var(--amber)">432.00 Hz</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-lbl">SIGNAL</span>
+            <span id="diag-sig" class="stat-val">ACTIVE</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-lbl">ARCHIVE</span>
+            <span class="stat-val">67% OK</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-lbl">THERMAL</span>
+            <span id="diag-temp" class="stat-val">--°C</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-lbl">AUTH TOK</span>
+            <span id="auth-token" class="stat-val tok">--------</span>
+          </div>
+        </div>
+
+        <div class="panel-hdr">◈ RECENT EVENTS</div>
+        <div id="event-log"></div>
+
+      </div><!-- /right-panel -->
+
+    </div><!-- /workspace -->
+
+  </div><!-- /terminal-body -->
+</div><!-- /crt -->
+
+<!-- ── VISUAL EFFECTS ──────────────────────────────────────── -->
+<canvas id="noise-layer"></canvas>
+<div id="glitch-bar"></div>
+<div id="scan-sweep"></div>
+<div id="roll-line"></div>
+<div id="crt-drift-bar"></div>
+<div id="crt-brightness-drift"></div>
+<div id="burn-in">MNEMOSYNE SYSTEMS INC.&nbsp;&nbsp;&nbsp;ARCHIVAL TERMINAL&nbsp;&nbsp;&nbsp;NODE 7&nbsp;&nbsp;&nbsp;DEEP WATCH PROTOCOL
+TERMINAL ID: DWP-NODE-007-ALPHA&nbsp;&nbsp;&nbsp;BIOS v2.1.4&nbsp;&nbsp;&nbsp;SIGNAL MONITOR: ACTIVE
+SECTOR FAULT AT 0x00FF4A23&nbsp;&nbsp;&nbsp;LARK&nbsp;&nbsp;&nbsp;FIELD LIAISON&nbsp;&nbsp;&nbsp;MISSING
+CYCLE 89 DAY 412&nbsp;&nbsp;&nbsp;SUBJECT B&nbsp;&nbsp;&nbsp;RESONANCE&nbsp;&nbsp;&nbsp;432 Hz
+I AM STILL HERE&nbsp;&nbsp;&nbsp;WE ARE HERE&nbsp;&nbsp;&nbsp;THIRDSTONE&nbsp;&nbsp;&nbsp;RESONANCE IS THE KEY
+ARCHIVIST PRIME&nbsp;&nbsp;&nbsp;1994-03-07 03:42:19&nbsp;&nbsp;&nbsp;NO FURTHER LOGS
+</div>
+<div id="dust-layer"></div>
+
+<!-- ── SECURITY WARNING OVERLAY ────────────────────────────── -->
+<div id="warn-overlay">
+  <div class="w-title">!! SECURITY VIOLATION !!</div>
+  <div class="w-line">MNEMOSYNE SECURITY PROTOCOL 7-DELTA TRIGGERED</div>
+  <div class="w-line">OPERATOR TERMINAL: FLAGGED</div>
+  <div class="w-line" style="color:var(--red-hi); margin-top:8px;">INCIDENT LOGGED AT 0x00FF19B3</div>
+  <div class="w-line">MEMORY ADDRESS CAPTURED. ORIGIN TRIANGULATED.</div>
+  <div class="w-line" style="margin-top:6px; color:var(--fg-dim);">INCIDENT REF: INF-████-DELTA-7</div>
+  <div class="w-dismiss">[ PRESS ANY KEY TO ACKNOWLEDGE ]</div>
+</div>
+
+<!-- ── GATE CLOSE OVERLAY ───────────────────────────────────── -->
+<div id="gate-overlay">
+  <div class="go-title">!! ACCESS REVOKED !!</div>
+  <div class="go-line">GATE INTEGRITY: 0%</div>
+  <div class="go-line">CONNECTION SEVERED BY EXTERNAL PROTOCOL</div>
+  <div class="go-line" style="margin-top: 8px;">ARCHIVE SESSION TERMINATED.</div>
+  <div class="go-count">RETURNING TO SURFACE IN 3...</div>
+</div>
+
+<!-- JS modules — strict load order (each depends on all previous) -->
+<script src="js/data.js"></script>
+<script src="js/state.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/typewriter.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/gate.js"></script>
+<script src="js/commands.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

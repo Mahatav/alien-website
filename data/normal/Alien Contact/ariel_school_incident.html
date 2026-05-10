@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Ariel School Incident — Ruwa, Zimbabwe, 1994</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0d0d0f;
+      --paper: #f4f0e6;
+      --accent: #2e5c3e;
+      --muted: #7a7060;
+      --rule: #c8c0a8;
+      --highlight: #d4e8db;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 18px; }
+
+    body {
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-weight: 300;
+      line-height: 1.75;
+      padding: 3rem 1.5rem 6rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Subtle grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    article {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .article-header {
+      border-top: 3px solid var(--ink);
+      border-bottom: 1px solid var(--rule);
+      padding: 2.5rem 0 2rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .kicker {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 580px;
+    }
+
+    .meta {
+      margin-top: 1.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    /* Drop cap */
+    .drop-cap::first-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 4.2rem;
+      font-weight: 700;
+      float: left;
+      line-height: 0.82;
+      margin-right: 0.1em;
+      margin-top: 0.08em;
+      color: var(--accent);
+    }
+
+    p {
+      margin-bottom: 1.4rem;
+      font-size: 1.05rem;
+    }
+
+    /* Section headings */
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 2.8rem 0 0.8rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+      letter-spacing: -0.01em;
+    }
+
+    /* Pull quote */
+    blockquote {
+      margin: 2.5rem 0;
+      padding: 1.5rem 2rem;
+      background: var(--highlight);
+      border-left: 4px solid var(--accent);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    blockquote cite {
+      display: block;
+      margin-top: 0.8rem;
+      font-family: 'DM Mono', monospace;
+      font-style: normal;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Fact box */
+    .fact-box {
+      margin: 2.5rem 0;
+      padding: 1.5rem 2rem;
+      border: 1px solid var(--rule);
+      background: rgba(255,255,255,0.45);
+    }
+
+    .fact-box h3 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .fact-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .fact-box ul li {
+      font-size: 0.95rem;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      gap: 0.8rem;
+      align-items: baseline;
+    }
+
+    .fact-box ul li:last-child { border-bottom: none; }
+
+    .fact-box ul li::before {
+      content: '—';
+      color: var(--accent);
+      flex-shrink: 0;
+      font-family: 'DM Mono', monospace;
+    }
+
+    /* Footer rule */
+    .article-footer {
+      margin-top: 3.5rem;
+      padding-top: 1.5rem;
+      border-top: 3px solid var(--ink);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    article { animation: fadeUp 0.8s ease both; }
+  </style>
+</head>
+<body>
+<article>
+
+  <header class="article-header">
+    <p class="kicker">Unexplained Encounters &nbsp;·&nbsp; UFO History</p>
+    <h1>The Ariel School Incident</h1>
+    <p class="subtitle">In September 1994, sixty-two schoolchildren in rural Zimbabwe reported witnessing a landed craft and beings unlike anything human — and most never changed their story.</p>
+    <div class="meta">
+      <span>Ruwa, Zimbabwe</span>
+      <span>16 September 1994</span>
+      <span>62 Witnesses</span>
+    </div>
+  </header>
+
+  <p class="drop-cap">On the morning of September 16, 1994, while teachers were occupied inside Ariel School in Ruwa, Zimbabwe, approximately sixty-two children between the ages of six and twelve were outside for their morning break. What they reported next would draw the attention of a Harvard psychiatrist, international journalists, and UFO researchers for decades to come.</p>
+
+  <p>The children described seeing one or more silver, disc-shaped craft descend and hover — or land — near the edge of the school's playing field, close to a patch of scrubland. Several children reported small beings with large dark eyes, pale or grey skin, and thin bodies moving near or on top of the craft. Most strikingly, many children said they made direct eye contact with at least one of the beings and, in that moment, received what they could only describe as mental images or telepathic communication — visions that frightened them, often depicting a ravaged natural world or some form of environmental catastrophe.</p>
+
+  <blockquote>
+    "He was just staring at me. Not moving. And I felt something — like a picture in my head — of the world with no trees."
+    <cite>— Ariel School pupil, as recounted to Dr. John Mack, 1994</cite>
+  </blockquote>
+
+  <h2>Why This Case Stands Apart</h2>
+
+  <p>UFO sightings are reported daily around the world, but few have accumulated the kind of multi-witness, independently corroborated testimony that the Ariel School incident produced. Several features set it apart from the vast majority of such claims.</p>
+
+  <p>First is the sheer number of child witnesses. Sixty-two children, drawn from different age groups and family backgrounds, all reported broadly the same experience within moments of it occurring. Their descriptions — gathered separately by teachers and later by researchers — were remarkably consistent in their core elements: the craft, the beings' appearance, and the disturbing nature of the communicated imagery.</p>
+
+  <p>Second is the involvement of Dr. John Mack, a Pulitzer Prize-winning author and professor of psychiatry at Harvard Medical School. Mack, already known for his serious academic engagement with alien contact reports, traveled to Zimbabwe and spent considerable time interviewing the children. He came away convinced that the children were not lying and that their psychological profiles showed no signs of mass delusion or fabrication. He noted the uniformity of emotional response — fear mixed with a kind of awe — as particularly significant.</p>
+
+  <div class="fact-box">
+    <h3>Case at a Glance</h3>
+    <ul>
+      <li>Date: September 16, 1994</li>
+      <li>Location: Ariel School, Ruwa, Zimbabwe</li>
+      <li>Witnesses: Approximately 62 children, ages 6–12</li>
+      <li>Key researcher: Dr. John Mack, Harvard Medical School</li>
+      <li>Media coverage: BBC, major international outlets</li>
+      <li>Documentary: <em>Ariel Phenomenon</em> (2022)</li>
+      <li>Physical evidence: No definitive forensic confirmation</li>
+    </ul>
+  </div>
+
+  <h2>The Skeptical Case</h2>
+
+  <p>Critics of the Ariel School account raise several reasonable objections. Children of primary school age are highly susceptible to social contagion — once a few children report something dramatic, others may unconsciously adopt and elaborate on the same narrative. The early 1990s also saw significant global media saturation around UFO topics, and Zimbabwe was no exception.</p>
+
+  <p>No physical trace evidence — scorched earth, unusual soil samples, radiation readings — was ever confirmed at the site. Without such forensic corroboration, the case rests entirely on testimonial evidence, however numerous and consistent.</p>
+
+  <p>Some researchers also note that the children's accounts, while consistent in broad strokes, did vary in detail, and that the involvement of adult interviewers — however well-intentioned — may have introduced subtle reinforcement of certain narrative elements.</p>
+
+  <h2>The Witnesses, Decades Later</h2>
+
+  <p>What makes the Ariel School case unusual even by the standards of high-profile UFO cases is the durability of the testimony. The 2022 documentary <em>Ariel Phenomenon</em>, directed by Randall Nickerson, tracked down many of the original witnesses — now adults in their thirties — and interviewed them at length. Almost unanimously, they maintained that what they experienced was real, was not a dream or hallucination, and had profoundly shaped their worldview and in many cases their life choices. Several described ongoing psychological effects and a changed relationship to questions of consciousness, environment, and humanity's place in the cosmos.</p>
+
+  <p>Dr. Mack himself, who died in 2004, had described the case as among the most significant he ever encountered — not because it proved extraterrestrial visitation, but because it posed questions he believed mainstream science was not yet equipped to answer.</p>
+
+  <blockquote>
+    "The children were not making this up. Something happened to them. What that something is, I cannot say with certainty — but I cannot dismiss it either."
+    <cite>— Dr. John Mack, Harvard Medical School</cite>
+  </blockquote>
+
+  <h2>Legacy</h2>
+
+  <p>The Ariel School incident occupies a singular position in the history of unexplained phenomena. It is one of the very few cases that serious academics, journalists, and documentary filmmakers have revisited repeatedly without resolution. Its power lies not in physical evidence but in the quality and persistence of human testimony — sixty-two children who grew into sixty-two adults still telling the same story, still insisting on what they saw at the edge of a school field in Zimbabwe, on an ordinary September morning in 1994.</p>
+
+  <footer class="article-footer">
+    <span>Ariel School · Ruwa, Zimbabwe · 1994</span>
+    <span>Compiled for editorial use</span>
+  </footer>
+
+</article>
+</body>
+</html>

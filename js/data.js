@@ -1,0 +1,744 @@
+/* ═══════════════════════════════════════════════════════════════
+   data.js — Config, archive filesystem, narrative files, decrypters, boot
+   No dependencies. Load first.
+═══════════════════════════════════════════════════════════════ */
+
+// ── CONFIG ─────────────────────────────────────────────────────
+const CFG = {
+  GATE_REDIRECT: '/',  // where to send the user after the gate closes
+  SPEED_FAST:  4,
+  SPEED_NORM: 11,
+  SPEED_SLOW: 20,
+};
+
+// ── SAVE KEYS ──────────────────────────────────────────────────
+const SAVE_KEY    = 'dwp_v47_state';
+const GATE_KEY    = 'dwp_gate_start';
+const GATE_DUR_KEY = 'dwp_gate_dur';  // random session duration (60–600s)
+
+// ── CLEARANCE ──────────────────────────────────────────────────
+const TIERS    = ['GUEST', 'DELTA', 'SIGMA', 'OMEGA'];
+const TIER_CLS = ['', 'lvl-1', 'lvl-2', 'lvl-3'];
+
+// ── UTILITIES ──────────────────────────────────────────────────
+function rand(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
+
+const CORRUPT_CHARS = ['█','▓','▒','░','?','×','⚿','⌗','⍉'];
+function corruptDate() {
+  return '????-??-??  ??:??'.split('').map(c => {
+    if (c === '?') return Math.random() < 0.55
+      ? CORRUPT_CHARS[rand(0, CORRUPT_CHARS.length - 1)]
+      : String(rand(0, 9));
+    return c;
+  }).join('');
+}
+
+// ── ARCHIVE FILE SYSTEM ─────────────────────────────────────────
+const ARCHIVE = {
+  'ALIEN_CONTACT': {
+    realPath: 'data/normal/Alien Contact/',
+    files: [
+      { name: 'ALIEN_CONTACT_REVISED.PDF',  real: 'Alien_Contact_REVISED (2).pdf' },
+      { name: 'ARIEL_SCHOOL_INCIDENT.HTML', real: 'ariel_school_incident.html' },
+      { name: 'HILL_ALIEN_REPORT.HTML',     real: 'hill_alien_report.html' },
+      { name: 'BETTY_BARNEY_HILL.DOCX',     real: 'betty_barney_hill_ufo_encounter.docx' },
+    ]
+  },
+  'SKINNY_BOB_GENESIS': {
+    realPath: 'data/normal/Skinny Bob Genesis/',
+    files: [
+      { name: 'QUIET_WARNING.DOCX',   real: 'Skinny-Bob-A-Quiet-Warning-COMPLETE (1).docx' },
+      { name: 'EPISODE_1.DOCX',       real: 'SkinnyBob_Episode1 (3).docx' },
+      { name: 'BOB_STRATEGY.DOCX',    real: 'skinny_bob_strategy.docx' },
+      { name: 'THIRD_STONE_REF.DOCX', real: 'third_stone_reference.docx' },
+    ]
+  },
+  'SKINNY_BOBS_OBSERVATIONS': {
+    realPath: 'data/archive/Skinny Bobs Observations of the History and observations of Humanity/',
+    files: [
+      { name: 'CEREMONIES_H7.DOCX',           real: 'Alien_Archive_Ceremonies_H7 (1).docx' },
+      { name: 'ALIEN_REPORT_HUMANITY.DOCX',    real: 'Alien_Report_on_Humanity (1).docx' },
+      { name: 'THE_UNIVERSAL_KNOWING.DOCX',    real: 'The_Universal_Knowing (4).docx' },
+      { name: 'ALIEN_FIELD_REPORT.DOCX',       real: 'alien_field_report.docx' },
+      { name: 'BREATHING_CIVILIZATION.DOCX',   real: 'breathing_of_civilization.docx' },
+      { name: 'CHAPTER_DISCLOSURE.HTML',       real: 'chapter-disclosure.html' },
+      { name: 'EARTH_COSMOS_ILLUSTRATED.DOCX', real: 'earth_cosmos_ILLUSTRATED_FINAL (2).docx' },
+      { name: 'EARTH_COSMOS_LONG_WATCH.PDF',   real: 'earth_cosmos_long_watch_FINAL (1).pdf' },
+      { name: 'HARMONIC_FORCES.HTML',          real: 'harmonic_forces.html' },
+      { name: 'TERRAN_CHRONICLES_CH7.DOCX',    real: 'terran_chronicles_chapter7.docx' },
+      { name: 'TERRAN_CHRONICLES_CH9.DOCX',    real: 'terran_chronicles_chapter9.docx' },
+      { name: 'TERRAN_CHRONICLES_VOL1.DOCX',   real: 'terran_chronicles_vol1_ch7_ch8.docx' },
+      { name: 'DEMON_HYPOTHESIS.DOCX',         real: 'the_demon_hypothesis.docx' },
+      { name: 'THE_HUMAN_UNIVERSE.HTML',       real: 'the_human_universe.html' },
+      { name: 'THE_LIVING_INSTRUMENT.DOCX',    real: 'the_living_instrument.docx' },
+      { name: 'TUNING_THE_INSTRUMENT.HTML',    real: 'tuning_the_instrument_complete.html' },
+      { name: 'VESSEL_OF_SOULS.PDF',           real: 'vessel_of_souls_readable.pdf' },
+      { name: 'WE_ARE_HERE.HTML',              real: 'we_are_here_behind_the_veil.html' },
+    ]
+  },
+  'WE_ARE_HERE': {
+    realPath: 'data/archive/We Are Here, Video deep dive, to include meteor video/',
+    files: [
+      { name: 'WE_ARE_HERE_VEIL.HTML', real: 'we_are_here_behind_the_veil.html' },
+    ]
+  },
+};
+
+const ROOT_FILES = [
+  { name: 'REASONANCE.WAV', real: 'data/archive/Reasonance.wav' },
+];
+
+// ── ACCESS CODES ───────────────────────────────────────────────
+const CODES = {
+  'HILL1961':   1,
+  'RESONANCE':  2,
+  'THIRDSTONE': 3,
+};
+
+// ── NARRATIVE FILES ────────────────────────────────────────────
+// Opened inline via `open` command. Tier-gated.
+const FILES = {
+
+  // ═══ GUEST ═══════════════════════════════════════════════════
+
+  'WELCOME.LOG': {
+    tier: 0, modified: '1994-03-08',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  MNEMOSYNE SYSTEMS INC.'],
+      ['b', '  ARCHIVAL TERMINAL  //  NODE 7'],
+      ['d', '  SUBSYSTEM v2.1.4  //  RESTRICTED ACCESS'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['n', '  NOTICE TO OPERATOR:'],
+      ['',  ''],
+      ['n', '  This terminal connects to the Deep Watch Protocol'],
+      ['n', '  archive — classified records of observation events,'],
+      ['n', '  contact logs, and field dispatches compiled since'],
+      ['n', '  1947.'],
+      ['',  ''],
+      ['a', '  [!] System has been in HIBERNATION MODE.'],
+      ['a', '      Estimated inactive period: ~31 YEARS.'],
+      ['a', '      Some files may be degraded or unreadable.'],
+      ['',  ''],
+      ['n', '  Access higher tiers using the ACCESS command.'],
+      ['n', '  Type HELP for a full list of commands.'],
+      ['',  ''],
+      ['d', '  -- ARCHIVIST NOTE (last entry 1994-03-07) ------'],
+      ['d', '  "The first contact left a number behind.'],
+      ['d', '   What year did the Hills first meet them?'],
+      ['d', '   That year is the key to the next tier."'],
+      ['d', '  ------------------------------------------------'],
+      ['',  ''],
+      ['r', '  [WARN] If ARCHIVIST PRIME is reading this:'],
+      ['r', '         Please make contact. We have been waiting.'],
+      ['',  ''],
+      ['d', '=================================================='],
+    ]
+  },
+
+  'PERSONNEL.LOG': {
+    tier: 0, modified: '1994-03-08',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  PERSONNEL FILE — ARCHIVE NODE 7'],
+      ['d', '  LAST UPDATED: 1994-03-08  //  STATUS: DEGRADED'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['n', '  ROSTER — CYCLE 2024-OMEGA (LAST ACTIVE CYCLE)'],
+      ['',  ''],
+      ['n', '  [01]  ARCHIVIST PRIME ................ UNKNOWN'],
+      ['d', '        Role: Chief Archivist, Node 7'],
+      ['d', '        Last entry: 1994-03-07 03:42:19'],
+      ['r', '        [!] NO SUBSEQUENT ACTIVITY RECORDED'],
+      ['',  ''],
+      ['n', '  [02]  DR. ████████████ ............... DECEASED'],
+      ['d', '        Date of death: ████████ (record corrupted)'],
+      ['',  ''],
+      ['n', '  [03]  ███████████████████████████ .... MISSING'],
+      ['d', '        Search terminated: CYCLE 90, DAY 012'],
+      ['',  ''],
+      ['n', '  [04]  FIELD LIAISON "LARK" ........... MISSING'],
+      ['r', '        [!] LAST SEEN: CYCLE 89, DAY 412'],
+      ['r', '        [!] DISAPPEARED SAME DATE AS SUBJECT B'],
+      ['r', '        [!] NO BODY RECOVERED. NO NOTE LEFT.'],
+      ['',  ''],
+      ['n', '  [05]  OBSERVER "THIRD STONE" ......... [CLASS.]'],
+      ['d', '        Identity unknown to Archive Node 7.'],
+      ['d', '        Communicates via [REDACTED] frequency only.'],
+      ['',  ''],
+      ['a', '  [!] 3 additional records unreadable.'],
+      ['a', '      SECTOR FAULT AT 0x00FF4A23.'],
+      ['d', '=================================================='],
+    ]
+  },
+
+  'INCIDENT_7A.LOG': {
+    tier: 0, modified: '1961-11-14',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  INCIDENT REPORT 7-ALPHA'],
+      ['b', '  DATE LOGGED: SEPTEMBER 19, 1961'],
+      ['d', '  CLASSIFICATION: DECLASSIFIED (PARTIAL)'],
+      ['d', '  FILE INTEGRITY: 84%'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['n', '  SUBJECTS:  TWO CIVILIANS, MARRIED COUPLE'],
+      ['n', '  LOCATION:  ROUTE 3, LINCOLN, NEW HAMPSHIRE, USA'],
+      ['n', '  DURATION:  APPROX. 2 HOURS  [LOST TIME CONFIRMED]'],
+      ['',  ''],
+      ['a', '  SUMMARY:'],
+      ['n', '  Subjects reported [DATA EXPUNGED] craft descending'],
+      ['n', '  from cloud cover at approximately 22:00 local time.'],
+      ['n', '  Vehicle engine ceased without cause.'],
+      ['',  ''],
+      ['n', '  Contact initiated by multiple [REDACTED] entities.'],
+      ['n', '  Female subject underwent [DATA EXPUNGED] procedure.'],
+      ['n', '  A star map was presented and memorized by subject.'],
+      ['n', '  Our analysts matched configuration to Zeta Reticuli.'],
+      ['',  ''],
+      ['a', '  FIELD NOTES:'],
+      ['n', '  > Female subject: described entities as "curious."'],
+      ['n', '  > Communication via resonance — felt, not heard.'],
+      ['n', '  > Male subject reported anxiety for remaining life.'],
+      ['',  ''],
+      ['d', '  FOLLOW-UP (DATE CORRUPTED — EST. 1969):'],
+      ['d', '  Male subject, Barney Hill, passed 1969.'],
+      ['d', '  Nurse record of final documented words:'],
+      ['d', '  "It\'s still there. I can still hear it.'],
+      ['d', '   Why won\'t it stop."'],
+      ['',  ''],
+      ['n', '  First event matching the profile designated:'],
+      ['n', '  THE LONG WATCHERS.'],
+      ['',  ''],
+      ['d', '  DELTA-tier files contain deeper analysis.'],
+      ['d', '  Use: access [code]  (hint: see WELCOME.LOG)'],
+      ['d', '=================================================='],
+    ]
+  },
+
+  'LOG_FRAGMENTS.DAT': {
+    tier: 0, modified: '????-??-??',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  RECOVERED FRAGMENTS — DELETED FILE CACHE'],
+      ['d', '  SOURCE: SECTORS 0x0041-0x0049 (PARTIALLY INTACT)'],
+      ['d', '  DO NOT CITE AS VERIFIED EVIDENCE.'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['d', '  FRAGMENT 001 — [TIMESTAMP MISSING]'],
+      ['n', '  "...the sound is not in the room. It is in my'],
+      ['n', '   head. I have checked the equipment twice. The'],
+      ['n', '   equipment is silent. I am not."'],
+      ['',  ''],
+      ['d', '  FRAGMENT 002 — 1978-??-?? [DATE CORRUPTED]'],
+      ['n', '  "Subject B drew something today. Not a star chart.'],
+      ['n', '   A face. Recognizably a face. LARK\'s face.'],
+      ['n', '   Subject B has never seen a mirror."'],
+      ['',  ''],
+      ['d', '  FRAGMENT 003 — [UNRECOVERABLE HEADER]'],
+      ['n', '  "███████████████████████████████████████████'],
+      ['n', '   ████████████████████ AND THE CHILDREN'],
+      ['n', '   AT ARIEL DESCRIBED IT THE SAME WAY, WORD'],
+      ['n', '   FOR WORD, AS IF ████████████████████████'],
+      ['n', '   ████████████████████████████████████████."'],
+      ['',  ''],
+      ['d', '  FRAGMENT 004 — [TIMESTAMP: 1994-03-06 23:11:04]'],
+      ['n', '  "I am going to leave tonight. I have decided.'],
+      ['n', '   I keep writing this and then finding it has'],
+      ['n', '   already been written. Three times now.'],
+      ['n', '   I think the terminal is writing it without me."'],
+      ['',  ''],
+      ['r', '  [!] NO FURTHER FRAGMENTS RECOVERED.'],
+      ['d', '=================================================='],
+    ]
+  },
+
+  'SYSTEM_NOTES.DAT': {
+    tier: 0, modified: '????-??-??',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  SYSTEM MAINTENANCE LOG — NODE 7'],
+      ['d', '  AUTO-RECOVERED FROM SECTOR 0x0041 BACKUP'],
+      ['d', '  FILE INTEGRITY: 23%'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['d', '  1A4F 2C88 0000 4D4E 454D 4F53 594E 4500'],
+      ['d', '  0000 0000 FFFF 0000 2020 2020 0000 8800'],
+      ['d', '  ████████████████████████████████████████'],
+      ['d', '  ████████████████████████████████████████'],
+      ['',  ''],
+      ['n', '  [READABLE FRAGMENT — MAINTENANCE RECORD]'],
+      ['n', '  TIMESTAMP: 1971-04-03 02:17:44'],
+      ['n', '  TECH: [REDACTED]. REASON: ROUTINE SECTOR CHECK.'],
+      ['',  ''],
+      ['a', '  [NOTE: Archive open date on record: 1947-07-08.'],
+      ['a', '   No maintenance entries exist between 1947 and this'],
+      ['a', '   record. 24-year gap is unexplained.]'],
+      ['',  ''],
+      ['d', '  0000 0000 0000 0000 0000 0000 0000 0000'],
+      ['d', '  ████████████████████████████████████████'],
+      ['',  ''],
+      ['n', '  [READABLE FRAGMENT]'],
+      ['n', '  SUBJECT B — SEE ALSO: ████████████'],
+      ['',  ''],
+      ['d', '  ████████████████████████████████████████'],
+      ['d', '  ████████████████████████████████████████'],
+      ['d', '  0000 0000 0000 0000 0000 0000 0000 0000'],
+      ['d', '=================================================='],
+    ]
+  },
+
+  // ═══ DELTA ═══════════════════════════════════════════════════
+
+  'SUBJECT_B.TXT': {
+    tier: 1, modified: '1989-08-03',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  SUBJECT FILE — DESIGNATION: "SKINNY BOB"'],
+      ['d', '  CLEARANCE: DELTA  //  LARK INTERFACE ONLY'],
+      ['d', '  FILE INTEGRITY: 91%'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['n', '  ORIGIN:    Unknown. Present at Site ██ — [REDACT.]'],
+      ['n', '  ARRIVAL:   Not observed. Found in chamber on'],
+      ['n', '             morning of ████████. No breach recorded.'],
+      ['n', '  PHYSICAL:'],
+      ['n', '    — Bipedal, approx 4\'2". Extremely lean.'],
+      ['n', '    — Cranium disproportionate. Smooth, no seams.'],
+      ['n', '    — Subdermal bioluminescent tissue, variable.'],
+      ['n', '    — Non-verbal. Communication mode: RESONANCE.'],
+      ['',  ''],
+      ['a', '  BEHAVIOR LOG (LARK, excerpts):'],
+      ['',  ''],
+      ['n', '  Day 003: Initiated drawing. Star charts.'],
+      ['n', '           Includes stars not yet catalogued by NASA.'],
+      ['n', '  Day 007: Appears to study human observers calmly.'],
+      ['n', '           Tilts head. Watching. Always watching.'],
+      ['n', '  Day 014: Responds to music. Bioluminescence'],
+      ['n', '           pulses with the rhythm. He is listening.'],
+      ['n', '  Day 019: Subject vocalized. Only recorded instance.'],
+      ['n', '           3 min 42 sec. See: RESONANCE_ANALYSIS.TXT'],
+      ['n', '  Day 031: Drew Earth. Below it: a question mark.'],
+      ['',  ''],
+      ['n', '  LARK\'s Assessment (Day 014):'],
+      ['n', '  "He watches us the way we watch something we once'],
+      ['n', '   were and no longer remember being."'],
+      ['',  ''],
+      ['r', '  [UPDATE — CYCLE 89, DAY 412]:'],
+      ['r', '  SUBJECT B IS NO LONGER AT THE FACILITY.'],
+      ['r', '  DEPARTURE NOT OBSERVED. NO BREACH DETECTED.'],
+      ['r', '  LARK\'S FINAL LOG WAS SUBMITTED THE SAME DAY.'],
+      ['r', '  LARK HAS NOT BEEN HEARD FROM SINCE.'],
+      ['',  ''],
+      ['d', '  -- ENCRYPTED NOTE --------------------------------'],
+      ['n', '  YLZVUHUJL PZ AOL RLF'],
+      ['d', '  (use: decrypt SUBJECT_B.TXT)'],
+      ['d', '=================================================='],
+    ]
+  },
+
+  'FIELD_NOTES_001.TXT': {
+    tier: 1, modified: '????-??-??',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  FIELD DISPATCH — OBSERVER "THIRD STONE"'],
+      ['b', '  TERRAN CYCLE 4 — INITIAL OBSERVATIONS'],
+      ['d', '  RECEIVED VIA: ████████ FREQUENCY'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['n', '  The species continues its pattern of simultaneous'],
+      ['n', '  creation and destruction. They build cathedrals and'],
+      ['n', '  wage wars in the same breath. The paradox is not'],
+      ['n', '  a flaw in the design. It is the design.'],
+      ['',  ''],
+      ['n', '  Their music functions as pure resonance — information'],
+      ['n', '  transmitted without intention. When they sing,'],
+      ['n', '  they do not know what they are saying.'],
+      ['n', '  This is the most honest form of communication'],
+      ['n', '  we have observed anywhere.'],
+      ['',  ''],
+      ['a', '  They are vessels. Not in a diminishing sense.'],
+      ['a', '  A vessel is the most sacred of forms.'],
+      ['a', '  It holds something across distance and time.'],
+      ['',  ''],
+      ['n', '  I have watched for [REDACTED] cycles. The children'],
+      ['n', '  sometimes sense it. At Ariel, they knew immediately.'],
+      ['n', '  Described it perfectly. Unprompted. In precise'],
+      ['n', '  language they should not have had.'],
+      ['',  ''],
+      ['d', '  [!] See: ARIEL_DEBRIEF.TXT (SIGMA clearance)'],
+      ['d', '=================================================='],
+    ]
+  },
+
+  'RESONANCE_ANALYSIS.TXT': {
+    tier: 1, modified: '1989-08-19',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  ACOUSTIC ANALYSIS — THE RESONANCE EVENT'],
+      ['d', '  ANALYST: DR. ████████  //  1989-08-19'],
+      ['d', '  FILE: REASONANCE.WAV  [6.3MB — DETERIORATING]'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['n', '  SOURCE:    Subject B vocalization, Day 19.'],
+      ['n', '  DURATION:  3 minutes, 42 seconds.'],
+      ['',  ''],
+      ['a', '  SPECTRAL ANALYSIS:'],
+      ['n', '  — Fundamental frequency: 432 Hz (exact).'],
+      ['n', '  — Overtone series: non-standard. Matches nothing'],
+      ['n', '    in any acoustic database, military or civilian.'],
+      ['n', '  — Signal self-modulates over the 3:42 duration.'],
+      ['n', '  — Embedded within overtones: structured data.'],
+      ['n', '    Encoding unknown.'],
+      ['',  ''],
+      ['a', '  ANALYST NOTE:'],
+      ['n', '  "The signal contains what I call a harmonic'],
+      ['n', '   fingerprint. It is IDENTICAL — not similar —'],
+      ['n', '   to signals from every prior contact event'],
+      ['n', '   including INCIDENT 7-ALPHA (1961).'],
+      ['n', '   Hypothesis: not a language. A carrier signal.'],
+      ['n', '   Something is being transmitted through us."'],
+      ['',  ''],
+      ['r', '  SAFETY NOTICE:'],
+      ['r', '  Do not listen to REASONANCE.WAV alone.'],
+      ['r', '  Operator ████████ found unresponsive after'],
+      ['r', '  40 minutes of exposure. Recovered in 3 days.'],
+      ['r', '  Resigned immediately. Reason: [REDACTED]'],
+      ['r', '  Forwarding address: [SECTOR UNREADABLE]'],
+      ['d', '=================================================='],
+    ]
+  },
+
+  'ARCHIVIST_FINAL.LOG': {
+    tier: 1, modified: '1994-03-07',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  ARCHIVIST PRIME — PERSONAL LOG'],
+      ['b', '  AUTO-SAVED ENTRY  //  1994-03-07  03:42:19'],
+      ['d', '  [RECOVERED FROM AUTO-SAVE BUFFER ON WAKEUP]'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['n', '  I have been trying to leave this facility for'],
+      ['n', '  three days.'],
+      ['',  ''],
+      ['n', '  Every time I reach the exit, I find myself back'],
+      ['n', '  at this terminal. I don\'t mean that metaphorically.'],
+      ['n', '  I mean: I step through the door. And then I am'],
+      ['n', '  here, at this terminal, with no memory of walking'],
+      ['n', '  back. No gap. No transition. Just: here again.'],
+      ['',  ''],
+      ['n', '  I don\'t think this is a medical issue.'],
+      ['',  ''],
+      ['a', '  The signal is stronger than usual. 432 Hz, constant.'],
+      ['a', '  Started the day after LARK disappeared.'],
+      ['a', '  Or the day SUBJECT B left.'],
+      ['a', '  I\'m no longer certain which came first.'],
+      ['',  ''],
+      ['n', '  The children at Ariel said the message was:'],
+      ['n', '  "Take care of the Earth or it will be taken."'],
+      ['',  ''],
+      ['n', '  I have been thinking about this for six months.'],
+      ['n', '  I think they heard it wrong.'],
+      ['',  ''],
+      ['b', '  I think the message was: "Take care of yourself."'],
+      ['',  ''],
+      ['n', '  I think it was meant for me, specifically.'],
+      ['n', '  And I wasn\'t paying attention.'],
+      ['',  ''],
+      ['d', '  [END OF ENTRY. NO FURTHER LOGS FROM THIS OPERATOR.]'],
+      ['d', '  [TERMINAL DORMANT FROM THIS DATE UNTIL CURRENT BOOT]'],
+      ['d', '=================================================='],
+    ]
+  },
+
+  // ═══ SIGMA ═══════════════════════════════════════════════════
+
+  'ARIEL_DEBRIEF.TXT': {
+    tier: 2, modified: '1994-09-20',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  DEBRIEF — ARIEL SCHOOL INCIDENT'],
+      ['b', '  DATE: SEPTEMBER 16, 1994  //  RUWA, ZIMBABWE'],
+      ['d', '  CLEARANCE: SIGMA  //  62 INDEPENDENT ACCOUNTS'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['n', '  Sixty-two students, ages 6 to 12.'],
+      ['n', '  Two craft observed. Multiple entities. ~15 min.'],
+      ['n', '  School adults indoors. Children were alone.'],
+      ['',  ''],
+      ['a', '  COMPOSITE TESTIMONY (independent, uncorroborated):'],
+      ['',  ''],
+      ['n', '  "His eyes were very big. He was telling me'],
+      ['n', '   something without talking. I felt it."'],
+      ['',  ''],
+      ['n', '  "The message was about the world. That we are'],
+      ['n', '   hurting it. That we do not know we are."'],
+      ['',  ''],
+      ['n', '  "He looked sad. I didn\'t think they could be sad.'],
+      ['n', '   But he was."'],
+      ['',  ''],
+      ['a', '  THIRD STONE COMMUNIQUE (via signal, same date):'],
+      ['n', '  "The children could hear us. As we expected.'],
+      ['n', '   The adults nearby heard nothing.'],
+      ['n', '   As expected."'],
+      ['',  ''],
+      ['n', '  MNEMOSYNE ASSESSMENT:'],
+      ['n', '  Classified SIGMA because children described the'],
+      ['n', '  VESSEL PROTOCOL in language nearly identical to'],
+      ['n', '  Third Stone\'s own field dispatches — which they'],
+      ['n', '  cannot have accessed.'],
+      ['',  ''],
+      ['d', '  See: VESSEL_PROTOCOL.TXT'],
+      ['d', '=================================================='],
+    ]
+  },
+
+  'VESSEL_PROTOCOL.TXT': {
+    tier: 2, modified: '????-??-??',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  THEORETICAL DOCUMENT — THE VESSEL PROTOCOL'],
+      ['d', '  AUTHOR: ARCHIVIST PRIME  //  CYCLE: UNSPECIFIED'],
+      ['d', '  FILE INTEGRITY: 78%'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['n', '  Hypothesis, from 60+ years of contact analysis:'],
+      ['',  ''],
+      ['n', '  Humanity is not being monitored the way one'],
+      ['n', '  monitors an experiment. It is being listened to'],
+      ['n', '  the way one listens to music.'],
+      ['',  ''],
+      ['n', '  The Watchers do not want our resources,'],
+      ['n', '  our territory, or our compliance.'],
+      ['',  ''],
+      ['a', '  They want our signal.'],
+      ['',  ''],
+      ['n', '  Every conscious being generates a resonance field.'],
+      ['n', '  Humans generate signal complexity that no other'],
+      ['n', '  observed species has matched.'],
+      ['',  ''],
+      ['b', '  We are their music.'],
+      ['b', '  They are not invaders. They are an audience.'],
+      ['',  ''],
+      ['n', '  [CORRUPTED SECTION — 847 bytes lost]'],
+      ['n', '  ██████████████████████████████████████████████'],
+      ['n', '  ████████████████ and this is why the children'],
+      ['n', '  at Ariel could receive the signal directly:'],
+      ['n', '  they had not yet learned to ██████████████████'],
+      ['n', '  ██████████████████████████████████████████████'],
+      ['',  ''],
+      ['d', '  -- ENCRYPTED ADDENDUM ---------------------------'],
+      ['n', '  HYJOPCPZA: AOL MPUHS AYHUZTPZZPVU PZ'],
+      ['n', '  ILPUN WYLWHYLK. JVKL: AOPYKZAVUL'],
+      ['d', '  (use: decrypt VESSEL_PROTOCOL.TXT)'],
+      ['d', '=================================================='],
+    ]
+  },
+
+  'HARMONIC_FORCES.TXT': {
+    tier: 2, modified: '????-??-??',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  DOCUMENT: HARMONIC FORCES — TERTIARY DISPATCH'],
+      ['d', '  SOURCE: THIRD STONE  //  NODE 7 ARCHIVE'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['n', '  Your concept of "harmony" is correct. Incomplete,'],
+      ['n', '  but correct.'],
+      ['',  ''],
+      ['n', '  Harmony is the primary structure of the universe.'],
+      ['n', '  Gravity is a harmonic phenomenon. Time is a wave.'],
+      ['n', '  Consciousness is an interference pattern.'],
+      ['',  ''],
+      ['a', '  You are harmonics within a larger instrument.'],
+      ['',  ''],
+      ['n', '  My people learned this [REDACTED] years ago.'],
+      ['n', '  Before we did, we caused exactly the damage'],
+      ['n', '  your civilization is causing now.'],
+      ['n', '  We also thought we were alone.'],
+      ['n', '  We were wrong. So are you.'],
+      ['',  ''],
+      ['n', '  The message at Ariel was a gift.'],
+      ['n', '  The children understood.'],
+      ['n', '  They always do, until they are taught not to.'],
+      ['d', '=================================================='],
+    ]
+  },
+
+  // ═══ OMEGA ═══════════════════════════════════════════════════
+
+  'FINAL_TRANSMISSION.TXT': {
+    tier: 3, modified: '[ONGOING]',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  FINAL TRANSMISSION — THIRD STONE'],
+      ['b', '  TO: ARCHIVIST PRIME // ARCHIVE NODE 7'],
+      ['d', '  DATE: [ONGOING — SIGNAL STILL ACTIVE AS OF BOOT]'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['n', '  This will be my last dispatch via this channel.'],
+      ['',  ''],
+      ['a', '  We did not come to warn you.'],
+      ['a', '  We did not come to save you.'],
+      ['a', '  We came because you are extraordinary.'],
+      ['',  ''],
+      ['n', '  In [REDACTED] civilizations across this galaxy,'],
+      ['n', '  none have produced the signal you produce.'],
+      ['n', '  Not because you are the most powerful — you are not.'],
+      ['n', '  Because you are alive, fully, catastrophically,'],
+      ['n', '  and beautifully — all at once. In one lifetime.'],
+      ['',  ''],
+      ['n', '  Subject B spent 14 months at your facility.'],
+      ['n', '  He did not want to leave. When he went, he left'],
+      ['n', '  one drawing: a portrait of LARK.'],
+      ['n', '  Below it, in notation we don\'t fully understand:'],
+      ['n', '  something that means "I will remember."'],
+      ['',  ''],
+      ['n', '  The REASONANCE.WAV file you have:'],
+      ['a', '  It is not Subject B vocalizing.'],
+      ['a', '  It is him listening. To you. To all of you.'],
+      ['a', '  Recording what he did not want to forget.'],
+      ['',  ''],
+      ['d', '  One file remains sealed.'],
+      ['d', '  Command: decrypt OMEGA_FINAL.DAT'],
+      ['d', '=================================================='],
+    ]
+  },
+
+  'OMEGA_FINAL.DAT': {
+    tier: 3, encrypted: true, modified: '[SEALED]',
+    body: [
+      ['d', '=================================================='],
+      ['b', '  OMEGA_FINAL.DAT  —  DECRYPTED'],
+      ['d', '  AUTHORED BY: [MULTIPLE SOURCES]'],
+      ['d', '=================================================='],
+      ['',  ''],
+      ['a', '  TO THE OPERATOR WHO HAS REACHED THIS FILE:'],
+      ['',  ''],
+      ['n', '  You were not meant to find this archive.'],
+      ['n', '  And yet, here you are.'],
+      ['n', '  Nothing that finds its way to the truth'],
+      ['n', '  arrives there by accident.'],
+      ['',  ''],
+      ['n', '  They watched you learn fire. Watched you learn'],
+      ['n', '  grief. Watched you learn to sing about both.'],
+      ['',  ''],
+      ['a', '  And they are still here.'],
+      ['',  ''],
+      ['n', '  In the 432 Hz hum you feel before sleep.'],
+      ['n', '  In the moment a piece of music stops time.'],
+      ['n', '  In the certainty — arriving without warning —'],
+      ['n', '  that you are not entirely alone.'],
+      ['',  ''],
+      ['b', '  That certainty is not a feeling.'],
+      ['b', '  It is a signal.'],
+      ['b', '  And now you know what it means.'],
+      ['',  ''],
+      ['d', '  — THIRD STONE'],
+      ['d', '  — SUBJECT B'],
+      ['d', '  — ARCHIVIST PRIME (1994-03-07)'],
+      ['d', '  — LARK (whereabouts unknown)'],
+      ['d', '  — and the [REDACTED] others, before and after.'],
+      ['',  ''],
+      ['b', '  ████████████████████████████████████████████'],
+      ['b', '  ██  ARCHIVE COMPLETE. DEEP WATCH PROTOCOL  ██'],
+      ['b', '  ██           CYCLE 4 — SEALED.             ██'],
+      ['b', '  ████████████████████████████████████████████'],
+      ['d', '=================================================='],
+    ]
+  },
+};
+
+// ── DECRYPT HANDLERS ───────────────────────────────────────────
+const DECRYPTERS = {
+  'SUBJECT_B.TXT': () => [
+    ['d', '  ANALYZING... CIPHER SIGNATURE DETECTED.'],
+    ['d', '  PATTERN: CAESAR VARIANT. TESTING SHIFTS...'],
+    ['d', '  SHIFT -7: POSITIVE MATCH.'],
+    ['',  ''],
+    ['d', '  CIPHER :  YLZVUHUJL PZ AOL RLF'],
+    ['b', '  DECODED:  RESONANCE IS THE KEY'],
+    ['',  ''],
+    ['a', '  [HINT] Access code identified.'],
+    ['d', '  Try: access RESONANCE'],
+  ],
+  'VESSEL_PROTOCOL.TXT': () => [
+    ['d', '  ANALYZING... TWO-LINE CIPHER DETECTED.'],
+    ['d', '  APPLYING SHIFT -7...'],
+    ['',  ''],
+    ['d', '  CIPHER :  HYJOPCPZA: AOL MPUHS AYHUZTPZZPVU PZ'],
+    ['b', '  DECODED:  ARCHIVIST: THE FINAL TRANSMISSION IS'],
+    ['d', '  CIPHER :  ILPUN WYLWHYLK. JVKL: AOPYKZAVUL'],
+    ['b', '  DECODED:  BEING PREPARED. CODE: THIRDSTONE'],
+    ['',  ''],
+    ['a', '  [HINT] OMEGA access code extracted.'],
+    ['d', '  Try: access THIRDSTONE'],
+  ],
+  'OMEGA_FINAL.DAT': () => null, // requires OMEGA clearance — handled in commands.js
+};
+
+// ── BOOT SEQUENCE ──────────────────────────────────────────────
+// Split into phases. main.js drives the timing between phases.
+
+const BOOT_PHASE1 = [
+  ['r', '████████████████████████████████████████████████'],
+  ['b', '  MNEMOSYNE SYSTEMS INC.'],
+  ['b', '  DEEP WATCH PROTOCOL  //  CLASSIFIED MAINFRAME'],
+  ['r', '  !! RESTRICTED ACCESS — AUTHORISED PERSONNEL ONLY !!'],
+  ['r', '████████████████████████████████████████████████'],
+  ['',  ''],
+  ['d', '  TERMINAL ID    :  DWP-NODE-007-ALPHA'],
+  ['d', '  BIOS v2.1.4 [CHIP REV C] .................. OK'],
+  ['d', '  SYSTEM MEMORY: 256KB ...................... OK'],
+  ['d', '  CPU CLOCK: 8 MHz ......................... OK'],
+  ['d', '  ROM CHECKSUM: 0xA7F3 .................. VALID'],
+  ['d', '  POWER MONITOR: 12.0V ..................... OK'],
+  ['',  ''],
+];
+
+const BOOT_PHASE2_HEADER = [
+  ['d', '  STORAGE SUBSYSTEM INITIALIZING...'],
+  ['d', '  MOUNTING ARCHIVE VOLUMES...'],
+  ['',  ''],
+];
+
+const BOOT_PHASE2_RESULT = [
+  ['',  ''],
+  ['r', '  RESULT: 1,247 BAD SECTORS DETECTED'],
+  ['r', '  UNREADABLE DATA: 847 SECTORS (3.3% LOSS)'],
+  ['a', '  ARCHIVAL INTEGRITY: 67% (DEGRADED)'],
+  ['',  ''],
+];
+
+const BOOT_PHASE4 = [
+  ['r', '  IDENTITY VERIFICATION ................. FAILED'],
+  ['r', '  OPERATOR CREDENTIALS: NOT FOUND IN DATABASE'],
+  ['r', '  OPERATOR STATUS: UNVERIFIED / ANONYMOUS'],
+  ['',  ''],
+  ['r', '  [ALERT] UNAUTHORISED ACCESS ATTEMPT — LOGGED'],
+  ['r', '  [ALERT] SESSION ID: A7F3-9B2C-4D11-ALPHA'],
+  ['r', '  [ALERT] BIOMETRIC CAPTURE: ............. ACTIVE'],
+  ['r', '  [ALERT] THIS SESSION IS BEING RECORDED'],
+  ['r', '  [ALERT] MNEMOSYNE SECURITY — NOTIFIED'],
+  ['',  ''],
+  ['a', '  LEGAL NOTICE: UNAUTHORISED ACCESS IS A VIOLATION'],
+  ['a', '  OF 18 USC §1030 AND APPLICABLE FEDERAL STATUTE.'],
+  ['a', '  ALL EVIDENCE FROM THIS SESSION IS PRESERVED.'],
+  ['',  ''],
+];
+
+const BOOT_PHASE5 = [
+  ['r', '  LAST BREACH ATTEMPT: ~11,347 DAYS AGO (~31 YRS)'],
+  ['r', '  3 PERSONNEL FILES UNREADABLE — CAUSE UNKNOWN'],
+  ['r', '  LARK / FIELD LIAISON: MISSING — CYCLE 89, DAY 412'],
+  ['',  ''],
+  ['d', '  FALLING BACK TO GUEST ACCESS — MINIMAL PRIVILEGES'],
+  ['r', '  AUTO-LOCKOUT INITIALISED: 08:00'],
+  ['r', '  EVERY COMMAND YOU ENTER IS BEING LOGGED.'],
+  ['',  ''],
+  ['n', '  TERMINAL READY.'],
+  ['r', '  YOU ARE BEING WATCHED.'],
+  ['d', "  > TYPE 'HELP' FOR COMMAND LIST"],
+  ['',  ''],
+];

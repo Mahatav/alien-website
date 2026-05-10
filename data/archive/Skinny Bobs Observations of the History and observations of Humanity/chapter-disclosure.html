@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter: The Mirror in the Sky — Disclosure, Fear, and the Weight of History</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,600;0,700;0,900;1,300&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #060608;
+    --deep: #0d0d12;
+    --surface: #13131a;
+    --panel: #1a1a24;
+    --border: #252530;
+    --amber: #c8922a;
+    --amber-dim: #8a6018;
+    --amber-glow: #e8b84b;
+    --cold: #4a7fa8;
+    --cold-bright: #7ab8d8;
+    --redact: #1e0a0a;
+    --redact-text: #8b0000;
+    --text-primary: #d4cfc4;
+    --text-secondary: #8a8478;
+    --text-muted: #504c44;
+    --stamp-red: rgba(180,20,20,0.85);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--void);
+    color: var(--text-primary);
+    font-family: 'Cormorant', Georgia, serif;
+    font-size: 19px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+
+  /* ─── STARFIELD ─── */
+  #starfield {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--dur, 4s) ease-in-out infinite var(--del, 0s);
+    opacity: 0;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0; }
+    50% { opacity: var(--op, 0.6); }
+  }
+
+  /* ─── LAYOUT ─── */
+  #main-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  /* ─── STICKY NAV ─── */
+  #sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(6,6,8,0.92);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    padding: 0.6rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+  }
+  .nav-label { color: var(--amber-dim); text-transform: uppercase; }
+  .nav-links {
+    display: flex;
+    gap: 1.6rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--amber-glow); }
+  .nav-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: var(--amber);
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    padding: 7rem 0 4rem;
+    position: relative;
+  }
+  .chapter-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--amber-dim);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .chapter-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--amber-dim), transparent);
+  }
+  h1.main-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3.2rem, 8vw, 6.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin-bottom: 1.2rem;
+  }
+  h1.main-title em {
+    font-style: italic;
+    color: var(--amber);
+    font-weight: 300;
+  }
+  .subtitle {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-bottom: 3rem;
+    line-height: 1.5;
+  }
+  .hero-meta {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    display: flex;
+    gap: 2.5rem;
+  }
+  .hero-meta span { color: var(--cold); }
+
+  /* ─── CLASSIFICATION BANNER ─── */
+  .classification-banner {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-align: center;
+    padding: 0.5rem;
+    border: 1px solid var(--redact-text);
+    color: var(--redact-text);
+    margin: 2rem 0 3.5rem;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  /* ─── DIVIDERS ─── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 4rem 0 2.5rem;
+  }
+  .section-divider::before, .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .divider-icon {
+    width: 6px; height: 6px;
+    background: var(--amber);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ─── SECTION HEADINGS ─── */
+  .section-number {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--amber-dim);
+    display: block;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  h2.section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+  }
+  h2.section-title em { color: var(--amber); font-style: italic; font-weight: 300; }
+
+  /* ─── BODY TEXT ─── */
+  p {
+    margin-bottom: 1.4rem;
+    color: var(--text-primary);
+    font-weight: 400;
+  }
+  p.lead {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+
+  /* ─── DROP CAP ─── */
+  .drop-cap::first-letter {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 5.2rem;
+    line-height: 0.75;
+    float: left;
+    margin-right: 0.1em;
+    margin-top: 0.08em;
+    color: var(--amber);
+  }
+
+  /* ─── PULL QUOTES ─── */
+  blockquote.pull-quote {
+    border-left: 3px solid var(--amber);
+    padding: 1.2rem 0 1.2rem 2rem;
+    margin: 2.5rem 0;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.25;
+    color: var(--amber-glow);
+    letter-spacing: 0.01em;
+    position: relative;
+  }
+  blockquote.pull-quote::before {
+    content: '\201C';
+    font-size: 5rem;
+    line-height: 0;
+    position: absolute;
+    top: 2.2rem;
+    left: -0.1rem;
+    color: var(--amber-dim);
+    opacity: 0.4;
+  }
+  blockquote.pull-quote cite {
+    display: block;
+    font-size: 0.7rem;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-top: 0.8rem;
+    font-style: normal;
+  }
+
+  /* ─── DOSSIER PANELS ─── */
+  .dossier-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--cold);
+    padding: 1.6rem 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+  .dossier-panel::before {
+    content: attr(data-label);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--cold-bright);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.8rem;
+    opacity: 0.8;
+  }
+  .dossier-panel p { margin-bottom: 0.6rem; font-size: 0.92rem; color: var(--text-secondary); }
+  .dossier-panel p:last-child { margin-bottom: 0; }
+  .dossier-panel strong { color: var(--text-primary); }
+
+  /* ─── REDACTED BOX ─── */
+  .redacted-box {
+    background: var(--redact);
+    border: 1px solid rgba(180,20,20,0.3);
+    padding: 1.4rem 1.8rem;
+    margin: 2.5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .redacted-box::after {
+    content: 'CLASSIFIED // SPECULATIVE HYPOTHESIS';
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    color: var(--stamp-red);
+    position: absolute;
+    top: 0.5rem;
+    right: 0.8rem;
+    opacity: 0.7;
+  }
+  .redacted-box p { font-size: 0.9rem; color: #b07070; font-style: italic; margin-bottom: 0.5rem; }
+  .redacted-box p:last-child { margin-bottom: 0; }
+
+  /* ─── TWO-COLUMN COMPARE ─── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin: 2.5rem 0;
+    border: 1px solid var(--border);
+  }
+  .compare-col {
+    background: var(--surface);
+    padding: 1.6rem;
+  }
+  .compare-col h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .compare-col.human h4 { color: var(--redact-text); }
+  .compare-col.alien h4 { color: var(--cold-bright); }
+  .compare-col ul { list-style: none; }
+  .compare-col ul li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+    padding-left: 1rem;
+    position: relative;
+  }
+  .compare-col ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+  }
+  .compare-col ul li:last-child { border-bottom: none; }
+
+  /* ─── NUMBERED INSIGHTS ─── */
+  .insight-list {
+    list-style: none;
+    margin: 2rem 0;
+    counter-reset: insight-counter;
+  }
+  .insight-list li {
+    counter-increment: insight-counter;
+    padding: 1.2rem 1.4rem 1.2rem 4rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+  .insight-list li:last-child { border-bottom: none; }
+  .insight-list li::before {
+    content: counter(insight-counter, decimal-leading-zero);
+    position: absolute;
+    left: 0.8rem;
+    top: 1.1rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--amber);
+    letter-spacing: 0.1em;
+  }
+  .insight-list li strong { color: var(--text-primary); display: block; margin-bottom: 0.3rem; }
+
+  /* ─── DISRUPTION MATRIX ─── */
+  .disruption-matrix {
+    margin: 2.5rem 0;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .matrix-header {
+    background: var(--panel);
+    padding: 0.8rem 1.4rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--amber-dim);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+  .matrix-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1.8fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .matrix-row:last-child { border-bottom: none; }
+  .matrix-row.head { background: var(--surface); }
+  .matrix-cell {
+    padding: 0.9rem 1.2rem;
+    font-size: 0.85rem;
+    border-right: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  .matrix-cell:last-child { border-right: none; }
+  .matrix-row.head .matrix-cell {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .threat-high { color: var(--redact-text); font-weight: 600; }
+  .threat-med { color: var(--amber); }
+  .threat-low { color: var(--cold-bright); }
+
+  /* ─── STAMP ─── */
+  .stamp {
+    display: inline-block;
+    border: 2px solid var(--stamp-red);
+    color: var(--stamp-red);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    padding: 0.25rem 0.7rem;
+    text-transform: uppercase;
+    transform: rotate(-2deg);
+    opacity: 0.7;
+    margin: 0 0.5rem;
+  }
+
+  /* ─── CLOSING ─── */
+  .closing-section {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .closing-glyph {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    display: block;
+  }
+  .closing-text {
+    font-family: 'Cormorant', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    body { font-size: 17px; }
+    .compare-grid { grid-template-columns: 1fr; }
+    .matrix-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    #hero { padding: 4rem 0 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Starfield -->
+<canvas id="starfield"></canvas>
+
+<!-- Sticky Nav -->
+<nav id="sticky-nav">
+  <span class="nav-label">The Disclosure Files &nbsp;/&nbsp; Chapter IV</span>
+  <ul class="nav-links">
+    <li><a href="#mirror">The Mirror</a></li>
+    <li><a href="#lab">The Lab</a></li>
+    <li><a href="#conditioning">Conditioning</a></li>
+    <li><a href="#divided">Divided Earth</a></li>
+    <li><a href="#coexistence">Coexistence</a></li>
+  </ul>
+  <div class="nav-progress" id="progress-bar"></div>
+</nav>
+
+<div id="main-wrapper">
+
+  <!-- ═══ HERO ═══ -->
+  <header id="hero">
+    <div class="chapter-label">Chapter IV &nbsp;·&nbsp; Contact Hypothesis &nbsp;·&nbsp; Speculative Non-Fiction</div>
+    <h1 class="main-title">
+      THE MIRROR<br>
+      <em>IN THE</em><br>
+      SKY
+    </h1>
+    <p class="subtitle">On fear, colonialism, disclosure, and what it means to be the less advanced civilization for once</p>
+    <div class="hero-meta">
+      <span>EST. READING TIME: <span>~22 min</span></span>
+      <span>SECTIONS: <span>9</span></span>
+      <span>CLASSIFICATION: <span>OPEN SPECULATION</span></span>
+    </div>
+  </header>
+
+  <div class="classification-banner">
+    This chapter is speculative non-fiction · All hypotheses are exploratory · No claims of verified contact are made
+  </div>
+
+  <!-- ═══ I. THE MIRROR ═══ -->
+  <section id="mirror">
+    <div class="section-divider"><div class="divider-icon"></div></div>
+    <span class="section-number">Section I</span>
+    <h2 class="section-title">The Mirror <em>We Fear</em></h2>
+
+    <p class="lead reveal">When humans imagine contact with an advanced alien civilisation, the emotional register is rarely neutral. It splits, almost universally, into two poles: rapture and dread.</p>
+
+    <p class="drop-cap reveal">The rapture is easy to understand — the end of cosmic loneliness, the promise of technology and wisdom beyond anything we could reach alone, the confirmation that consciousness is not an accident flickering in a cold and empty universe. But the dread is more interesting, because it is not really about them. It is about us. It is a mirror held up to ten thousand years of human behaviour, and what stares back is not alien at all.</p>
+
+    <p class="reveal">The most honest reason so many people fear alien contact is that they know, implicitly or explicitly, what tends to happen when a technologically superior civilisation encounters one that is not. The historical record is unambiguous. From the Spanish arrival in Mesoamerica to the British plantation of the Americas and the Pacific, from the Belgian Congo to the systematic destruction of First Nations cultures across the globe — the pattern repeats with terrible consistency. The more powerful civilisation does not say: <em>how extraordinary, a different people with their own knowledge, their own cosmology, their own sovereignty.</em> It says: <em>how useful. How convertible. How ours.</em></p>
+
+    <blockquote class="pull-quote reveal">
+      "The fear of aliens is not fear of the unknown. It is recognition of the known — dressed in unfamiliar skin, arriving from an unfamiliar direction, carrying a familiar logic of power."
+    </blockquote>
+
+    <p class="reveal">This is the colonial lens applied to the cosmos. And it is not irrational. It is, in fact, the only lens a species with our history could reasonably apply. We have no data on how advanced civilisations treat less advanced ones — except our own. And that data is not encouraging.</p>
+
+    <div class="dossier-panel reveal" data-label="Historical Analogue // The Fermi Paradox Addendum">
+      <p>Physicist Enrico Fermi's famous question — <strong>"Where is everybody?"</strong> — assumes that if intelligent life exists, it would be communicating or exploring. But there is another reading: perhaps advanced civilisations know the danger of announcing themselves to species with the specific mix of tribalism, territorial aggression, and technological adolescence that characterises humanity circa the 21st century. The silence, on this reading, is not absence. It is discretion.</p>
+    </div>
+
+    <p class="reveal">The colonial analogy also raises a deeper question about moral development. Colonialism was not carried out by monsters — it was carried out by people who genuinely believed they were doing something righteous. They had ethical frameworks that permitted, even celebrated, what we now recognise as atrocity. The question for any alien civilisation far older than ours is whether moral development scales with technological development — or whether it doesn't, whether an ancient spacefaring species might have its own ethical blind spots as catastrophic as ours, simply less visible to itself.</p>
+  </section>
+
+  <!-- ═══ II. COLONIAL PARALLELS ═══ -->
+  <section id="colonial">
+    <div class="section-divider"><div class="divider-icon"></div></div>
+    <span class="section-number">Section II</span>
+    <h2 class="section-title">What <em>History</em> Teaches About First Contact</h2>
+
+    <p class="reveal">There is a school of thought, not entirely fringe, that runs through the work of anthropologists, historians, and — crucially — military strategists: the outcome of contact between civilisations at vastly different developmental stages is almost always the same. The less advanced civilisation is reorganised, often catastrophically, around the needs and assumptions of the more advanced one.</p>
+
+    <div class="compare-grid reveal">
+      <div class="compare-col human">
+        <h4>Human History: Advanced vs. Indigenous</h4>
+        <ul>
+          <li>Technology used as instrument of subjugation</li>
+          <li>Knowledge systems dismissed or appropriated</li>
+          <li>Indigenous cosmologies labelled as primitive myth</li>
+          <li>Resource extraction framed as civilising mission</li>
+          <li>Biological impact (disease) catastrophic and unacknowledged</li>
+          <li>Sovereignty erased through legal and military force</li>
+          <li>Cultural memory suppressed across generations</li>
+        </ul>
+      </div>
+      <div class="compare-col alien">
+        <h4>Alien Contact: Hypothetical Parallel</h4>
+        <ul>
+          <li>Technology withheld, weaponised, or selectively shared</li>
+          <li>Human knowledge systems treated as quaint or studied</li>
+          <li>Human religion and cosmology reframed as misinterpretation</li>
+          <li>Earth's biosphere as resource or laboratory</li>
+          <li>Genetic or biological interaction with unknown consequence</li>
+          <li>National sovereignty rendered meaningless by superior force</li>
+          <li>Disclosure managed to minimise resistance, not maximise truth</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="reveal">The argument is not that aliens would necessarily replicate European colonialism. It is that the structural conditions — technological asymmetry, competing interests, the moral difficulty of treating a stranger species with full ethical regard — create pressures that have, in every human case we know of, produced exploitation. Whether those pressures lead to the same outcome in a non-human context depends entirely on how different the visitor's values and ethics actually are from ours. And we have no way to know.</p>
+
+    <blockquote class="pull-quote reveal">
+      "The question is not whether they are benevolent. The question is whether benevolence, across the vast chasm of cognitive and developmental difference, looks anything like what we would recognise as kindness."
+    </blockquote>
+
+    <p class="reveal">There is also the possibility — unsettling but worth taking seriously — that the morally sophisticated version of alien contact is exactly what colonialism pretended to be: the claim that intervention, however disruptive, serves the long-term development of the less advanced party. The Jesuit missions of South America believed, sincerely, that they were saving souls. The British East India Company believed, with some genuine conviction, that they were bringing order to chaos. An alien civilisation observing humanity's self-destructive trajectory might hold an analogous belief. And they might not be entirely wrong. Which makes it more complicated, not less.</p>
+  </section>
+
+  <!-- ═══ III. THE LAB ═══ -->
+  <section id="lab">
+    <div class="section-divider"><div class="divider-icon"></div></div>
+    <span class="section-number">Section III</span>
+    <h2 class="section-title">The <em>Laboratory</em> Gaze — Were We Ever the Specimen?</h2>
+
+    <p class="lead reveal">If a civilisation exists that has been aware of Earth for thousands — or millions — of years, the most logical long-term posture is not contact. It is observation.</p>
+
+    <p class="drop-cap reveal">Humanity is, right now, doing exactly this. We study isolated Amazonian tribes from satellite imagery, careful not to make contact, aware that contact itself is a contamination. We observe chimpanzee communities for decades before intervening. We tag, track, and monitor animal populations in ways those populations are entirely unaware of. We deploy probes to distant bodies in our solar system and observe without interacting. The logic of non-interventionist observation is one we practise as the more advanced party in any interaction with something we want to understand without disturbing.</p>
+
+    <p class="reveal">Now reverse the camera. If we are the subject, the specimen in the controlled environment of Earth, what does that observational posture look like from the outside? It looks, with uncomfortable precision, like many of the things that have been reported for centuries — and intensively since the mid-20th century. Craft that hover and withdraw. Lights that pace aircraft. Encounters that leave physical traces but no definitive evidence. Entities that appear, interact briefly, and vanish. A pattern not of invasion, nor of welcome, but of systematic, methodical, long-term watching.</p>
+
+    <div class="redacted-box reveal">
+      <p>Hypothesis: If early contact occurred in the deep past — among populations whose written records have not survived, or whose accounts were reinterpreted as myth — those encounters may have involved procedures we would now recognise as biological research. The examination of an organism. The collection of samples. The observation of stress responses.</p>
+      <p>Humanity performed vivisection on other species as standard scientific practice well into the twentieth century. We subjected our own people — enslaved populations, prisoners, the colonised, the institutionalised — to fatal or permanently damaging experimentation. In the name of knowledge. In the name of progress. If a distant observer watched that and extrapolated to our likely tolerance for being studied in similar ways, they would conclude: these beings do not consider informed consent a precondition for scientific inquiry. They do not extend full moral standing to those they perceive as less developed.</p>
+      <p>The question is whether they drew the same conclusions about their own relationship to us.</p>
+    </div>
+
+    <p class="reveal">This is the hardest corner of the hypothesis to sit with. Because if it is true — if there were, in the deep past, interventions that were painful, non-consensual, and motivated by scientific curiosity rather than malice — then we have to reckon with the fact that we would have done exactly the same. We did do the same. To each other. To every other species we studied. The ethical framework that now condemns such practices is extraordinarily recent. It is, by any cosmic standard, brand new.</p>
+
+    <blockquote class="pull-quote reveal">
+      "We have only recently extended the concept of rights to our own species universally. We are still fighting about whether it extends to other species. The idea that an alien civilisation would simply arrive pre-loaded with a perfect ethics is our own wishful thinking wearing a silver suit."
+    </blockquote>
+  </section>
+
+  <!-- ═══ IV. ANCIENT CONTACT ═══ -->
+  <section id="ancient">
+    <div class="section-divider"><div class="divider-icon"></div></div>
+    <span class="section-number">Section IV</span>
+    <h2 class="section-title">Ancient Knowing — <em>Long Before</em> Roswell</h2>
+
+    <p class="reveal">The 20th century framing of the UFO question — grounded in the post-war era, shaped by Cold War anxieties, centred on Roswell and the Area 51 mythologies — is almost certainly the wrong frame. If contact, or proto-contact, has occurred, the more plausible timeline begins not in 1947 but in the deep pre-literate past, when no agency existed to classify the encounter, no government existed to suppress it, and the beings involved were interpreted through the only available cognitive architecture: religion, mythology, and cosmology.</p>
+
+    <div class="dossier-panel reveal" data-label="Pattern Recognition // Ancient Accounts">
+      <p>Across cultures with no documented contact with each other, <strong>remarkably similar accounts exist</strong> of beings descending from the sky, interacting with human populations, imparting knowledge, and departing. The Sumerian Anunnaki. The Dogon tribe's precise knowledge of the Sirius star system prior to the invention of the telescope. The <em>Vimanas</em> of Sanskrit texts — aerial vehicles with detailed mechanical descriptions. The Nazca lines, oriented to celestial events. The global flood narratives. The recurring motif of beings of light arriving in vehicles of fire.</p>
+      <p>None of this constitutes proof. Each account has mundane explanations. But the <strong>convergent pattern</strong> — sky, beings, knowledge transfer, departure — is worth noting as an anthropological phenomenon regardless of its ultimate cause.</p>
+    </div>
+
+    <p class="reveal">If those accounts reflect something real — even partially, even distortedly — then the relationship between Earth's inhabitants and whatever is out there is not a new thing that began with radar detection and fighter-pilot scrambles. It is an ancient relationship. One in which the asymmetry of knowledge and power has always been absolute, and in which humanity has always been the party that did not fully understand what was happening to it, or why.</p>
+
+    <p class="reveal">That changes the nature of any potential disclosure conversation entirely. We are not, on this hypothesis, being introduced to something new. We are being asked, at long last, to consciously acknowledge something we have always peripherally known — something encoded in our oldest stories, inscribed in our most enduring monuments, woven into our creation myths across every civilisation, on every continent, that ever looked up at the night sky and wondered what was looking back.</p>
+  </section>
+
+  <!-- ═══ V. DISCLOSURE ═══ -->
+  <section id="disclosure">
+    <div class="section-divider"><div class="divider-icon"></div></div>
+    <span class="section-number">Section V</span>
+    <h2 class="section-title">The Disclosure <em>Equation</em></h2>
+
+    <p class="lead reveal">If the visitors know everything about us — our biology, our psychology, our political structures, our volatility — then disclosure is not a discovery they make. It is a decision they make. And it is a decision that will be timed, paced, and mediated with extraordinary care. Because the cost of getting it wrong, from their perspective, may be catastrophic for both parties.</p>
+
+    <p class="drop-cap reveal">The disclosure question is almost never framed this way in public conversation. The popular narrative positions it as something being suppressed — a secret governments are keeping from their people, a document yet to be declassified, a whistle-blower who hasn't yet spoken loudly enough. And while government suppression of information is empirically well-documented in other contexts, that framing misses something fundamental: it assumes that disclosure is a human decision to make.</p>
+
+    <p class="reveal">If there are beings aware of Earth with the technological capacity for sustained observation or contact, and they have chosen not to announce themselves in a way that is globally undeniable, that choice is not random. It is strategic. The question is what strategy it serves.</p>
+
+    <ul class="insight-list reveal">
+      <li>
+        <strong>The Stability Threshold</strong>
+        A civilisation advanced enough to travel interstellar distances has, presumably, survived the phase of development humanity is currently in — the period when a species gains weapons of mass destruction before it gains the political maturity to reliably not use them. They may be waiting for us to cross that threshold. Or they may have concluded we will not.
+      </li>
+      <li>
+        <strong>The Fragmentation Problem</strong>
+        Disclosure to one government is not disclosure to humanity. The geopolitical consequence of, say, the United States government confirming contact while Russia and China remain sceptical or excluded would be so destabilising as to be nearly indistinguishable from an act of war. Global disclosure requires something like a unified global recipient — which does not currently exist.
+      </li>
+      <li>
+        <strong>The Psychological Preparation Gap</strong>
+        Multiple surveys across the past three decades suggest that large portions of global populations — particularly in deeply religious communities — would experience profound, potentially destabilising cognitive dissonance upon confirmed contact. The Vatican's increasingly public engagement with the possibility of extraterrestrial life may reflect an institutional attempt to pre-adapt its billion-plus adherents to a framework that doesn't collapse their cosmology on first contact.
+      </li>
+      <li>
+        <strong>The Power Equilibrium Threat</strong>
+        Confirmed advanced alien technology in the possession of any single nation-state — even as shared knowledge — would end the existing balance of power. No treaty framework, no international body, no diplomatic convention was designed for this scenario. Disclosure, without extraordinary groundwork, is also a starting pistol for a new and unprecedented global power struggle.
+      </li>
+      <li>
+        <strong>The Economic Disruption Cascade</strong>
+        Access to advanced energy technology, propulsion, materials science, or biological knowledge would not merely improve existing industries — it would end some of them overnight. The carbon energy sector alone represents tens of trillions of dollars in assets and employs hundreds of millions of people globally. The speed of that disruption matters as much as the disruption itself.
+      </li>
+    </ul>
+
+    <p class="reveal">This is why the most coherent version of the disclosure question is not: <em>why haven't they told us?</em> It is: <em>under what conditions could they tell us in a way that doesn't immediately destroy us?</em></p>
+  </section>
+
+  <!-- ═══ VI. CONDITIONING ═══ -->
+  <section id="conditioning">
+    <div class="section-divider"><div class="divider-icon"></div></div>
+    <span class="section-number">Section VI</span>
+    <h2 class="section-title">The Conditioning <em>of Civilisation</em></h2>
+
+    <p class="lead reveal">There is a theory — not from the fringes, but from serious academics in the fields of media studies, cognitive psychology, and what might be called exo-sociology — that humanity has been in a long, slow, deliberate process of psychological preparation for disclosed contact. That the preparation is both conscious and unconscious. That it operates through channels we have built ourselves, guided by suggestions we may not have originated.</p>
+
+    <p class="reveal">Consider the arc of science fiction across the 20th century. In its early decades, the dominant alien archetype in popular culture was predatory and invasive — H.G. Wells's Martians, pulp horror, the communist-coded paranoia films of the 1950s. The alien was the Other at its most threatening. Then something shifted. Gradually, incrementally, the cinematic and literary alien became more complex. Ambiguous. Sometimes wise. Sometimes tragic. Sometimes the most ethical being in the story.</p>
+
+    <div class="dossier-panel reveal" data-label="Cultural Conditioning // Cinema as Preparation Vector">
+      <p><strong>1977:</strong> Close Encounters of the Third Kind reframes the alien encounter as spiritual experience rather than invasion. Government deception, not alien malice, is the primary threat.</p>
+      <p><strong>1982:</strong> E.T. redefines the alien as vulnerable, childlike, morally superior — the human impulse to hide and protect it is presented as instinctively correct.</p>
+      <p><strong>1997:</strong> Contact posits first contact as a solitary, transformative, consciousness-expanding event rooted in science and mathematics as universal language.</p>
+      <p><strong>2016:</strong> Arrival challenges linear time, linguistic relativity, and the assumption that communication with a non-human intelligence would map onto human cognitive structures at all.</p>
+      <p>The narrative trajectory is not random. Each decade's dominant contact narrative prepares the audience for a slightly more sophisticated, less anthropocentric, less threatening model of what contact might be.</p>
+    </div>
+
+    <p class="reveal">Whether this trajectory reflects the unconscious working-through of cultural anxieties, a deliberate effort by thoughtful creators to shift collective psychology, or — in the most speculative reading — something more directed from outside the cultural conversation, the effect is the same. The generations that grew up on Spielberg's aliens, then on Arrival, then on the steady drumbeat of credible military witness accounts and Congressional testimony, are psychologically different audiences for disclosure than the generation that watched War of the Worlds and loaded their rifles.</p>
+
+    <blockquote class="pull-quote reveal">
+      "Every generation's dominant alien narrative is a mirror of what that generation can tolerate knowing. We are not being told. We are being prepared to be able to hear."
+    </blockquote>
+
+    <p class="reveal">Beyond cinema, consider the broader cultural terrain: the slow migration of UFO discussion from tabloid mockery to Congressional hearing, from fringe obsession to Pentagon-acknowledged UAP programme. The former intelligence officials and military pilots now speaking with institutional credibility. The systematic reclassification of events that were previously classified. These movements are not accidental, and they did not happen simultaneously without coordination. Whether the coordination is entirely human, or partly not, is the question that cannot yet be answered. But the direction of travel is clear: we are being walked, carefully and incrementally, toward a door.</p>
+
+    <p class="reveal">The unconscious dimension is harder to map but potentially more significant. Jungian analysts have long noted the archetypal quality of UFO accounts — their recurrence in dreams, their relationship to transformation mythology, the frequency with which witnesses describe experiences that parallel near-death experiences in their psychological aftermath. If consciousness itself has a role in this process — if contact operates not only through physical encounter but through something more like directed intuition or shared dream-space — then the preparation for disclosure is not merely happening in theatres and news cycles. It may be happening in the accumulated dreamlife of the species.</p>
+  </section>
+
+  <!-- ═══ VII. DIVIDED EARTH ═══ -->
+  <section id="divided">
+    <div class="section-divider"><div class="divider-icon"></div></div>
+    <span class="section-number">Section VII</span>
+    <h2 class="section-title">A <em>Divided</em> Planet — The Case Against Contact Now</h2>
+
+    <p class="drop-cap reveal">One of the most structurally compelling arguments for why formal, undeniable contact has not yet occurred is also the simplest: there is no coherent recipient. Humanity does not speak with one voice. It does not have a unified decision-making apparatus for anything, let alone for the most consequential event in its history. It is a species that, as of this writing, cannot agree on the existence of a changing climate it is directly observing, cannot prevent the spread of weapons among the nations it comprises, and is actively engaged in multiple large-scale military conflicts with no resolution in sight.</p>
+
+    <p class="reveal">From the perspective of a civilisation evaluating whether to make itself known to another, this matters enormously. Contact is not an announcement. It is the beginning of a relationship. And every relationship involves risk management. The relevant risk question is not: <em>is this species intelligent enough to know about us?</em> It is: <em>can this species receive the information without immediately weaponising the outcome?</em></p>
+
+    <div class="dossier-panel reveal" data-label="Structural Analysis // The Disclosure Recipient Problem">
+      <p><strong>There is no institution with global authority</strong> to receive disclosure. The United Nations is advisory, not executive. The five permanent Security Council members have competing interests in any scenario involving extraterrestrial technology.</p>
+      <p><strong>Religious institutions</strong> represent the primary worldview framework for the majority of humans. Many of those frameworks have no interpretive space for the confirmed existence of alien intelligence. The theological crisis that would follow immediate, unmediated disclosure could be more destabilising than any geopolitical consequence.</p>
+      <p><strong>Nation-state competition</strong> means that any contact made with one government becomes a strategic asset of that government. The race to monopolise relationship with an extraterrestrial party would make the nuclear arms race look orderly by comparison.</p>
+    </div>
+
+    <p class="reveal">There is also, more quietly, the question of what humanity's division communicates about its readiness. A species that cannot achieve basic coordination on existential threats it has generated internally — climate, nuclear proliferation, pandemic preparedness, extreme poverty — may signal to any observing civilisation that it is not yet at the developmental stage where contact would be productive rather than destructive. This is not a judgement. It is, arguably, exactly the calculation a responsible advanced civilisation would make before deciding whether and how to reveal itself.</p>
+
+    <blockquote class="pull-quote reveal">
+      "They may not be hiding from us. They may be waiting for us to become the kind of species that a disclosure would not immediately break."
+    </blockquote>
+
+    <p class="reveal">The paradox at the centre of this section is a sharp one: the very conditions that make humanity most urgently in need of outside assistance — the existential risks of this century, the tribal deadlocks, the approaching technological thresholds — may be precisely the conditions that make contact most dangerous to initiate. An advanced civilisation may judge that a species in crisis is at its most volatile, most paranoid, most likely to respond to the unknown with aggression rather than curiosity. We are, at this moment in history, arguably less ready for contact than we were in 1950. Which is a confronting thing to sit with.</p>
+  </section>
+
+  <!-- ═══ VIII. DISRUPTION ═══ -->
+  <section id="disruption">
+    <div class="section-divider"><div class="divider-icon"></div></div>
+    <span class="section-number">Section VIII</span>
+    <h2 class="section-title">When the Monopolies <em>End</em> — Economic Disruption and the Forces Against Disclosure</h2>
+
+    <p class="lead reveal">Among all the forces that might resist disclosure — psychological, theological, geopolitical — the most consistently underestimated is the simplest: money. The concentrated interests of the global energy, defence, pharmaceutical, and financial industries represent the most powerful lobby against radical change in the structure of human civilisation that has ever existed. And the arrival of confirmed advanced alien technology would be the most radical change in that structure that has ever been proposed.</p>
+
+    <p class="reveal">This is not a conspiracy theory. It is structural analysis. Every major incumbent industry in human history has resisted the disruptive technology that eventually replaced it — not out of villainy but out of rational self-interest. The transition from whale oil to petroleum was resisted. Steam resisted sail. The automobile industry resisted electric vehicles for a century after their first development. The pattern is so consistent as to be almost mechanical: the more capital invested in an existing system, the more powerful the resistance to the system that makes it obsolete.</p>
+
+    <div class="disruption-matrix reveal">
+      <div class="matrix-header">Post-Disclosure Disruption Matrix // Preliminary Assessment</div>
+      <div class="matrix-row head">
+        <div class="matrix-cell">Sector</div>
+        <div class="matrix-cell">Disruption Level</div>
+        <div class="matrix-cell">Mechanism of Collapse</div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell">Carbon Energy (Oil, Gas, Coal)</div>
+        <div class="matrix-cell"><span class="threat-high">Existential</span></div>
+        <div class="matrix-cell">Advanced propulsion and zero-point energy renders fossil fuel extraction economically irrational overnight</div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell">Defence & Aerospace</div>
+        <div class="matrix-cell"><span class="threat-high">Existential</span></div>
+        <div class="matrix-cell">Existing weapons platforms, fighter aircraft, and missile systems rendered obsolete by demonstrated alien technology; entire strategic doctrine collapse</div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell">Pharmaceutical Industry</div>
+        <div class="matrix-cell"><span class="threat-high">Catastrophic</span></div>
+        <div class="matrix-cell">Potential access to advanced biological knowledge or medical technology disrupts the patent-protected drug development model entirely</div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell">Telecommunications & Computing</div>
+        <div class="matrix-cell"><span class="threat-med">Severe</span></div>
+        <div class="matrix-cell">Any demonstrated alien communication or computation technology would immediately displace decades of infrastructure investment</div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell">Agricultural Systems</div>
+        <div class="matrix-cell"><span class="threat-med">Severe</span></div>
+        <div class="matrix-cell">Advanced materials science, food synthesis, or ecological knowledge could restructure food production and land use globally</div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell">Finance & Currency</div>
+        <div class="matrix-cell"><span class="threat-med">High</span></div>
+        <div class="matrix-cell">New resource economics renders existing scarcity-based financial models unstable; the concept of growth as currently structured becomes incoherent</div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell">Organised Religion</div>
+        <div class="matrix-cell"><span class="threat-med">High</span></div>
+        <div class="matrix-cell">Theological frameworks built on human uniqueness or geocentric cosmology require fundamental reinterpretation; institutional authority at risk</div>
+      </div>
+      <div class="matrix-row">
+        <div class="matrix-cell">National Governance Structures</div>
+        <div class="matrix-cell"><span class="threat-low">Moderate</span></div>
+        <div class="matrix-cell">The premise of national sovereignty in a multi-species Earth context requires new legal and constitutional frameworks; political legitimacy in question</div>
+      </div>
+    </div>
+
+    <p class="reveal">This is why the argument that governments are suppressing disclosure is not as simple as it first appears. The suppression, if it exists, is not necessarily coordinated by a shadowy committee. It may be the emergent behaviour of a system — an economic and political system — in which powerful actors have separately but convergently concluded that the existing order is preferable to the chaos of the alternative. Not because they are evil. Because they are human. Because self-preservation is the most reliable force in human institutional behaviour, and disclosure threatens every institution simultaneously.</p>
+
+    <p class="reveal">The more interesting possibility is that any alien party aware of this dynamic — and they would be, having observed it for as long as humanity has been structuring itself around economic power — would factor it into their disclosure timeline. They might be waiting not only for political unity but for the economic conditions that make disclosure survivable: sufficient renewable energy deployment that fossil fuel obsolescence does not trigger a resource war; sufficient decentralisation of information and power that no single actor can monopolise the relationship; sufficient psychological diversification that not every governance structure collapses simultaneously.</p>
+  </section>
+
+  <!-- ═══ IX. COEXISTENCE ═══ -->
+  <section id="coexistence">
+    <div class="section-divider"><div class="divider-icon"></div></div>
+    <span class="section-number">Section IX</span>
+    <h2 class="section-title">What <em>Coexistence</em> Might Actually Look Like</h2>
+
+    <p class="lead reveal">If disclosure were to happen — not the drip-feed of leaked footage and Congressional testimony, but the undeniable, globally acknowledged, televised confirmation of contact — what comes next? What does a world look like that has accepted it?</p>
+
+    <p class="drop-cap reveal">The honest answer is: we have no good model. Every contact scenario imagined in fiction involves either war, benevolent rescue, or transcendent transformation. None of those feel quite right as the texture of something that would actually unfold in real time, across 195 countries, eight billion people, thousands of languages, and the full spectrum of human psychological response. Real coexistence, if it came, would be slower, stranger, more bureaucratic, and more contradictory than any narrative we have prepared.</p>
+
+    <p class="reveal">There would, almost certainly, be factions. Not simply government-vs-people in the familiar political framing, but deeper fractures: those who believe the visitors are benevolent and those who do not; those who believe they have always been here and those who refuse that history; those whose religious frameworks accommodate them and those whose do not; those who want access to their technology immediately and those who argue for a moratorium while humanity agrees on governance. These fractures would not run along existing national or ideological lines. They would create entirely new alliances and entirely new conflicts.</p>
+
+    <div class="dossier-panel reveal" data-label="Coexistence Scenario // Best-Case Trajectory">
+      <p>A managed, phased disclosure — likely preceded by decades of the conditioning described in Section VI — begins with a joint statement from multiple nation-states simultaneously, denying any single country strategic advantage. A new international body, with actual executive authority, is convened specifically to govern the relationship. Technology transfer is negotiated as a global commons, not as bilateral trade. A period of years — possibly decades — of what might be called <strong>supervised coexistence</strong> follows: acknowledged alien presence on Earth, limited but growing interaction, parallel development of human institutions capable of managing the relationship without collapsing. The process is generational. The disruption is real but survivable. The history written in a hundred years is cautiously optimistic.</p>
+    </div>
+
+    <div class="redacted-box reveal">
+      <p>Worst-case trajectory note: The scenario in which disclosure is precipitated not by choice but by event — an undeniable sighting, a mass encounter, a leaked documentation of long-term secret contact — creates the least favourable conditions. Unmanaged, unmediated disclosure into a geopolitically fractured world with no preparation, no governance framework, and no pre-adapted psychological scaffolding would stress-test every institution humanity has ever built, simultaneously. The response to COVID-19, as a rehearsal for global coordination under existential pressure, is not an encouraging data point.</p>
+    </div>
+
+    <p class="reveal">There is also a possibility that does not map onto either optimistic or catastrophic models: that coexistence has already been negotiated, in some form, in some quiet space outside public knowledge, between parties whose identities and mandates we do not have access to. That what we call disclosure is not a beginning but an acknowledgement. That the question is not whether this is real but when the maintenance of the pretence that it is not becomes more costly than the truth.</p>
+
+    <blockquote class="pull-quote reveal">
+      "Perhaps the most human thing about this entire question is the assumption that we would handle it well. The most alien thing about it may be that, under the right conditions, we actually could."
+    </blockquote>
+
+    <p class="reveal">Ultimately, the way humanity has treated its own less advanced cultures does taint the lens through which we view this question — but not entirely in the direction of doom. Because embedded in that history, alongside the atrocities, is also something else: the capacity for reckoning. The ability, however slow and painful and incomplete, to eventually look back at what was done and say: that was wrong, and we can do differently. No other dynamic in the universe guarantees us a benevolent visitor. But nothing in the universe says we would be incapable of becoming one, in time. The species that might yet earn a place in a larger conversation is the same species that built the Hubble telescope, that mapped the human genome, that wrote the music that Pioneer 10 carries into the dark. We are, to borrow the phrase, a work in progress. The hope — and it is a genuine hope, not a naive one — is that progress is something the universe rewards.</p>
+  </section>
+
+  <!-- ═══ CLOSING ═══ -->
+  <div class="closing-section reveal">
+    <span class="closing-glyph">· · · ◆ · · ·</span>
+    <p class="closing-text">
+      The mirror in the sky reflects us back to ourselves — our history, our fears, our capacity for both magnificent cruelty and extraordinary compassion. Whatever is out there, the first thing we will learn about it is what we already know about ourselves.
+    </p>
+    <br>
+    <span class="stamp">End of Chapter IV</span>
+    <span class="stamp">Continued in Chapter V</span>
+    <br><br>
+    <div class="hero-meta" style="justify-content:center; margin-top: 2rem;">
+      <span>CHAPTER IV &nbsp;/&nbsp; <span>THE DISCLOSURE FILES</span></span>
+    </div>
+  </div>
+
+</div><!-- end main-wrapper -->
+
+<script>
+// ─── STARFIELD ───
+(function() {
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  function makeStars(count) {
+    stars = [];
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.2 + 0.2,
+        op: Math.random() * 0.5 + 0.05,
+        speed: Math.random() * 0.8 + 0.2,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+  }
+
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    frame++;
+    stars.forEach(s => {
+      const a = s.op * (0.4 + 0.6 * Math.abs(Math.sin(s.phase + frame * 0.005 * s.speed)));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(210,220,255,${a})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  makeStars(280);
+  draw();
+  window.addEventListener('resize', () => { resize(); makeStars(280); });
+})();
+
+// ─── PROGRESS BAR ───
+window.addEventListener('scroll', function() {
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop || document.body.scrollTop;
+  const total = doc.scrollHeight - doc.clientHeight;
+  const pct = total > 0 ? (scrolled / total) * 100 : 0;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+
+// ─── SCROLL REVEAL ───
+(function() {
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => entry.target.classList.add('visible'), delay);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
+})();
+</script>
+</body>
+</html>

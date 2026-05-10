@@ -1,0 +1,207 @@
+/* ═══════════════════════════════════════════════════════════════
+   components.css — Terminal output, panels, stats, radar, waveform
+═══════════════════════════════════════════════════════════════ */
+
+/* ── CLEARANCE + SYS HEALTH ──────────────────────────────────── */
+#clearance-display,
+#sys-health,
+#diag-panel {
+  padding: 5px 10px;
+  flex-shrink: 0;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1px 0;
+  gap: 4px;
+}
+.stat-lbl {
+  font-size: 8.5px;
+  color: rgba(160,160,160,0.55);
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.stat-val {
+  font-size: 9px;
+  color: var(--fg);
+  text-shadow: var(--glow);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 110px;
+  font-variant-numeric: tabular-nums;
+}
+.stat-val.tok {
+  font-size: 8px;
+  letter-spacing: 0.05em;
+  color: var(--fg-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── SIGNAL INTEGRITY ────────────────────────────────────────── */
+.sig-label {
+  font-size: 8px;
+  color: rgba(160,160,160,0.55);
+  letter-spacing: 0.12em;
+  margin-top: 6px;
+  margin-bottom: 3px;
+}
+#sig-track {
+  height: 4px;
+  background: var(--fg-faint);
+  border: 1px solid var(--fg-dark);
+  overflow: hidden;
+  position: relative;
+}
+#sig-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  background: var(--fg);
+  box-shadow: 0 0 5px var(--fg);
+  width: 78%;
+  transition: width 1s linear, background .5s linear;
+}
+#sig-pct {
+  font-size: 8px;
+  text-align: right;
+  color: rgba(160,160,160,0.55);
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── RADAR ───────────────────────────────────────────────────── */
+#radar-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 6px 8px;
+  flex-shrink: 0;
+}
+#radar-canvas {
+  display: block;
+  border: 1px solid rgba(230,230,230,.16);
+  background: #060608;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.5);
+}
+
+/* ── WAVEFORM ────────────────────────────────────────────────── */
+#wave-canvas {
+  display: block;
+  width: calc(100% - 16px);
+  margin: 4px 8px;
+  border: 1px solid rgba(230,230,230,.12);
+  background: #060608;
+  flex-shrink: 0;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+/* ── EVENT LOG ───────────────────────────────────────────────── */
+#event-log {
+  padding: 4px 8px;
+  flex-shrink: 0;
+}
+.event-entry {
+  font-size: 8.5px;
+  color: var(--fg-dim);
+  padding: 1px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event-ts {
+  color: rgba(160,160,160,.45);
+  font-size: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── OUTPUT AREA ──────────────────────────────────────────────── */
+#output {
+  flex: 1;
+  overflow-y: auto; overflow-x: hidden;
+  padding: 10px 18px 6px;
+  scroll-behavior: smooth;
+  background: radial-gradient(ellipse 65% 50% at 50% 38%,
+    rgba(10,10,14,.0)  0%,
+    rgba(6,6,10,.42) 100%
+  );
+}
+#output::-webkit-scrollbar { width: 3px; }
+#output::-webkit-scrollbar-track { background: transparent; }
+#output::-webkit-scrollbar-thumb { background: var(--fg-dark); border-radius: 2px; }
+
+/* ── LINE TYPES ───────────────────────────────────────────────── */
+.ln {
+  display: block;
+  min-height: 1.68em;
+  white-space: pre-wrap; word-break: break-word;
+  animation: phosphor-in .5s ease-out forwards;
+  text-shadow: var(--glow);
+  font-size: 12.5px;
+}
+.ln.no-bloom { animation: none; text-shadow: var(--glow); }
+
+.ln-n { color: var(--fg); }
+.ln-b { color: var(--fg-hi);  text-shadow: var(--glow-hi); }
+.ln-d { color: var(--fg-dim); text-shadow: 0 0 5px rgba(230,230,230,.30); animation: none; }
+.ln-a { color: var(--amber);  text-shadow: var(--glow-a); }
+.ln-r { color: var(--red-hi); text-shadow: var(--glow-r); }
+.ln-  { min-height: .85em; animation: none; }
+
+.ln-cmd {
+  color: var(--fg-dim);
+  text-shadow: 0 0 4px rgba(230,230,230,.26);
+  margin-top: 5px;
+  animation: none;
+  font-size: 12.5px;
+}
+.ln-cmd .cmd-txt { color: var(--fg); text-shadow: var(--glow); }
+
+/* ── INPUT ROW ────────────────────────────────────────────────── */
+#input-row {
+  flex-shrink: 0;
+  padding: 6px 18px 8px;
+  border-top: 1px solid var(--fg-dark);
+  display: flex; align-items: center;
+  background: rgba(8,8,10,.88);
+  position: relative;
+}
+#prompt-str {
+  color: var(--fg-dim); text-shadow: var(--glow);
+  user-select: none; white-space: nowrap; font-size: 12.5px;
+}
+#cmd-in {
+  flex: 1;
+  background: transparent; border: none; outline: none;
+  color: var(--fg); font-family: 'Space Mono', 'Courier New', Courier, monospace;
+  font-size: 12.5px; text-shadow: var(--glow);
+  caret-color: transparent; padding: 0;
+  letter-spacing: 0.02em;
+}
+#cmd-in::selection { background: var(--fg-dark); color: var(--fg); }
+#cursor {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  width: 8px; height: 15px;
+  background: var(--fg); box-shadow: var(--glow-hi);
+  animation: blink 1.1s step-end infinite;
+  pointer-events: none;
+}
+/* hidden sizer span used by JS to measure typed text width */
+#cursor-sizer {
+  position: absolute;
+  visibility: hidden;
+  white-space: pre;
+  font-family: 'Space Mono', 'Courier New', Courier, monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+/* ── RESPONSIVE COMPONENTS ────────────────────────────────────── */
+@media (max-width: 600px) {
+  #output     { padding: 8px 10px; }
+  #input-row  { padding: 5px 10px 7px; }
+}
