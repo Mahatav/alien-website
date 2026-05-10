@@ -108,6 +108,63 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 
     .transition-w {
       display: flex;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(102, 163, 255, 0.16), transparent 42%),
+        radial-gradient(circle at 80% 84%, rgba(255, 92, 92, 0.12), transparent 38%),
+        linear-gradient(180deg, #05070d 0%, #0b1019 55%, #070a11 100%);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .transition-w::before,
+    .transition-w::after {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      pointer-events: none;
+    }
+
+    .transition-w::before {
+      background-image:
+        radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.95), transparent),
+        radial-gradient(1px 1px at 26% 71%, rgba(168, 205, 255, 0.9), transparent),
+        radial-gradient(1.2px 1.2px at 44% 35%, rgba(255, 255, 255, 0.85), transparent),
+        radial-gradient(1px 1px at 58% 12%, rgba(255, 122, 122, 0.9), transparent),
+        radial-gradient(1px 1px at 74% 64%, rgba(201, 224, 255, 0.88), transparent),
+        radial-gradient(1.4px 1.4px at 87% 41%, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 33% 88%, rgba(255, 255, 255, 0.75), transparent),
+        radial-gradient(1px 1px at 68% 82%, rgba(255, 176, 176, 0.7), transparent);
+      background-size: 420px 420px;
+      opacity: 0.8;
+      animation: star-drift 36s linear infinite;
+    }
+
+    .transition-w::after {
+      background: radial-gradient(circle at center, transparent 0%, rgba(4, 8, 15, 0.45) 70%, rgba(2, 4, 8, 0.88) 100%);
+      animation: star-pulse 3.8s ease-in-out infinite;
+    }
+
+    .transition-rive {
+      position: relative;
+      z-index: 2;
+      filter: grayscale(1) contrast(1.15) brightness(0.92);
+      opacity: 0.84;
+    }
+
+    .transition-btn {
+      position: relative;
+      z-index: 3;
+    }
+
+    .transition-btn .btn-w {
+      border: 1px solid rgba(102, 163, 255, 0.72);
+      box-shadow: 0 0 20px rgba(102, 163, 255, 0.3), 0 0 42px rgba(255, 92, 92, 0.16);
+      background: rgba(8, 14, 24, 0.7);
     }
     /* Fade the hero out at the bottom so it dissolves into the next section */
     .s.home-hero::after {
@@ -119,10 +176,172 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
       pointer-events: none;
       z-index: 20;
     }
+
+    /* Force no-green visual mode for this page variant. */
+    :root {
+      --color--lime: #72a6ff !important;
+      --color--lime-off: #ff5a5a !important;
+      --color--dark-green: #090d14 !important;
+      --color--dark-green-tint-1: #1b2436 !important;
+      --color--dark-green-tint-1-low: #d7dce8 !important;
+      --color--dark-green-tint-2: #2a3447 !important;
+      --color--green-off-white-1: #dde2ec !important;
+      --color--green-off-white-2: #c3cbdb !important;
+      --color--green-light: #eef2fb !important;
+      --color--black: #ecf2ff !important;
+      --color--white: #eef3ff !important;
+      --bg: #070b12 !important;
+    }
+
+    body,
+    .css-main,
+    .page-w,
+    .main-w,
+    .taxi-w {
+      background: #070b12 !important;
+      color: #e8edf8 !important;
+    }
+
+    [class*="c-lime"],
+    [class*="lime-off"],
+    [class*="green-off-white"],
+    [class*="dark-green"],
+    [data-theme="lime"] {
+      color: #72a6ff !important;
+    }
+
+    [class*="btn-text"],
+    .text-eyebrow,
+    .text-title-small-label,
+    .text-impact-reg-mona,
+    .text-impact-lg-mona,
+    .text-impact-sm-mona {
+      color: #ecf2ff !important;
+      text-shadow: 0 0 12px rgba(102, 163, 255, 0.18);
+    }
+
+    .btn-w,
+    .btn-inner,
+    .btn-inner-text-w,
+    .text-link-w,
+    .text-title-lg-mona,
+    .text-title-reg-mona,
+    .text-body-reg-mona,
+    .text-body-sm-mona,
+    .text-impact-reg-brier,
+    .horizontal-item-text,
+    .text-eyebrow,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #ecf2ff !important;
+    }
+
+    .text-impact-sm-brier,
+    .text-title-lg-brier,
+    .c-lime-off,
+    .text-link-w.c-lime {
+      color: #ff6a6a !important;
+      text-shadow: 0 0 10px rgba(255, 92, 92, 0.22);
+    }
+
+    .helmet-grid-item-img-helmet,
+    .helmet-grid-item-reveal-img,
+    .otot-home-img,
+    .footer-bg-img,
+    .image.is-social-card,
+    .image.is-horizontal-scroll,
+    .image.is-otot-home-end,
+    img[src*="helm"],
+    img[src*="lime"],
+    img[src*="green"],
+    canvas[data-rive-object],
+    canvas[data-rive-primary] {
+      filter: grayscale(1) contrast(1.12) brightness(0.96);
+    }
+
+    .gl-canvas,
+    canvas[data-rive-object],
+    canvas[data-rive-primary],
+    canvas[data-rive-mob-landscape] {
+      mix-blend-mode: screen;
+      opacity: 0.9;
+    }
+
+    @keyframes star-drift {
+      from {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      to {
+        transform: translate3d(-80px, -120px, 0) scale(1.04);
+      }
+    }
+
+    @keyframes star-pulse {
+      0%,
+      100% {
+        opacity: 0.94;
+      }
+      50% {
+        opacity: 0.78;
+      }
+    }
   </style>
 </head>
 
 <body data-edit="">
+  <script>
+    (function () {
+      var attrMap = {
+        'color_lime': 'color_white',
+        'color_green-off-white-2': 'color_white',
+        'color_dark-green': 'color_black',
+        'dark-green': 'black',
+        'dark-green-tint-1': 'white',
+        'dark-green-tint-2': 'white',
+        'lime': 'white',
+        'lime-off': 'white'
+      };
+
+      function rewriteValue(value) {
+        var next = value;
+        Object.keys(attrMap).forEach(function (key) {
+          next = next.split(key).join(attrMap[key]);
+        });
+        return next;
+      }
+
+      function sanitize(root) {
+        var nodes = (root || document).querySelectorAll('[data-rive-input],[data-anim-high],[data-theme],[data-gl-change-from],[data-gl-change-to],[data-h-color-from],[data-h-color-to]');
+        nodes.forEach(function (node) {
+          ['data-rive-input', 'data-anim-high', 'data-theme', 'data-gl-change-from', 'data-gl-change-to', 'data-h-color-from', 'data-h-color-to'].forEach(function (attr) {
+            var v = node.getAttribute(attr);
+            if (v) node.setAttribute(attr, rewriteValue(v));
+          });
+        });
+      }
+
+      var run = function () { sanitize(document); };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', run, { once: true });
+      } else {
+        run();
+      }
+
+      var observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          m.addedNodes.forEach(function (node) {
+            if (node && node.nodeType === 1) sanitize(node);
+          });
+        });
+      });
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+    })();
+  </script>
   <div class="css-main">
     <div class="css-root w-embed">
       <style>
