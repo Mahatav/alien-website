@@ -16,7 +16,7 @@
   </script>
   <meta charset="utf-8">
   <link href="https://cdn.prod.website-files.com" rel="preconnect" crossorigin="anonymous">
-  <title>Is Skinny Bob Real? | The Truth Behind ivan0135</title>
+  <title>Skinny Bob Real?</title>
   <meta
     content="Investigating the ivan0135 footage, the Mnemosyne archive, and the existence of Skinny Bob."
     name="description">
@@ -788,6 +788,79 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
           color: var(--color--dark-green);
         }
 
+        .nav-middle {
+          position: relative;
+        }
+
+        .page-ln4-svg {
+          position: relative;
+          display: inline-block;
+          width: 140px;
+          overflow: visible;
+          transform: scale(1.75);
+          transform-origin: center center;
+          transition: transform var(--animation-default);
+        }
+
+        .nav-alien-logo-img {
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+
+        .nav.is-scrolled .nav-alien-logo-img {
+          transform: none;
+        }
+
+        .nav.is-scrolled .page-ln4-svg {
+          transform: translateY(-22px) scale(0.66);
+        }
+
+        .nav-alien-eye {
+          position: absolute;
+          pointer-events: none;
+          opacity: 0;
+          transition:
+            opacity var(--animation-default),
+            box-shadow var(--animation-default),
+            background-color var(--animation-default),
+            transform var(--animation-default);
+          mix-blend-mode: screen;
+          filter: saturate(1.4);
+        }
+
+        .nav-middle:hover .nav-alien-eye,
+        .nav-middle:focus-visible .nav-alien-eye,
+        .nav-middle[data-eye-tone] .nav-alien-eye {
+          opacity: 1;
+        }
+
+        .nav-middle[data-eye-tone="red"] .nav-alien-eye {
+          background: radial-gradient(circle at 40% 40%, #ff9aa5 0%, #ff3358 45%, #7f0017 100%);
+          box-shadow: 0 0 10px rgba(255, 51, 88, 0.85), 0 0 22px rgba(255, 51, 88, 0.4);
+        }
+
+        .nav-middle[data-eye-tone="blue"] .nav-alien-eye {
+          background: radial-gradient(circle at 40% 40%, #97f1ff 0%, #29ccff 45%, #005bff 100%);
+          box-shadow: 0 0 10px rgba(41, 204, 255, 0.85), 0 0 22px rgba(0, 91, 255, 0.4);
+        }
+
+        .nav-alien-eye--left {
+          left: 40.9%;
+          top: 61.5%;
+          width: 14.2%;
+          height: 15.5%;
+          transform: translate(-50%, -50%) rotate(-18deg);
+        }
+
+        .nav-alien-eye--right {
+          left: 60.2%;
+          top: 61.5%;
+          width: 14.2%;
+          height: 15.5%;
+          transform: translate(-50%, -50%) rotate(18deg);
+        }
+
         .nav-ham {
           transition:
             border-color var(--animation-default),
@@ -1485,10 +1558,15 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
   </div>
   <div data-nav-wrap="" data-nav-theme="light" class="nav">
     <div class="nav-inner"><a title="Home" data-nav-group="brand" href="/" aria-current="page"
-        class="nav-brand-link w-inline-block w--current">
+        class="nav-brand-link w-inline-block w--current" style="display:none;">
         <div class="nav-brand w-embed"><img src="images/alien-head-logo.svg" alt="MNEMOSYNE" style="height:44px;width:auto;color:var(--color--grey-1)"></div>
       </a>
-      <div data-nav-group="btns" class="btn-layout is-nav"><a data-theme="lime" data-anim="text-hover"
+      <div class="page-ln4-pos"><a title="Go to home" href="/" aria-current="page"
+          class="nav-middle w-inline-block w--current">
+          <div class="page-ln4-svg w-embed"><img class="nav-alien-logo-img" src="images/alien-head-logo.svg" alt="MNEMOSYNE" style="color:var(--color--grey-1)"><span class="nav-alien-eye nav-alien-eye--left" aria-hidden="true"></span><span class="nav-alien-eye nav-alien-eye--right" aria-hidden="true"></span></div>
+          <div screen-reader="">Go to home</div>
+        </a></div>
+        <div data-nav-group="btns" class="btn-layout is-nav" style="margin-left:auto;display:flex;align-items:center;gap:12px;"><a data-theme="lime" data-anim="text-hover"
           href="#" target="_blank" class="btn-w is-nav w-inline-block">
           <div class="btn-inner">
             <div class="btn-icon-w">
@@ -1500,14 +1578,9 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
                 </svg></div>
             </div>
             <div class="btn-inner-text-w is-nav">
-              <div split-text="chars" class="btn-text is-nav is-sm">Archive</div>
+              <div split-text="chars" class="btn-text is-nav is-sm">Store</div>
             </div>
           </div>
-        </a></div>
-      <div class="page-ln4-pos"><a title="Go to home" href="/" aria-current="page"
-          class="nav-middle w-inline-block w--current">
-          <div class="page-ln4-svg w-embed"><canvas data-rive-ln4=""></canvas></div>
-          <div screen-reader="">Go to home</div>
         </a></div>
     </div>
     
@@ -1542,62 +1615,12 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
           <h1 class="screen-reader">Skinny Bob</h1>
           <h2 class="screen-reader">The Visitor Who Never Went Home</h2>
         </div>
-        <div data-designmode-white="" data-sticky-hero="track" data-gl-track="head" class="sticky-track home-hero">
-          <div class="sticky-item home-hero">
-            <section data-hero-animation-container="" class="s home-hero">
-              <div class="c home-hero">
-                <div data-gl="head" class="gl-canvas"></div>
-                <div class="home-hero-tablet-hero-text">
-                  <div data-hero-anim="mob1" class="home-hero-tablet-text-w"><img
-                      src="fonts/67e968a40345883f8ccc1b05_ln4-lando-norris-text-mobile.svg" loading="lazy"
-                      alt="Skinny Bob Text" class="image"></div>
-                  <div data-hero-anim="mob2" class="eyebrow-w hero-next-race">
-                    <div data-anim-high="right, lime" split-text="lines,chars" class="text-eyebrow">classified since 1947
-                    </div>
-                  </div>
-                </div>
-                <div data-home-swipe-wrap="" class="home-hero-touch-controls-w"><button title="Toggle Swipe"
-                    data-home-swipe-toggle="" class="btn-w is-touch-swipe">
-                    <div class="btn-inner is-touch-swipe">
-                      <div class="btn-icon-w is-touch-swipe">
-                        <div class="btn-rive-w is-touch-swipe is-unlocked w-embed"><svg
-                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.51 15.32">
-                            <g>
-                              <path
-                                d="M4.9 15.32c-.37 0-.73-.07-1.07-.2s-.65-.34-.92-.61L.12 10.58a.747.747 0 0 1 .2-1.02l1.17-.8c.22-.22.52-.22.81-.13L2.27.77c0-.22.08-.4.23-.55S2.84 0 3.05 0s.39.07.54.22c.14.15.22.33.22.55v10.22s.02 1.13.02 1.55.28 1.26 1.08 1.26h4.78c.61 0 1.14-.2 1.57-.61.49-.47.73-1.15.73-1.83V7.15c0-.22.08-.4.23-.55s.34-.22.55-.22.39.07.54.22c.14.15.22.33.22.55v4.34c0 1.07-.37 1.98-1.11 2.72s-1.65 1.11-2.72 1.11H4.9Z"
-                                fill="currentColor"></path>
-                              <path
-                                d="M5.51 7.92V3.83c0-.22.08-.4.23-.55.15-.14.34-.22.55-.22s.39.07.54.22c.14.15.22.33.22.55v4.09H5.51ZM8.73 7.92V5.11c0-.22.08-.4.23-.55s.34-.22.55-.22.39.07.54.22c.14.15.22.33.22.55v2.81H8.73Z"
-                                fill="currentColor"></path>
-                            </g>
-                          </svg></div>
-                        <div class="btn-rive-w is-touch-swipe is-locked w-embed"><svg xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 8.51 8.51">
-                            <g>
-                              <path d="M7.89 7.89.63.63M.63 7.89 7.89.63" stroke="currentColor" stroke-width="0.17rem">
-                              </path>
-                            </g>
-                          </svg></div>
-                      </div>
-                    </div>
-                  </button>
-                  <div class="home-hero-touch-desc-w">
-                    <div data-home-swipe-desc="unlocked" class="touch-desc-inner">
-                      <div class="text-eyebrow touch-desc">tap to lock</div>
-                    </div>
-                    <div data-home-swipe-desc="locked" class="touch-desc-inner">
-                      <div class="text-eyebrow touch-desc">Back to scroll</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div data-nav-theme-target="dark" class="hero-nav-theme is-1"></div>
-          <div data-nav-theme-target="light" class="hero-nav-theme is-2"></div>
-          <div data-hero-rive-tracker="" class="hero-eyebrow-tracker"></div>
-          <div data-hero-rive-tracker="" class="hero-rive-tracker"></div>
-        </div>
+        <section class="video-hero-section" style="position: relative; width: 100%; height: 100vh; overflow: hidden; background: #000;">
+          <video width="100%" height="100%" style="width: 100%; height: 100%; object-fit: cover; display: block;" autoplay muted loop playsinline>
+            <source src="YTDown_YouTube_Skinny-Bob-Brightened-up-at-maximum-Eyes_Media_B1KT4SKCniI_001_480p.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </section>
         <section class="s">
           <div class="c">
             <div class="impact-content-w is-home">
@@ -3301,6 +3324,32 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
       }
     }
     removeEditMode();
+
+    (function () {
+      var nav = document.querySelector('.nav');
+      var navMiddle = document.querySelector('.nav-middle');
+
+      if (!nav || !navMiddle) {
+        return;
+      }
+
+      function updateNavState() {
+        nav.classList.toggle('is-scrolled', window.scrollY > 40);
+      }
+
+      function pickEyeTone() {
+        navMiddle.dataset.eyeTone = Math.random() < 0.5 ? 'red' : 'blue';
+      }
+
+      navMiddle.addEventListener('mouseenter', pickEyeTone);
+      navMiddle.addEventListener('mouseleave', function () {
+        delete navMiddle.dataset.eyeTone;
+      });
+
+      window.addEventListener('scroll', updateNavState, { passive: true });
+      window.addEventListener('resize', updateNavState);
+      updateNavState();
+    }());
 
     /* -- KLAV
     document.querySelectorAll('[data-signup-trigger]').forEach(element => {
