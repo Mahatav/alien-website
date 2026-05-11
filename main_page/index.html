@@ -795,17 +795,24 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
         .page-ln4-svg {
           position: relative;
           display: inline-block;
-          width: 140px;
-          overflow: visible;
-          transform: scale(1.75);
+          width: 170px;
+          height: 49px;
+          overflow: hidden;
+          line-height: 0;
+          transform: none;
           transform-origin: center center;
           transition: transform var(--animation-default);
         }
 
         .nav-alien-logo-img {
+          position: absolute;
+          inset: 0;
           display: block;
           width: 100%;
-          height: auto;
+          height: 100%;
+          object-fit: cover;
+          object-position: center center;
+          z-index: 1;
         }
 
         .nav.is-scrolled .nav-alien-logo-img {
@@ -820,6 +827,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
           position: absolute;
           pointer-events: none;
           opacity: 0;
+          z-index: 2;
           transition:
             opacity var(--animation-default),
             box-shadow var(--animation-default),
@@ -847,17 +855,17 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
 
         .nav-alien-eye--left {
           left: 40.9%;
-          top: 61.5%;
-          width: 14.2%;
-          height: 15.5%;
+          top: 50.4%;
+          width: 14.8%;
+          height: 16.1%;
           transform: translate(-50%, -50%) rotate(-18deg);
         }
 
         .nav-alien-eye--right {
           left: 60.2%;
-          top: 61.5%;
-          width: 14.2%;
-          height: 15.5%;
+          top: 50.4%;
+          width: 14.8%;
+          height: 16.1%;
           transform: translate(-50%, -50%) rotate(18deg);
         }
 
@@ -3341,10 +3349,14 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
         navMiddle.dataset.eyeTone = Math.random() < 0.5 ? 'red' : 'blue';
       }
 
-      navMiddle.addEventListener('mouseenter', pickEyeTone);
-      navMiddle.addEventListener('mouseleave', function () {
+      function clearEyeTone() {
         delete navMiddle.dataset.eyeTone;
-      });
+      }
+
+      navMiddle.addEventListener('pointerenter', pickEyeTone);
+      navMiddle.addEventListener('pointerleave', clearEyeTone);
+      navMiddle.addEventListener('focus', pickEyeTone);
+      navMiddle.addEventListener('blur', clearEyeTone);
 
       window.addEventListener('scroll', updateNavState, { passive: true });
       window.addEventListener('resize', updateNavState);
