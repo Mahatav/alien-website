@@ -389,6 +389,20 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
         opacity: 0.78;
       }
     }
+    .s.home-helmets .text-title-small-label {
+      color: #3b82f6 !important;
+    }
+    .s.home-helmets .text-title-lg-mona,
+    .s.home-helmets .text-title-lg-brier,
+    .s.home-helmets .text-body-reg-mona {
+      color: #111 !important;
+    }
+    .c.is-otot-home canvas[data-rive-artboard="arrow"],
+    .footer-bg-bottom-btn-w canvas[data-rive-artboard="arrow"],
+    .c.is-callout canvas[data-rive-artboard="arrow"] {
+      filter: grayscale(1) brightness(8) !important;
+      opacity: 1 !important;
+    }
   </style>
 </head>
 
@@ -1766,26 +1780,36 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
                   <div class="horizontal-track">
                     <div class="horizontal-grid-col">
                       <div class="horizontal-item-w is-home-1">
-                        <div class="horizontal-item-layout is-home-1">
-                          <div class="eyebrow-w c-green-off-white-2">
-                            <div split-text="lines" class="text-eyebrow">Tunguska, 2011</div>
+                        <div class="horizontal-item-layout is-home-1" style="flex-direction:row;align-items:flex-end;column-gap:2.5rem;">
+                          <div style="display:flex;flex-direction:column;gap:var(--gap,1rem);">
+                            <div class="eyebrow-w c-green-off-white-2">
+                              <div split-text="lines" class="text-eyebrow">Tunguska, 2011</div>
+                            </div>
+                            <div class="horizontal-item-img-w is-home-1"><img
+                                src="images/68302baa04b14a1ca33c0b25_ln-home-horiz-1.webp" loading="lazy" sizes="100vw"
+                                srcset="images/68302baa04b14a1ca33c0b25_ln-home-horiz-1-p-500.webp 500w, images/68302baa04b14a1ca33c0b25_ln-home-horiz-1.webp 649w"
+                                alt="Incident document, Tunguska region 2011" class="image is-horizontal-scroll">
+                            </div>
                           </div>
-                          <div class="horizontal-item-img-w is-home-1"><img
-                              src="images/68302baa04b14a1ca33c0b25_ln-home-horiz-1.webp" loading="lazy" sizes="100vw"
-                              srcset="images/68302baa04b14a1ca33c0b25_ln-home-horiz-1-p-500.webp 500w, images/68302baa04b14a1ca33c0b25_ln-home-horiz-1.webp 649w"
-                              alt="Incident document, Tunguska region 2011" class="image is-horizontal-scroll">
+                          <div class="horizontal-item-text-layout" style="max-width:18rem;margin-bottom:1rem;">
+                            <div split-text="lines" class="horizontal-item-text">They called it a natural event. I've read the field reports. Nothing <span class="span-green-off-white-1">natural</span> leaves a silence where the crater should be.</div>
                           </div>
                         </div>
                       </div>
                       <div class="horizontal-item-w is-home-2">
-                        <div class="horizontal-item-layout is-home-2">
-                          <div class="eyebrow-w c-green-off-white-2">
-                            <div split-text="lines" class="text-eyebrow">Roswell, 1947</div>
+                        <div class="horizontal-item-layout is-home-2" style="flex-direction:row;align-items:flex-end;column-gap:2.5rem;">
+                          <div class="horizontal-item-text-layout" style="max-width:18rem;margin-bottom:1rem;">
+                            <div split-text="lines" class="horizontal-item-text">Seventy-six years of official denials. The wreckage was real. The men who touched it <span class="span-green-off-white-1">disappeared</span> from the record entirely.</div>
                           </div>
-                          <div class="horizontal-item-img-w is-home-2"><img
-                              src="images/68302baab12220595c8223b3_ln-home-horiz-2.webp" loading="lazy" sizes="100vw"
-                              srcset="images/68302baab12220595c8223b3_ln-home-horiz-2-p-500.webp 500w, images/68302baab12220595c8223b3_ln-home-horiz-2.webp 656w"
-                              alt="Declassified photograph, recovered 1948" class="image is-horizontal-scroll"></div>
+                          <div style="display:flex;flex-direction:column;gap:var(--gap,1rem);">
+                            <div class="eyebrow-w c-green-off-white-2">
+                              <div split-text="lines" class="text-eyebrow">Roswell, 1947</div>
+                            </div>
+                            <div class="horizontal-item-img-w is-home-2"><img
+                                src="images/68302baab12220595c8223b3_ln-home-horiz-2.webp" loading="lazy" sizes="100vw"
+                                srcset="images/68302baab12220595c8223b3_ln-home-horiz-2-p-500.webp 500w, images/68302baab12220595c8223b3_ln-home-horiz-2.webp 656w"
+                                alt="Declassified photograph, recovered 1948" class="image is-horizontal-scroll"></div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1816,51 +1840,69 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
                     <div class="horizontal-grid-spacer"></div>
                     <div class="horizontal-grid-col is-home-flip neg-margin">
                       <div class="horizontal-item-w is-home-4 neg-margin">
-                        <div class="horizontal-item-layout">
-                          <div class="eyebrow-w c-green-off-white-2">
-                            <div split-text="lines" class="text-eyebrow">Rendlesham, 1980</div>
+                        <div class="horizontal-item-layout" style="flex-direction:row;align-items:flex-end;column-gap:2.5rem;">
+                          <div style="display:flex;flex-direction:column;gap:var(--gap,1rem);">
+                            <div class="eyebrow-w c-green-off-white-2">
+                              <div split-text="lines" class="text-eyebrow">Rendlesham, 1980</div>
+                            </div>
+                            <div class="horizontal-item-img-w is-home-5"><img
+                                src="images/68302baa798e2cc6e02ac38a_ln-home-horiz-4.webp" loading="lazy" sizes="100vw"
+                                srcset="images/68302baa798e2cc6e02ac38a_ln-home-horiz-4-p-500.webp 500w, images/68302baa798e2cc6e02ac38a_ln-home-horiz-4.webp 529w"
+                                alt="Anomalous figure photographed at incident site" class="image is-horizontal-scroll"></div>
                           </div>
-                          <div class="horizontal-item-img-w is-home-5"><img
-                              src="images/68302baa798e2cc6e02ac38a_ln-home-horiz-4.webp" loading="lazy" sizes="100vw"
-                              srcset="images/68302baa798e2cc6e02ac38a_ln-home-horiz-4-p-500.webp 500w, images/68302baa798e2cc6e02ac38a_ln-home-horiz-4.webp 529w"
-                              alt="Anomalous figure photographed at incident site" class="image is-horizontal-scroll"></div>
+                          <div class="horizontal-item-text-layout" style="max-width:18rem;margin-bottom:1rem;">
+                            <div split-text="lines" class="horizontal-item-text">Three nights. Multiple witnesses. The craft left indentations in the ground and a <span class="span-green-off-white-1">radiation reading</span> no one has explained.</div>
+                          </div>
                         </div>
                       </div>
                       <div class="horizontal-item-w is-5">
-                        <div class="horizontal-item-layout is-home-5">
-                          <div class="eyebrow-w c-green-off-white-2">
-                            <div split-text="lines" class="text-eyebrow">Socorro, 1964</div>
+                        <div class="horizontal-item-layout is-home-5" style="flex-direction:row;align-items:flex-end;column-gap:2.5rem;">
+                          <div class="horizontal-item-text-layout" style="max-width:18rem;margin-bottom:1rem;">
+                            <div split-text="lines" class="horizontal-item-text">A police officer. A landing site. Burned brush and <span class="span-green-off-white-1">two figures</span> he could never stop describing for the rest of his life.</div>
                           </div>
-                          <div class="horizontal-item-img-w is-home-4">
-                            <img src="images/68da85d632bfefc552a0faac_Britain-25%20%281%29.webp" loading="eager"
-                              width="Auto" alt="Unexplained aerial phenomenon, declassified" class="image is-horizontal-scroll">
+                          <div style="display:flex;flex-direction:column;gap:var(--gap,1rem);">
+                            <div class="eyebrow-w c-green-off-white-2">
+                              <div split-text="lines" class="text-eyebrow">Socorro, 1964</div>
+                            </div>
+                            <div class="horizontal-item-img-w is-home-4">
+                              <img src="images/68da85d632bfefc552a0faac_Britain-25%20%281%29.webp" loading="eager"
+                                width="Auto" alt="Unexplained aerial phenomenon, declassified" class="image is-horizontal-scroll">
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="horizontal-grid-spacer half"></div>
                     <div class="horizontal-grid-col">
-                      <div class="horizontal-item-w is-home-6">
-                        <div class="horizontal-item-layout">
-                          <div class="eyebrow-w c-dark-green-tint-2">
-                            <div split-text="lines" class="text-eyebrow">Levelland, 1957</div>
+                      <div class="horizontal-item-w is-home-7">
+                        <div class="horizontal-item-layout is-home-7" style="flex-direction:row;align-items:flex-end;column-gap:2.5rem;">
+                          <div class="horizontal-item-text-layout" style="max-width:18rem;margin-bottom:1rem;">
+                            <div split-text="lines" class="horizontal-item-text c-dark-green-tint-1">Two F-4 jets scrambled. Weapons systems <span class="span-green-off-white-1">locked out</span> on approach. The object outran them both and vanished without a trace on radar.</div>
                           </div>
-                          <div class="horizontal-item-img-w is-home-6"><img
-                              src="images/68302baa14a96f3cdd2f9a95_ln-home-horiz-6.webp" loading="lazy" sizes="100vw"
-                              srcset="images/68302baa14a96f3cdd2f9a95_ln-home-horiz-6-p-500.webp 500w, images/68302baa14a96f3cdd2f9a95_ln-home-horiz-6.webp 642w"
-                              alt="Field investigator at site B, 1957" class="image is-horizontal-scroll"></div>
+                          <div style="display:flex;flex-direction:column;gap:var(--gap,1rem);">
+                            <div class="eyebrow-w c-dark-green-tint-2">
+                              <div split-text="lines" class="text-eyebrow">Tehran, 1976</div>
+                            </div>
+                            <div class="horizontal-item-img-w is-home-7"><img
+                                src="images/68302bab3ee6e26b1f434a7d_ln-home-horiz-7.webp" loading="lazy"
+                                alt="Recovered evidence log, 1976" class="image is-horizontal-scroll"></div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="horizontal-grid-col">
-                      <div class="horizontal-item-w is-home-7">
-                        <div class="horizontal-item-layout is-home-7">
-                          <div class="eyebrow-w c-dark-green-tint-2">
-                            <div split-text="lines" class="text-eyebrow">Tehran, 1976</div>
+                      <div class="horizontal-item-w is-home-6">
+                        <div class="horizontal-item-layout" style="flex-direction:row;align-items:flex-end;column-gap:2.5rem;">
+                          <div style="display:flex;flex-direction:column;gap:var(--gap,1rem);">
+                            <div class="eyebrow-w c-dark-green-tint-2">
+                              <div split-text="lines" class="text-eyebrow">Levelland, 1957</div>
+                            </div>
+                            <div class="horizontal-item-img-w is-home-6"><img
+                                src="images/68302baa14a96f3cdd2f9a95_ln-home-horiz-6.webp" loading="lazy" sizes="100vw"
+                                srcset="images/68302baa14a96f3cdd2f9a95_ln-home-horiz-6-p-500.webp 500w, images/68302baa14a96f3cdd2f9a95_ln-home-horiz-6.webp 642w"
+                                alt="Field investigator at site B, 1957" class="image is-horizontal-scroll"></div>
                           </div>
-                          <div class="horizontal-item-img-w is-home-7"><img
-                              src="images/68302bab3ee6e26b1f434a7d_ln-home-horiz-7.webp" loading="lazy"
-                              alt="Recovered evidence log, 1976" class="image is-horizontal-scroll"></div>
+                          <div class="horizontal-item-text-layout" style="max-width:18rem;margin-bottom:1rem;">
+                            <div split-text="lines" class="horizontal-item-text c-dark-green-tint-1">Fifteen separate witnesses. Every engine <span class="span-green-off-white-1">died</span> as it passed. Every one restarted the moment it was gone.</div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1889,25 +1931,35 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
                     <div class="horizontal-grid-spacer"></div>
                     <div class="horizontal-grid-col neg-margin">
                       <div class="horizontal-item-w is-home10">
-                        <div class="horizontal-item-layout is-home10">
-                          <div class="eyebrow-w c-dark-green-tint-2">
-                            <div split-text="lines" class="text-eyebrow">Hudson Valley, 1983</div>
+                        <div class="horizontal-item-layout is-home10" style="flex-direction:row;align-items:flex-end;column-gap:2.5rem;">
+                          <div class="horizontal-item-text-layout" style="max-width:18rem;margin-bottom:1rem;">
+                            <div split-text="lines" class="horizontal-item-text c-dark-green-tint-1">Thousands of witnesses across four counties. It moved in <span class="span-green-off-white-1">complete silence</span>. No aircraft in any registry has ever matched the description.</div>
                           </div>
-                          <div class="horizontal-item-img-w is-home10"><img
-                              src="images/68302babb87c5f19ec131093_ln-home-horiz-9.webp" loading="lazy" sizes="100vw"
-                              srcset="images/68302babb87c5f19ec131093_ln-home-horiz-9-p-500.webp 500w, images/68302babb87c5f19ec131093_ln-home-horiz-9.webp 761w"
-                              alt="Retrieved file, Kirtland archive" class="image is-horizontal-scroll"></div>
+                          <div style="display:flex;flex-direction:column;gap:var(--gap,1rem);">
+                            <div class="eyebrow-w c-dark-green-tint-2">
+                              <div split-text="lines" class="text-eyebrow">Hudson Valley, 1983</div>
+                            </div>
+                            <div class="horizontal-item-img-w is-home10"><img
+                                src="images/68302babb87c5f19ec131093_ln-home-horiz-9.webp" loading="lazy" sizes="100vw"
+                                srcset="images/68302babb87c5f19ec131093_ln-home-horiz-9-p-500.webp 500w, images/68302babb87c5f19ec131093_ln-home-horiz-9.webp 761w"
+                                alt="Retrieved file, Kirtland archive" class="image is-horizontal-scroll"></div>
+                          </div>
                         </div>
                       </div>
                       <div class="horizontal-item-w is-home9 neg-margin">
-                        <div class="horizontal-item-layout">
-                          <div class="eyebrow-w c-dark-green-tint-2">
-                            <div split-text="lines" class="text-eyebrow">Phoenix, 1997</div>
+                        <div class="horizontal-item-layout" style="flex-direction:row;align-items:flex-end;column-gap:2.5rem;">
+                          <div style="display:flex;flex-direction:column;gap:var(--gap,1rem);">
+                            <div class="eyebrow-w c-dark-green-tint-2">
+                              <div split-text="lines" class="text-eyebrow">Phoenix, 1997</div>
+                            </div>
+                            <div class="horizontal-item-img-w is-home9"><img
+                                src="images/68302bab4f762cdbc5e93415_ln-home-horiz-10.webp" loading="lazy" sizes="100vw"
+                                srcset="images/68302bab4f762cdbc5e93415_ln-home-horiz-10-p-500.webp 500w, images/68302bab4f762cdbc5e93415_ln-home-horiz-10.webp 659w"
+                                alt="Witness photograph, Phoenix lights 1997" class="image is-horizontal-scroll"></div>
                           </div>
-                          <div class="horizontal-item-img-w is-home9"><img
-                              src="images/68302bab4f762cdbc5e93415_ln-home-horiz-10.webp" loading="lazy" sizes="100vw"
-                              srcset="images/68302bab4f762cdbc5e93415_ln-home-horiz-10-p-500.webp 500w, images/68302bab4f762cdbc5e93415_ln-home-horiz-10.webp 659w"
-                              alt="Witness photograph, Phoenix lights 1997" class="image is-horizontal-scroll"></div>
+                          <div class="horizontal-item-text-layout" style="max-width:18rem;margin-bottom:1rem;">
+                            <div split-text="lines" class="horizontal-item-text c-dark-green-tint-1">Ten thousand people looked up at the same moment. The governor <span class="span-green-off-white-1">mocked them publicly</span>. He admitted what he saw privately, years later.</div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -2002,10 +2054,10 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
                 <div id="w-node-_5d5ac04e-626f-e2bd-ba2c-8a1157b2eda4-0b17a7eb" class="flex title-headline-w">
                   <h2 data-anim-high="" split-text="lines" class="text-title-lg-mona">Known<br></h2>
                   <h2 data-anim-high="" split-text="lines" class="text-title-lg-mona"><span
-                      class="text-title-lg-brier c-lime-off">Incidents</span></h2>
+                      class="text-title-lg-brier c-lime-off" style="color:#d88989!important">Incidents</span></h2>
                 </div>
                 <div id="w-node-_8734ac60-bf7c-ac47-bf21-501caa438859-0b17a7eb" class="title-para-w c-grey-on-track">
-                  <p data-anim-high="right, lime, 200" split-text="lines" class="text-body-reg-mona">Roswell 1947. Ariel School 1994. Tunguska 1908. Every incident documented, every witness on record.</p>
+                  <p data-anim-high="right, lime, 200" split-text="lines" class="text-body-reg-mona" style="color:#111!important"><span style="color:#d88989!important">Roswell</span> 1947. <span style="color:#d88989!important">Ariel School</span> 1994. <span style="color:#d88989!important">Tunguska</span> 1908. Every incident <span style="color:#d88989!important">documented,</span> every witness on record.</p>
                 </div>
               </div>
               <div class="spacer _8-75rem m-6rem"></div>
@@ -2994,13 +3046,13 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
                     </svg></div>
                 </div>
                 <div class="callout-text-w">
-                  <div data-anim-high="right, lime" split-text="lines" class="text-cta-short-intro font-brier">Every sighting logged.
-                    Every signal decoded. Every frame of the footage examined.</div>
+                  <div data-anim-high="right, lime" split-text="lines" class="text-cta-short-intro font-brier" style="color:#111!important">Every sighting <span style="color:#d88989!important">logged.</span>
+                    Every signal <span style="color:#d88989!important">decoded.</span> Every frame of the footage <span style="color:#d88989!important">examined.</span></div>
                 </div><a data-btn-rive-rotate="false" data-anim="text-hover" data-btn-rive-hover="" data-theme="lime"
                   data-wf--button-primary--variant="base" href="#" class="btn-w w-inline-block">
                   <div class="btn-inner">
                     <div class="btn-inner-text-w">
-                      <div split-text="chars" class="btn-text">view the evidence</div>
+                      <div split-text="chars" class="btn-text" style="color:#111!important">view the evidence</div>
                     </div>
                     <div class="btn-icon-w">
                       <div class="btn-rive-w w-embed"><canvas data-rive-object="" data-rive-file="btn-ui"
@@ -3095,35 +3147,6 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
                     </div>
                   </div>
                 </div>
-                <div class="callout-socials-intro-w">
-                  <div data-anim-high="right, dark-green-tint-1" split-text="lines"
-                    class="text-cta-short-intro font-brier">Follow the investigation</div>
-                </div>
-                <div class="callout-socials-links-layout"><a data-anim="text-hover"
-                    href="#" target="_blank" class="text-link-w w-inline-block">
-                    <div class="text-clip-w">
-                      <div data-anim-high="right, dark-green-tint-1" split-text="lines,chars" class="btn-text">the signal
-                      </div>
-                    </div>
-                  </a><a data-anim="text-hover" href="#" target="_blank"
-                    class="text-link-w w-inline-block">
-                    <div class="text-clip-w">
-                      <div data-anim-high="right, dark-green-tint-1" split-text="lines,chars" class="btn-text">the footage
-                      </div>
-                    </div>
-                  </a><a data-anim="text-hover" href="https://www.youtube.com/@SkinnyBob" target="_blank"
-                    class="text-link-w w-inline-block">
-                    <div class="text-clip-w">
-                      <div data-anim-high="right, dark-green-tint-1" split-text="lines,chars" class="btn-text">432 Hz
-                      </div>
-                    </div>
-                  </a><a data-anim="text-hover" href="#" target="_blank"
-                    class="text-link-w w-inline-block">
-                    <div class="text-clip-w">
-                      <div data-anim-high="right, dark-green-tint-1" split-text="lines,chars" class="btn-text">the tape
-                      </div>
-                    </div>
-                  </a></div>
               </div>
             </div>
           </div>
