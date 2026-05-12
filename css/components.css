@@ -221,3 +221,93 @@
   #output     { padding: 8px 10px; }
   #input-row  { padding: 5px 10px 7px; }
 }
+
+/* Classified stamp styles */
+.classified-container {
+  position: relative;
+  display: inline-block;
+}
+.classified-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.classified-container > img.archive-photo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.archive-photo {
+  display: block;
+  max-width: 100%;
+  filter: grayscale(1) contrast(1.05) brightness(0.95);
+}
+
+.classified-stamp {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  pointer-events: none;
+  transform: rotate(-2deg);
+  z-index: 10;
+}
+
+.stamp-inner {
+  border: 2px solid #8b0000;
+  padding: 8px 18px;
+  background: rgba(0,0,0,0.45);
+  color: #ff4d4d;
+  font-family: 'VT323', monospace;
+  text-align: center;
+  box-shadow: 0 0 0 3px rgba(139,0,0,0.12) inset;
+}
+
+.stamp-header {
+  font-size: 10px;
+  letter-spacing: 2px;
+  opacity: 0.9;
+}
+
+.stamp-main {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  margin: 4px 0;
+  text-transform: uppercase;
+  color: #ff3b3b;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.6);
+}
+
+.stamp-footer {
+  font-size: 9px;
+  letter-spacing: 1px;
+  opacity: 0.85;
+}
+
+/* Make sure the stamp scales responsively */
+.classified-container .classified-stamp,
+.classified-stamp {
+  transform-origin: left top;
+}
+
+/* Inline SVG overlay centered on its image container */
+.classified-stamp-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.9);
+  pointer-events: none;
+  z-index: 3;
+  width: 48%;
+  max-width: 520px;
+  height: auto;
+  opacity: 0.98;
+}
+
+.classified-container { /* ensure relative for all containers */
+  position: relative;
+}

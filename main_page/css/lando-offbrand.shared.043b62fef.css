@@ -3553,6 +3553,37 @@ blockquote {
   align-items: center;
   display: flex;
   overflow: clip;
+  position: relative;
+}
+
+.classified-container {
+  position: absolute;
+  inset: 0;
+  display: block;
+  z-index: 1;
+}
+
+.classified-container > img.archive-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+}
+
+.classified-stamp-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.98;
 }
 
 .horizontal-item-img-w.is-1 {
@@ -3906,6 +3937,62 @@ blockquote {
   display: flex;
   position: sticky;
   top: 0;
+}
+
+/* Overrides: remove pill box border and scale full-classified SVG */
+.horizontal-item-pill {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.horizontal-item-pill .horizontal-pill-full,
+.horizontal-pill-full {
+  display: block;
+  /* translate 10% then scale 2 -> effective shift 20% of rendered size to the right */
+  transform: translateX(10%) scale(2);
+  transform-origin: center;
+  max-width: none;
+  width: auto;
+  height: auto;
+}
+
+.horizontal-item-pill-w {
+  /* ensure layout doesn't collapse when image scales */
+  align-items: center;
+}
+
+/* Overlay the classified stamp on top of images */
+.horizontal-item-img-w {
+  position: relative;
+}
+
+.horizontal-item-img-w .classified-stamp-overlay,
+.classified-stamp-overlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  pointer-events: none;
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+
+/* Stamp every image in the horizontal track */
+.horizontal-track .horizontal-item-img-w::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: url('../images/classified-stamp.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% auto;
+  z-index: 6;
 }
 
 .horizontal-pin-spacer {
@@ -4632,6 +4719,48 @@ blockquote {
   justify-content: center;
   align-items: center;
   display: flex;
+  width: clamp(2.1rem, 3vw, 3.2rem);
+  position: relative;
+}
+
+.footer-marquee-digit {
+  display: none !important;
+}
+
+.footer-marquee-digit.is-one {
+  color: #ff3b3b;
+}
+
+.footer-marquee-digit.is-zero {
+  color: #4ea1ff;
+}
+
+.footer-marquee-logo-w > * {
+  display: none !important;
+}
+
+.footer-marquee-logo-w::before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 2.625rem;
+  font-family: 'VT323', monospace;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.06);
+}
+
+.footer-marquee-item > .footer-marquee-logo-w:nth-child(odd)::before {
+  content: '1';
+  color: #ff3b3b;
+}
+
+.footer-marquee-item > .footer-marquee-logo-w:nth-child(even)::before {
+  content: '0';
+  color: #4ea1ff;
 }
 
 .footer-marquee-svg {
