@@ -111,7 +111,7 @@
   position: fixed; inset: 0;
   pointer-events: none; z-index: 3;
   opacity: 0.022;
-  font-family: 'Space Mono', 'Courier New', monospace;
+  font-family: 'VT323', 'Courier New', monospace;
   font-size: 10.5px;
   line-height: 1.68;
   color: var(--fg);
@@ -363,9 +363,10 @@
   background: rgba(10,10,12,0.97);
   border: 1px solid rgba(230,230,230,0.20);
   box-shadow: 0 0 20px rgba(230,230,230,0.06), inset 0 0 12px rgba(0,0,0,0.6);
-  font-family: 'Space Mono', monospace;
+  font-family: 'VT323', 'Courier New', monospace;
   font-size: 10px;
   color: var(--fg-dim);
+  text-transform: uppercase;
 }
 .float-win-hdr {
   display: flex;
@@ -391,8 +392,12 @@
 }
 .float-win-body {
   padding: 8px 12px;
-  font-size: 9.5px;
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 1rem;
   line-height: 1.7;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  -webkit-font-smoothing: none;
   max-height: 220px;
   overflow-y: auto;
 }
@@ -413,10 +418,12 @@
   border: 1px solid rgba(230,230,230,0.18);
   border-right: 3px solid var(--fg-dim);
   padding: 4px 10px;
-  font-size: 9px;
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 1rem;
   color: var(--fg-dim);
   letter-spacing: 0.08em;
   text-shadow: var(--glow);
+  text-transform: uppercase;
   animation: notif-in 0.2s linear forwards;
   white-space: nowrap;
 }

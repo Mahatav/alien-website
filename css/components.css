@@ -8,6 +8,8 @@
 #diag-panel {
   padding: 5px 10px;
   flex-shrink: 0;
+  font-family: 'VT323', 'Courier New', monospace;
+  text-transform: uppercase;
 }
 
 .stat-row {
@@ -18,14 +20,16 @@
   gap: 4px;
 }
 .stat-lbl {
-  font-size: 8.5px;
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 1rem;
   color: rgba(160,160,160,0.55);
   letter-spacing: 0.12em;
   white-space: nowrap;
   flex-shrink: 0;
 }
 .stat-val {
-  font-size: 9px;
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 1rem;
   color: var(--fg);
   text-shadow: var(--glow);
   text-align: right;
@@ -36,7 +40,7 @@
   font-variant-numeric: tabular-nums;
 }
 .stat-val.tok {
-  font-size: 8px;
+  font-size: 1rem;
   letter-spacing: 0.05em;
   color: var(--fg-dim);
   font-variant-numeric: tabular-nums;
@@ -44,7 +48,8 @@
 
 /* ── SIGNAL INTEGRITY ────────────────────────────────────────── */
 .sig-label {
-  font-size: 8px;
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 1rem;
   color: rgba(160,160,160,0.55);
   letter-spacing: 0.12em;
   margin-top: 6px;
@@ -127,6 +132,12 @@
     rgba(10,10,14,.0)  0%,
     rgba(6,6,10,.42) 100%
   );
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  -webkit-font-smoothing: none;
 }
 #output::-webkit-scrollbar { width: 3px; }
 #output::-webkit-scrollbar-track { background: transparent; }
@@ -139,7 +150,8 @@
   white-space: pre-wrap; word-break: break-word;
   animation: phosphor-in .5s ease-out forwards;
   text-shadow: var(--glow);
-  font-size: 12.5px;
+  font-size: 1.15rem;
+  text-transform: uppercase;
 }
 .ln.no-bloom { animation: none; text-shadow: var(--glow); }
 
@@ -155,7 +167,7 @@
   text-shadow: 0 0 4px rgba(230,230,230,.26);
   margin-top: 5px;
   animation: none;
-  font-size: 12.5px;
+  font-size: 1.15rem;
 }
 .ln-cmd .cmd-txt { color: var(--fg); text-shadow: var(--glow); }
 
@@ -170,15 +182,19 @@
 }
 #prompt-str {
   color: var(--fg-dim); text-shadow: var(--glow);
-  user-select: none; white-space: nowrap; font-size: 12.5px;
+  user-select: none; white-space: nowrap; font-size: 1.15rem;
+  font-family: 'VT323', 'Courier New', monospace;
+  text-transform: uppercase;
 }
 #cmd-in {
   flex: 1;
   background: transparent; border: none; outline: none;
-  color: var(--fg); font-family: 'Space Mono', 'Courier New', Courier, monospace;
-  font-size: 12.5px; text-shadow: var(--glow);
+  color: var(--fg); font-family: 'VT323', 'Courier New', Courier, monospace;
+  font-size: 1.2rem; text-shadow: var(--glow);
   caret-color: transparent; padding: 0;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  -webkit-font-smoothing: none;
 }
 #cmd-in::selection { background: var(--fg-dark); color: var(--fg); }
 #cursor {
@@ -194,9 +210,9 @@
   position: absolute;
   visibility: hidden;
   white-space: pre;
-  font-family: 'Space Mono', 'Courier New', Courier, monospace;
-  font-size: 12.5px;
-  letter-spacing: 0.02em;
+  font-family: 'VT323', 'Courier New', Courier, monospace;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
   pointer-events: none;
 }
 

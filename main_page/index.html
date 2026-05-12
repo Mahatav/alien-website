@@ -16,6 +16,9 @@
   </script>
   <meta charset="utf-8">
   <link href="https://cdn.prod.website-files.com" rel="preconnect" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <title>Skinny Bob Real?</title>
   <meta
     content="Investigating the ivan0135 footage, the Mnemosyne archive, and the existence of Skinny Bob."
@@ -156,9 +159,17 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
       opacity: 0.84;
     }
 
+    /* === FIXED TRANSITION BTN: Anchored cleanly to the bottom === */
     .transition-btn {
-      position: relative;
+      position: absolute;
+      bottom: 5vh;
+      left: 50%;
+      transform: translateX(-50%);
       z-index: 3;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      text-align: center;
     }
 
     .transition-btn .btn-w {
@@ -198,6 +209,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
     .page-w,
     .main-w,
     .taxi-w {
+      font-family: 'Mona Sans Variable', 'Arial', sans-serif;
       background: #070b12 !important;
       color: #e8edf8 !important;
     }
@@ -207,17 +219,21 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
     [class*="green-off-white"],
     [class*="dark-green"],
     [data-theme="lime"] {
-      color: #72a6ff !important;
+      color: #9fb3cc !important;
     }
 
     [class*="btn-text"],
     .text-eyebrow,
-    .text-title-small-label,
     .text-impact-reg-mona,
     .text-impact-lg-mona,
     .text-impact-sm-mona {
       color: #ecf2ff !important;
-      text-shadow: 0 0 12px rgba(102, 163, 255, 0.18);
+      text-shadow: 0 0 4px rgba(120, 140, 170, 0.12);
+    }
+
+    .text-title-small-label {
+      color: #a6b7cd !important;
+      text-shadow: 0 0 4px rgba(120, 140, 170, 0.14);
     }
 
     .btn-w,
@@ -245,8 +261,63 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
     .text-title-lg-brier,
     .c-lime-off,
     .text-link-w.c-lime {
-      color: #ff6a6a !important;
-      text-shadow: 0 0 10px rgba(255, 92, 92, 0.22);
+      color: #d88989 !important;
+      text-shadow: 0 0 4px rgba(255, 92, 92, 0.10);
+    }
+
+    @media screen and (max-width: 991px) {
+      [class*="c-lime"],
+      [class*="lime-off"],
+      [class*="green-off-white"],
+      [class*="dark-green"],
+      [data-theme="lime"] {
+        color: #9fb3cc !important;
+      }
+
+      .text-impact-sm-brier,
+      .text-title-lg-brier,
+      .c-lime-off,
+      .text-link-w.c-lime,
+      .text-on-t-stat-label-sm.c-lime,
+      .text-on-t-stat-label-major.c-lime,
+      .text-title-small-label.date.c-lime-off {
+        color: #d88989 !important;
+        text-shadow: 0 0 4px rgba(255, 92, 92, 0.10);
+      }
+
+      .btn-w {
+        background-color: rgba(181, 196, 214, 0.10) !important;
+        border-color: rgba(181, 196, 214, 0.26) !important;
+        color: #dfe7f2 !important;
+      }
+
+      .nav-ham {
+        background-color: rgba(181, 196, 214, 0.08) !important;
+        border-color: rgba(181, 196, 214, 0.24) !important;
+      }
+
+      .eyebrow-w.c-green-off-white-2,
+      .eyebrow-w.c-dark-green-tint-2,
+      .horizontal-item-text.c-dark-green-tint-1,
+      .horizontal-item-text.c-dark-green-tint-2,
+      .span-green-off-white-1 {
+        color: #c8d2df !important;
+      }
+
+      .helmet-grid-item-img-helmet,
+      .helmet-grid-item-reveal-img,
+      .otot-home-img,
+      .footer-bg-img,
+      .image.is-social-card,
+      .image.is-horizontal-scroll,
+      .image.is-otot-home-end,
+      img[src*="helm"],
+      img[src*="lime"],
+      img[src*="green"],
+      canvas[data-rive-object],
+      canvas[data-rive-primary] {
+        filter: grayscale(1) contrast(1.02) brightness(0.93) saturate(0.9) !important;
+      }
     }
 
     .helmet-grid-item-img-helmet,
@@ -261,7 +332,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
     img[src*="green"],
     canvas[data-rive-object],
     canvas[data-rive-primary] {
-      filter: grayscale(1) contrast(1.12) brightness(0.96);
+      filter: grayscale(1) contrast(1.02) brightness(0.93) saturate(0.9);
     }
 
     .gl-canvas,
@@ -269,7 +340,35 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
     canvas[data-rive-primary],
     canvas[data-rive-mob-landscape] {
       mix-blend-mode: screen;
-      opacity: 0.9;
+      opacity: 0.75;
+    }
+
+    .btn-w {
+      background-color: rgba(181, 196, 214, 0.10);
+      border-color: rgba(181, 196, 214, 0.26);
+      color: #dfe7f2 !important;
+      box-shadow: none;
+    }
+
+    .btn-w.is-nav {
+      background-color: rgba(181, 196, 214, 0.08);
+    }
+
+    .nav-middle {
+      filter: saturate(0.8) brightness(0.96);
+    }
+
+    .nav-ham {
+      background-color: rgba(181, 196, 214, 0.08);
+      border-color: rgba(181, 196, 214, 0.24) !important;
+    }
+
+    .text-impact-reg-brier,
+    .text-impact-sm-brier,
+    .text-title-lg-brier,
+    .text-title-reg-brier,
+    .font-brier {
+      letter-spacing: 0.01em;
     }
 
     @keyframes star-drift {
@@ -348,7 +447,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
         :root {
           /* Other variables */
           --cubic-default: cubic-bezier(0.65, 0.05, 0, 1);
-          --duration-default: 0.75s;
+          --duration-default: 1.2s;
           --animation-default: var(--duration-default) var(--cubic-default);
           --section-padding: calc(3.5rem + (var(--gap) * 2));
           --container-padding: 2rem;
@@ -379,7 +478,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
             --min-width: 768px;
             --max-width: 991px;
             --design-width: 1728;
-            --design-unit: 20;
+            --design-unit: 18;
           }
         }
 
@@ -388,6 +487,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
           :root {
             --min-width: 480px;
             --max-width: 767px;
+            --design-unit: 18;
           }
         }
 
@@ -396,7 +496,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
           :root {
             --min-width: 320px;
             --max-width: 479px;
-            --design-unit: 48;
+            --design-unit: 18;
           }
         }
 
@@ -788,85 +888,86 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
           color: var(--color--dark-green);
         }
 
+        /* Center the logo absolutely so it's independent of flex spacing */
         .nav-middle {
-          position: relative;
+          position: absolute; /* Changed from relative */
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          z-index: 10;
+          /* Ensure transforms are GPU-accelerated and animate only transform */
+          will-change: transform;
+          transition: transform 0.6s cubic-bezier(0.65, 0.05, 0, 1);
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
         }
 
+        /* Use the old.html reference pixel dimensions to avoid subpixel drift */
         .page-ln4-svg {
           position: relative;
           display: inline-block;
-          width: 170px;
-          height: 49px;
+          width: 170px;  /* Changed from 165.6px */
+          height: 49px;  /* Changed from 47.7px */
           overflow: hidden;
           line-height: 0;
-          transform: none;
           transform-origin: center center;
-          transition: transform var(--animation-default);
+          /* Match the store button timing for a synced feel */
+          transition: transform 0.6s cubic-bezier(0.65, 0.05, 0, 1);
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
         }
 
         .nav-alien-logo-img {
           position: absolute;
-          inset: 0;
+          inset: 0;      /* Simplified positioning */
           display: block;
-          width: 100%;
+          width: 100%;   /* Fill the SVG container */
           height: 100%;
           object-fit: cover;
           object-position: center center;
+          will-change: transform;
+          transition: transform 0.6s cubic-bezier(0.65, 0.05, 0, 1);
+        }
+
+        .nav-alien-logo-img.normal {
+          top: 0;
+          transform: translateY(0%);
           z-index: 1;
         }
 
+        .nav-alien-logo-img.inverted {
+          top: 100%;
+          transform: translateY(0%);
+          z-index: 2;
+          filter: invert(1);
+        }
+
+        .nav-middle:hover .nav-alien-logo-img.normal,
+        .nav-middle:focus-visible .nav-alien-logo-img.normal,
+        .nav-middle.is-logo-inverted .nav-alien-logo-img.normal {
+          transform: translateY(-100%);
+        }
+
+        .nav-middle:hover .nav-alien-logo-img.inverted,
+        .nav-middle:focus-visible .nav-alien-logo-img.inverted,
+        .nav-middle.is-logo-inverted .nav-alien-logo-img.inverted {
+          transform: translateY(-100%);
+        }
+
+        /* Apply scale to the centered container (preserves translate transform) */
+        .nav.is-scrolled .nav-middle {
+          transform: translate(-50%, -50%) scale(0.85);
+          transition: transform 0.6s cubic-bezier(0.65, 0.05, 0, 1);
+          will-change: transform;
+        }
+
+        /* Keep inner images stable while container scales */
         .nav.is-scrolled .nav-alien-logo-img {
           transform: none;
-        }
-
-        .nav.is-scrolled .page-ln4-svg {
-          transform: translateY(-22px) scale(0.66);
-        }
-
-        .nav-alien-eye {
-          position: absolute;
-          pointer-events: none;
-          opacity: 0;
-          z-index: 2;
-          transition:
-            opacity var(--animation-default),
-            box-shadow var(--animation-default),
-            background-color var(--animation-default),
-            transform var(--animation-default);
-          mix-blend-mode: screen;
-          filter: saturate(1.4);
-        }
-
-        .nav-middle:hover .nav-alien-eye,
-        .nav-middle:focus-visible .nav-alien-eye,
-        .nav-middle[data-eye-tone] .nav-alien-eye {
-          opacity: 1;
-        }
-
-        .nav-middle[data-eye-tone="red"] .nav-alien-eye {
-          background: radial-gradient(circle at 40% 40%, #ff9aa5 0%, #ff3358 45%, #7f0017 100%);
-          box-shadow: 0 0 10px rgba(255, 51, 88, 0.85), 0 0 22px rgba(255, 51, 88, 0.4);
-        }
-
-        .nav-middle[data-eye-tone="blue"] .nav-alien-eye {
-          background: radial-gradient(circle at 40% 40%, #97f1ff 0%, #29ccff 45%, #005bff 100%);
-          box-shadow: 0 0 10px rgba(41, 204, 255, 0.85), 0 0 22px rgba(0, 91, 255, 0.4);
-        }
-
-        .nav-alien-eye--left {
-          left: 40.9%;
-          top: 50.4%;
-          width: 14.8%;
-          height: 16.1%;
-          transform: translate(-50%, -50%) rotate(-18deg);
-        }
-
-        .nav-alien-eye--right {
-          left: 60.2%;
-          top: 50.4%;
-          width: 14.8%;
-          height: 16.1%;
-          transform: translate(-50%, -50%) rotate(18deg);
         }
 
         .nav-ham {
@@ -1571,7 +1672,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
       </a>
       <div class="page-ln4-pos"><a title="Go to home" href="/" aria-current="page"
           class="nav-middle w-inline-block w--current">
-          <div class="page-ln4-svg w-embed"><img class="nav-alien-logo-img" src="images/alien-head-logo.svg" alt="MNEMOSYNE" style="color:var(--color--grey-1)"><span class="nav-alien-eye nav-alien-eye--left" aria-hidden="true"></span><span class="nav-alien-eye nav-alien-eye--right" aria-hidden="true"></span></div>
+          <div class="page-ln4-svg w-embed"><img class="nav-alien-logo-img normal" src="images/alien-head-logo.svg" alt="MNEMOSYNE" style="color:var(--color--grey-1)"><img class="nav-alien-logo-img inverted" src="images/alien-head-logo.svg" alt="" aria-hidden="true" style="color:var(--color--grey-1)"></div>
           <div screen-reader="">Go to home</div>
         </a></div>
         <div data-nav-group="btns" class="btn-layout is-nav" style="margin-left:auto;display:flex;align-items:center;gap:12px;"><a data-theme="lime" data-anim="text-hover"
@@ -1608,7 +1709,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
         data-theme="lime" data-wf--button-primary--variant="base" href="#" class="btn-w w-inline-block">
         <div class="btn-inner">
           <div class="btn-inner-text-w">
-            <div split-text="chars" class="btn-text">Load Evidence</div>
+            <div class="btn-text" id="loading-evidence-text">Load Evidence</div>
           </div>
         </div>
       </a></div>
@@ -1791,9 +1892,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
                         <div class="horizontal-item-layout">
                           <div class="horizontal-item-text-layout">
                             <div split-text="lines" class="horizontal-item-text c-dark-green-tint-1">I found the footage in 2011. Three minutes of film changed everything I thought I knew about being alone in the universe.</div>
-                            <div class="horizontal-rive-placeholder"><img
-                                src="images/67e7eeaf67d51519b546828d_ln4-signature-dark-green.webp" loading="lazy"
-                                alt="" class="image"></div>
+                            <!-- signature removed -->
                           </div>
                         </div>
                       </div>
@@ -1907,11 +2006,11 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
                 loading="lazy" alt="Close-up of recovered footage frame" class="image is-otot-home-end"></div>
           </section>
         </div>
-        <div data-nav-theme-target="light" class="s-group bg-black">
+        <div data-nav-theme-target="light" class="bg-black s-group">
           <section class="s home-helmets">
             <div class="c home-helmets">
               <div class="title-layout grid-main">
-                <div id="w-node-_5d5ac04e-626f-e2bd-ba2c-8a1157b2eda4-0b17a7eb" class="title-headline-w flex">
+                <div id="w-node-_5d5ac04e-626f-e2bd-ba2c-8a1157b2eda4-0b17a7eb" class="flex title-headline-w">
                   <h2 data-anim-high="" split-text="lines" class="text-title-lg-mona">Known<br></h2>
                   <h2 data-anim-high="" split-text="lines" class="text-title-lg-mona"><span
                       class="text-title-lg-brier c-lime-off">Incidents</span></h2>
@@ -3128,11 +3227,7 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
                       <div class="footer-rive-w"><img
                           src="fonts/67d443bc774ddcd37b3d8d4d_ln4-footer-rive-placeholder.svg" loading="lazy"
                           data-rive-placeholder="" alt="" class="image is-footer-rive">
-                        <div class="marquee-gl-rive-w w-embed"><canvas data-rive-object="" data-rive-file="signature"
-                            data-rive-artboard="signature" data-rive-state-machine="signature_play"
-                            data-rive-input="color_lime" data-rive-fit="contain" data-rive-scrolltrigger-target=""
-                            data-rive-scrolltrigger-start="" data-rive-scrolltrigger-end="">
-                          </canvas></div>
+                        <!-- signature Rive removed -->
                       </div>
                       <h2 data-anim-high="right,lime-off" split-text="lines" class="text-impact-sm-mona footer">Still here.
                         <span class="text-impact-sm-brier c-lime-off">Still watching.</span> Still <span
@@ -3342,21 +3437,33 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
       }
 
       function updateNavState() {
-        nav.classList.toggle('is-scrolled', window.scrollY > 40);
+        // Use a fixed pixel threshold for consistent behavior across devices
+        var scrolled = window.scrollY > 100;
+        nav.classList.toggle('is-scrolled', scrolled);
+        nav.style.opacity = '1';
+        nav.style.pointerEvents = 'auto';
+        nav.style.transform = 'none';
       }
 
-      function pickEyeTone() {
-        navMiddle.dataset.eyeTone = Math.random() < 0.5 ? 'red' : 'blue';
+      function setLogoInverted(inverted) {
+        navMiddle.classList.toggle('is-logo-inverted', inverted);
       }
 
-      function clearEyeTone() {
-        delete navMiddle.dataset.eyeTone;
-      }
+      navMiddle.addEventListener('pointerenter', function () {
+        setLogoInverted(true);
+      });
 
-      navMiddle.addEventListener('pointerenter', pickEyeTone);
-      navMiddle.addEventListener('pointerleave', clearEyeTone);
-      navMiddle.addEventListener('focus', pickEyeTone);
-      navMiddle.addEventListener('blur', clearEyeTone);
+      navMiddle.addEventListener('pointerleave', function () {
+        setLogoInverted(false);
+      });
+
+      navMiddle.addEventListener('focus', function () {
+        setLogoInverted(true);
+      });
+
+      navMiddle.addEventListener('blur', function () {
+        setLogoInverted(false);
+      });
 
       window.addEventListener('scroll', updateNavState, { passive: true });
       window.addEventListener('resize', updateNavState);
@@ -3371,8 +3478,29 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
     });
     */
 
-
-
+    // CLEAN TEXT-CYCLING LOGIC (NO STACKING)
+    document.addEventListener('DOMContentLoaded', () => {
+      const loadingTextElement = document.getElementById('loading-evidence-text');
+      if (loadingTextElement) {
+        const evidenceLogs = [
+          "Connecting to archive...",
+          "Bypassing protocols...",
+          "Decrypting footage...",
+          "Loading evidence...",
+          "Access granted."
+        ];
+        
+        let currentLogIndex = 0;
+        const logInterval = setInterval(() => {
+          currentLogIndex++;
+          if (currentLogIndex < evidenceLogs.length) {
+            loadingTextElement.innerText = evidenceLogs[currentLogIndex];
+          } else {
+            clearInterval(logInterval);
+          }
+        }, 800); 
+      }
+    });
   </script>
 </body>
 
