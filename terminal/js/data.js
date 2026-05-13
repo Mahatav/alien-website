@@ -1,26 +1,19 @@
-/* ═══════════════════════════════════════════════════════════════
-   data.js — Config, archive filesystem, narrative files, decrypters, boot
-   No dependencies. Load first.
-═══════════════════════════════════════════════════════════════ */
 
-// ── CONFIG ─────────────────────────────────────────────────────
+
 const CFG = {
-  GATE_REDIRECT: '/',  // where to send the user after the gate closes
+  GATE_REDIRECT: '/',  
   SPEED_FAST:  4,
   SPEED_NORM: 11,
   SPEED_SLOW: 20,
 };
 
-// ── SAVE KEYS ──────────────────────────────────────────────────
 const SAVE_KEY    = 'dwp_v47_state';
 const GATE_KEY    = 'dwp_gate_start';
-const GATE_DUR_KEY = 'dwp_gate_dur';  // random session duration (60–600s)
+const GATE_DUR_KEY = 'dwp_gate_dur';  
 
-// ── CLEARANCE ──────────────────────────────────────────────────
 const TIERS    = ['GUEST', 'DELTA', 'SIGMA', 'OMEGA'];
 const TIER_CLS = ['', 'lvl-1', 'lvl-2', 'lvl-3'];
 
-// ── UTILITIES ──────────────────────────────────────────────────
 function rand(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
 
 const CORRUPT_CHARS = ['█','▓','▒','░','?','×','⚿','⌗','⍉'];
@@ -33,7 +26,6 @@ function corruptDate() {
   }).join('');
 }
 
-// ── ARCHIVE FILE SYSTEM ─────────────────────────────────────────
 const ARCHIVE = {
   'ALIEN_CONTACT': {
     realPath: 'data/normal/Alien Contact/',
@@ -88,26 +80,23 @@ const ROOT_FILES = [
   { name: 'REASONANCE.WAV', real: 'data/archive/Reasonance.wav' },
 ];
 
-// ── ACCESS CODES ───────────────────────────────────────────────
 const CODES = {
   'HILL1961':   1,
   'RESONANCE':  2,
   'THIRDSTONE': 3,
 };
 
-// ── NARRATIVE FILES ────────────────────────────────────────────
-// Opened inline via `open` command. Tier-gated.
 const FILES = {
 
-  // ═══ GUEST ═══════════════════════════════════════════════════
+  
 
   'WELCOME.LOG': {
     tier: 0, modified: '1994-03-08',
     body: [
       ['d', '=================================================='],
       ['b', '  MNEMOSYNE SYSTEMS INC.'],
-      ['b', '  ARCHIVAL TERMINAL  //  NODE 7'],
-      ['d', '  SUBSYSTEM v2.1.4  //  RESTRICTED ACCESS'],
+      ['b', '  ARCHIVAL TERMINAL  
+      ['d', '  SUBSYSTEM v2.1.4  
       ['d', '=================================================='],
       ['',  ''],
       ['n', '  NOTICE TO OPERATOR:'],
@@ -142,7 +131,7 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  PERSONNEL FILE — ARCHIVE NODE 7'],
-      ['d', '  LAST UPDATED: 1994-03-08  //  STATUS: DEGRADED'],
+      ['d', '  LAST UPDATED: 1994-03-08  
       ['d', '=================================================='],
       ['',  ''],
       ['n', '  ROSTER — CYCLE 2024-OMEGA (LAST ACTIVE CYCLE)'],
@@ -289,14 +278,14 @@ const FILES = {
     ]
   },
 
-  // ═══ DELTA ═══════════════════════════════════════════════════
+  
 
   'SUBJECT_B.TXT': {
     tier: 1, modified: '1989-08-03',
     body: [
       ['d', '=================================================='],
       ['b', '  SUBJECT FILE — DESIGNATION: "SKINNY BOB"'],
-      ['d', '  CLEARANCE: DELTA  //  LARK INTERFACE ONLY'],
+      ['d', '  CLEARANCE: DELTA  
       ['d', '  FILE INTEGRITY: 91%'],
       ['d', '=================================================='],
       ['',  ''],
@@ -377,7 +366,7 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  ACOUSTIC ANALYSIS — THE RESONANCE EVENT'],
-      ['d', '  ANALYST: DR. ████████  //  1989-08-19'],
+      ['d', '  ANALYST: DR. ████████  
       ['d', '  FILE: REASONANCE.WAV  [6.3MB — DETERIORATING]'],
       ['d', '=================================================='],
       ['',  ''],
@@ -415,7 +404,7 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  ARCHIVIST PRIME — PERSONAL LOG'],
-      ['b', '  AUTO-SAVED ENTRY  //  1994-03-07  03:42:19'],
+      ['b', '  AUTO-SAVED ENTRY  
       ['d', '  [RECOVERED FROM AUTO-SAVE BUFFER ON WAKEUP]'],
       ['d', '=================================================='],
       ['',  ''],
@@ -452,15 +441,15 @@ const FILES = {
     ]
   },
 
-  // ═══ SIGMA ═══════════════════════════════════════════════════
+  
 
   'ARIEL_DEBRIEF.TXT': {
     tier: 2, modified: '1994-09-20',
     body: [
       ['d', '=================================================='],
       ['b', '  DEBRIEF — ARIEL SCHOOL INCIDENT'],
-      ['b', '  DATE: SEPTEMBER 16, 1994  //  RUWA, ZIMBABWE'],
-      ['d', '  CLEARANCE: SIGMA  //  62 INDEPENDENT ACCOUNTS'],
+      ['b', '  DATE: SEPTEMBER 16, 1994  
+      ['d', '  CLEARANCE: SIGMA  
       ['d', '=================================================='],
       ['',  ''],
       ['n', '  Sixty-two students, ages 6 to 12.'],
@@ -499,7 +488,7 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  THEORETICAL DOCUMENT — THE VESSEL PROTOCOL'],
-      ['d', '  AUTHOR: ARCHIVIST PRIME  //  CYCLE: UNSPECIFIED'],
+      ['d', '  AUTHOR: ARCHIVIST PRIME  
       ['d', '  FILE INTEGRITY: 78%'],
       ['d', '=================================================='],
       ['',  ''],
@@ -541,7 +530,7 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  DOCUMENT: HARMONIC FORCES — TERTIARY DISPATCH'],
-      ['d', '  SOURCE: THIRD STONE  //  NODE 7 ARCHIVE'],
+      ['d', '  SOURCE: THIRD STONE  
       ['d', '=================================================='],
       ['',  ''],
       ['n', '  Your concept of "harmony" is correct. Incomplete,'],
@@ -566,14 +555,14 @@ const FILES = {
     ]
   },
 
-  // ═══ OMEGA ═══════════════════════════════════════════════════
+  
 
   'FINAL_TRANSMISSION.TXT': {
     tier: 3, modified: '[ONGOING]',
     body: [
       ['d', '=================================================='],
       ['b', '  FINAL TRANSMISSION — THIRD STONE'],
-      ['b', '  TO: ARCHIVIST PRIME // ARCHIVE NODE 7'],
+      ['b', '  TO: ARCHIVIST PRIME 
       ['d', '  DATE: [ONGOING — SIGNAL STILL ACTIVE AS OF BOOT]'],
       ['d', '=================================================='],
       ['',  ''],
@@ -650,7 +639,6 @@ const FILES = {
   },
 };
 
-// ── DECRYPT HANDLERS ───────────────────────────────────────────
 const DECRYPTERS = {
   'SUBJECT_B.TXT': () => [
     ['d', '  ANALYZING... CIPHER SIGNATURE DETECTED.'],
@@ -675,16 +663,13 @@ const DECRYPTERS = {
     ['a', '  [HINT] OMEGA access code extracted.'],
     ['d', '  Try: access THIRDSTONE'],
   ],
-  'OMEGA_FINAL.DAT': () => null, // requires OMEGA clearance — handled in commands.js
+  'OMEGA_FINAL.DAT': () => null, 
 };
-
-// ── BOOT SEQUENCE ──────────────────────────────────────────────
-// Split into phases. main.js drives the timing between phases.
 
 const BOOT_PHASE1 = [
   ['r', '████████████████████████████████████████████████'],
   ['b', '  MNEMOSYNE SYSTEMS INC.'],
-  ['b', '  DEEP WATCH PROTOCOL  //  CLASSIFIED MAINFRAME'],
+  ['b', '  DEEP WATCH PROTOCOL  
   ['r', '  !! RESTRICTED ACCESS — AUTHORISED PERSONNEL ONLY !!'],
   ['r', '████████████████████████████████████████████████'],
   ['',  ''],

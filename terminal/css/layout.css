@@ -1,8 +1,5 @@
-/* ═══════════════════════════════════════════════════════════════
-   layout.css — Three-panel workspace, status bar, gate bar, panels
-═══════════════════════════════════════════════════════════════ */
 
-/* ── STATUS BAR ──────────────────────────────────────────────── */
+
 #status-bar {
   flex-shrink: 0;
   padding: 4px 14px;
@@ -85,7 +82,6 @@
 #badge.lvl-2 { color: var(--amber); border-color: rgba(88,166,255,.62); text-shadow: 0 0 8px rgba(88,166,255,.72); }
 #badge.lvl-3 { color: var(--red-hi); border-color: var(--red); text-shadow: var(--glow-r); animation: warn-pulse 2.2s linear infinite; }
 
-/* ── MONITOR STRIP ───────────────────────────────────────────── */
 #monitor-strip {
   flex-shrink: 0;
   height: 19px;
@@ -107,7 +103,6 @@
   animation: ticker-scroll 28s linear infinite;
 }
 
-/* ── GATE INTEGRITY BAR ───────────────────────────────────────── */
 #gate-bar {
   flex-shrink: 0;
   padding: 5px 14px;
@@ -155,7 +150,6 @@
 #gate-bar.critical #gate-timer { color: var(--red-hi); text-shadow: var(--glow-r); animation: warn-pulse .7s linear infinite; }
 #gate-bar.critical #gate-track { border-color: var(--red); animation: gate-crit-pulse 1.2s linear infinite; }
 
-/* ── WORKSPACE ───────────────────────────────────────────────── */
 #workspace {
   flex: 1;
   display: flex;
@@ -164,7 +158,6 @@
   min-height: 0;
 }
 
-/* ── LEFT PANEL ──────────────────────────────────────────────── */
 #left-panel {
   width: 195px;
   min-width: 195px;
@@ -177,7 +170,6 @@
   box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
 }
 
-/* ── RIGHT PANEL ─────────────────────────────────────────────── */
 #right-panel {
   width: 210px;
   min-width: 210px;
@@ -193,7 +185,6 @@
 #right-panel::-webkit-scrollbar-track { background: transparent; }
 #right-panel::-webkit-scrollbar-thumb { background: var(--fg-dark); }
 
-/* ── PANEL HEADERS ───────────────────────────────────────────── */
 .panel-hdr {
   font-family: 'VT323', 'Courier New', monospace;
   font-size: 14px;
@@ -210,7 +201,6 @@
   flex-shrink: 0;
 }
 
-/* ── NAV TREE ────────────────────────────────────────────────── */
 #nav-tree {
   flex: 1;
   overflow-y: auto;
@@ -259,7 +249,6 @@
   100% { background: transparent; color: var(--fg-dim); }
 }
 
-/* ── CENTER TERMINAL ─────────────────────────────────────────── */
 #terminal-center {
   flex: 1;
   display: flex;
@@ -268,7 +257,6 @@
   overflow: hidden;
 }
 
-/* ── RESPONSIVE ───────────────────────────────────────────────── */
 @media (max-width: 1100px) { #right-panel { display: none; } }
 @media (max-width: 900px)  { #left-panel  { display: none; } }
 @media (max-width: 600px) {

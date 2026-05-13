@@ -1,9 +1,5 @@
-/* ═══════════════════════════════════════════════════════════════
-   ui.js — DOM refs, clock, badge, uptime, input lock, operator IP
-   Depends on: data.js (TIERS, TIER_CLS, FILES, rand), state.js (S)
-═══════════════════════════════════════════════════════════════ */
 
-// ── DOM REFS ───────────────────────────────────────────────────
+
 const $out      = document.getElementById('output');
 const $in       = document.getElementById('cmd-in');
 const $clock    = document.getElementById('sys-clock');
@@ -28,7 +24,6 @@ const $clrLevel = document.getElementById('clr-level');
 const $clrFiles = document.getElementById('clr-files');
 const $audioToggle = document.getElementById('audio-toggle');
 
-// ── OPERATOR IP ────────────────────────────────────────────────
 let operatorIP = '███.███.███.███';
 (async () => {
   try {
@@ -41,10 +36,8 @@ let operatorIP = '███.███.███.███';
   if ($sbOp) $sbOp.textContent = `OPERATOR: ${operatorIP}`;
 })();
 
-// ── SESSION START ──────────────────────────────────────────────
 const sessionStart = Date.now();
 
-// ── CLOCK ──────────────────────────────────────────────────────
 function tickClock() {
   const n = new Date(), p = x => String(x).padStart(2,'0');
   const ms = String(n.getMilliseconds()).padStart(3,'0');
@@ -54,7 +47,6 @@ function tickClock() {
 setInterval(tickClock, 50);
 tickClock();
 
-// ── CURSOR TRACKING ────────────────────────────────────────────
 const $cursor     = document.getElementById('cursor');
 const $cursorSizer = document.getElementById('cursor-sizer');
 const $promptStr  = document.getElementById('prompt-str');
@@ -73,7 +65,6 @@ $in.addEventListener('click',   syncCursor);
 $in.addEventListener('focus',   syncCursor);
 syncCursor();
 
-// ── UPTIME ─────────────────────────────────────────────────────
 function updateUptime() {
   const elapsed = Math.floor((Date.now() - sessionStart) / 1000);
   const h = Math.floor(elapsed / 3600);
@@ -86,7 +77,6 @@ function updateUptime() {
 setInterval(updateUptime, 1000);
 updateUptime();
 
-// ── BADGE & CLEARANCE PANEL ────────────────────────────────────
 function refreshBadge() {
   $badge.textContent = TIERS[S.clearance];
   $badge.className   = TIER_CLS[S.clearance];
@@ -99,14 +89,12 @@ function refreshBadge() {
 }
 refreshBadge();
 
-// ── AUTH TOKEN ─────────────────────────────────────────────────
 function genAuthToken() {
   return Array.from({length: 8}, () => rand(0, 15).toString(16).toUpperCase()).join('');
 }
 let authToken = genAuthToken();
 if ($authTok) $authTok.textContent = authToken;
 
-// ── OPTIONAL AUDIO ────────────────────────────────────────────
 const AUDIO_KEY = 'dwp_audio_enabled';
 let audioEnabled = localStorage.getItem(AUDIO_KEY) === '1';
 let audioCtx = null;
@@ -227,17 +215,14 @@ function rotateAuthToken() {
 }
 setInterval(rotateAuthToken, 45000);
 
-// ── INPUT LOCK ─────────────────────────────────────────────────
 let inputLocked = false;
 let cmdOverride = null;
 
 function lockInput()   { inputLocked = true;  $in.disabled = true; }
 function unlockInput() { inputLocked = false; $in.disabled = false; $in.focus(); bottom(); }
 
-// ── COMMAND HISTORY ────────────────────────────────────────────
 const hist = []; let histIdx = -1;
 
-// ── EVENT LOG ──────────────────────────────────────────────────
 function logEvent(text, type) {
   const $log = document.getElementById('event-log');
   if (!$log) return;
@@ -252,7 +237,6 @@ function logEvent(text, type) {
   while ($log.children.length > 8) $log.removeChild($log.lastChild);
 }
 
-// ── NOTIFICATION STRIP ─────────────────────────────────────────
 let $notifStrip = null;
 
 function initNotifStrip() {
@@ -274,7 +258,6 @@ function showNotif(text, type) {
   }, 8000);
 }
 
-// ── POWER VOLTAGE FLUCTUATION ──────────────────────────────────
 setInterval(() => {
   const v = (12.0 + Math.random() * 0.9).toFixed(1);
   $pwr.textContent = `PWR: ${v}V`;

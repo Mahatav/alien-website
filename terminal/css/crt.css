@@ -1,13 +1,10 @@
-/* ═══════════════════════════════════════════════════════════════
-   crt.css — CRT screen, noise, dust, animations, effect overlays
-═══════════════════════════════════════════════════════════════ */
 
-/* ── CRT SCREEN ──────────────────────────────────────────────── */
+
 #crt {
   position: fixed; inset: 0;
   overflow: hidden;
   background: var(--bg);
-  /* B1: slightly larger radius + side inset shadows suggest barrel curvature */
+  
   border-radius: 14px;
   box-shadow:
     0 0  60px rgba(230,230,230,0.40),
@@ -19,7 +16,6 @@
     inset -28px 0 70px -18px rgba(0,0,0,0.18);
 }
 
-/* ── SPACE BACKDROP ─────────────────────────────────────────── */
 #space-nebula,
 #starfield-far,
 #starfield-near {
@@ -60,7 +56,6 @@
   animation: stars-drift-near 42s linear infinite;
 }
 
-/* Scanlines — slightly higher contrast + vertical pixel grid */
 #crt::before {
   content: '';
   position: fixed; inset: 0;
@@ -82,7 +77,6 @@
     );
 }
 
-/* Vignette — asymmetric, darker at bottom corners */
 #crt::after {
   content: '';
   position: fixed; inset: 0;
@@ -98,7 +92,6 @@
     radial-gradient(ellipse 55% 35% at 88% 98%, rgba(0,0,0,.28) 0%, transparent 100%);
 }
 
-/* ── NOISE CANVAS ────────────────────────────────────────────── */
 #noise-layer {
   position: fixed; inset: 0;
   pointer-events: none; z-index: 601;
@@ -106,7 +99,6 @@
   mix-blend-mode: screen;
 }
 
-/* ── BURN-IN LAYER ───────────────────────────────────────────── */
 #burn-in {
   position: fixed; inset: 0;
   pointer-events: none; z-index: 3;
@@ -122,7 +114,6 @@
   overflow: hidden;
 }
 
-/* ── DUST PARTICLES ──────────────────────────────────────────── */
 #dust-layer { position: fixed; inset: 0; pointer-events: none; z-index: 4; }
 .dust {
   position: absolute;
@@ -131,8 +122,6 @@
   border-radius: 50%;
   animation: dust-drift linear infinite;
 }
-
-/* ── ANIMATIONS ──────────────────────────────────────────────── */
 
 @keyframes dust-drift {
   0%   { transform: translate(0,0);              opacity: 0; }
@@ -220,13 +209,11 @@
   100% { top: 101%; opacity: 0; }
 }
 
-/* B1: continuous slow horizontal rolling distortion bar (~20s cycle) */
 @keyframes crt-drift-bar {
   from { top: -1px; }
   to   { top: 100vh; }
 }
 
-/* B1: subtle brightness drift — radial bright spot wanders ~30s */
 @keyframes brightness-drift {
   0%   { transform: translate(-6%, -4%); }
   25%  { transform: translate(6%, -6%); }
@@ -266,14 +253,12 @@
   to   { transform: translateX(0);     opacity: 1; }
 }
 
-/* ── TERMINAL BODY ───────────────────────────────────────────── */
 #terminal-body {
   display: flex; flex-direction: column; height: 100%;
   position: relative; z-index: 10;
   animation: crt-flicker 10s linear infinite;
 }
 
-/* Glitch: body shifts + chromatic aberration on #output */
 #terminal-body.glitching {
   animation: glitch-shift .55s linear forwards, crt-flicker 10s linear infinite;
 }
@@ -281,7 +266,6 @@
   animation: chromatic-split 0.12s linear;
 }
 
-/* ── EFFECT ELEMENTS ─────────────────────────────────────────── */
 #glitch-bar {
   position: fixed; left: 0; width: 100%; height: 5px;
   background: linear-gradient(to right, transparent, rgba(255,255,255,.42), transparent);
@@ -304,7 +288,6 @@
 }
 #roll-line.rolling { animation: roll-line 7s linear forwards; }
 
-/* B1: continuous slow drift bar (separate from event-triggered roll-line) */
 #crt-drift-bar {
   position: fixed; left: 0; width: 100%; height: 1px;
   background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.07) 35%, rgba(255,255,255,0.11) 50%, rgba(255,255,255,0.07) 65%, transparent 100%);
@@ -312,7 +295,6 @@
   animation: crt-drift-bar 20s linear infinite;
 }
 
-/* B1: wandering brightness spot */
 #crt-brightness-drift {
   position: fixed;
   width: 200%; height: 200%;
@@ -322,7 +304,6 @@
   animation: brightness-drift 30s linear infinite;
 }
 
-/* ── WARNING OVERLAY ─────────────────────────────────────────── */
 #warn-overlay {
   display: none;
   position: fixed; inset: 0; z-index: 800;
@@ -339,7 +320,6 @@
 .w-line   { font-size: 11px; letter-spacing: 2px; color: var(--amber); text-shadow: var(--glow-a); }
 .w-dismiss { font-size: 10px; color: var(--fg-dim); text-shadow: var(--glow); margin-top: 22px; }
 
-/* ── GATE-CLOSE OVERLAY ───────────────────────────────────────── */
 #gate-overlay {
   display: none;
   position: fixed; inset: 0; z-index: 900;
@@ -354,7 +334,6 @@
 .go-line  { font-size: 11px; letter-spacing: 2px; color: var(--amber); text-shadow: var(--glow-a); }
 .go-count { font-size: 13px; letter-spacing: 3px; color: var(--fg-dim); text-shadow: var(--glow); margin-top: 14px; }
 
-/* ── FLOATING DIAGNOSTIC WINDOWS ─────────────────────────────── */
 .float-win {
   position: fixed;
   z-index: 500;
@@ -402,7 +381,6 @@
   overflow-y: auto;
 }
 
-/* ── NOTIFICATION STRIP ──────────────────────────────────────── */
 #notif-strip {
   position: fixed;
   top: 4px; right: 4px;

@@ -1,7 +1,4 @@
-/* ═══════════════════════════════════════════════════════════════
-   main.js — Boot sequence, system init. Load last.
-   Depends on: all other modules
-═══════════════════════════════════════════════════════════════ */
+
 
 function animateSectorScan(done) {
   const el = document.createElement('div');
@@ -17,7 +14,6 @@ function animateSectorScan(done) {
   }, 100);
 }
 
-// ── BOOT PHASES ────────────────────────────────────────────────
 function runBootPhase1() {
   queueLines(BOOT_PHASE1, 'fast', () => {
     setTimeout(runBootPhase2, rand(400, 700));
@@ -46,7 +42,7 @@ function runBootPhase2() {
 }
 
 function runBootPhase4() {
-  // Inject live IP into boot text
+  
   const phase = [...BOOT_PHASE4];
   const ipIdx = phase.findIndex(([,s]) => s.includes('ALERT') && s.includes('SESSION ID'));
   if (ipIdx >= 0) {
@@ -71,11 +67,10 @@ function runBootPhase5() {
   });
 }
 
-// ── CINEMATIC BOOT ENTRY ───────────────────────────────────────
 function runBoot() {
   lockInput();
   showStartupWarning(() => {
-    // G2: scan sweep → brief blank → CRT power-on overlay → boot text
+    
     doSweep();
     setTimeout(() => {
       const overlay = document.createElement('div');
@@ -92,7 +87,6 @@ function runBoot() {
   });
 }
 
-// ── INIT ───────────────────────────────────────────────────────
 initDust();
 initRadar();
 initWaveform();

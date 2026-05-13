@@ -1,7 +1,4 @@
-/* ═══════════════════════════════════════════════════════════════
-   typewriter.js — Typewriter engine and output helpers
-   Depends on: data.js (CFG, CORRUPT_CHARS, rand), ui.js ($out)
-═══════════════════════════════════════════════════════════════ */
+
 
 let typeQueue   = [];
 let typeRunning = false;
@@ -65,7 +62,6 @@ function charSpeed(lineType, speedName) {
   return base;
 }
 
-// Type one line character by character, with optional corrupted-glyph jitter (J3)
 function typeChar(t, s, msPerChar, done) {
   const el = document.createElement('div');
   el.className = lnClass(t);
@@ -85,7 +81,7 @@ function typeChar(t, s, msPerChar, done) {
       return;
     }
     i++;
-    // J3: 15% chance of wrong glyph for one tick on 'd' lines
+    
     let display = s.slice(0, i);
     if (t === 'd' && i < s.length && Math.random() < 0.15) {
       display += CORRUPT_CHARS[rand(0, CORRUPT_CHARS.length - 1)];
@@ -106,8 +102,6 @@ function typeChar(t, s, msPerChar, done) {
 
 function flushTyping() { typeSkip = true; }
 
-// ── OUTPUT HELPERS ─────────────────────────────────────────────
-
 function lnClass(t) {
   return { b:'ln ln-b', d:'ln ln-d', a:'ln ln-a', r:'ln ln-r', '':'ln ln-' }[t] ?? 'ln ln-n';
 }
@@ -118,7 +112,7 @@ function appendLnDirect(t, s) {
   el.textContent = s ?? '';
   $out.appendChild(el);
 
-  // B4: phosphor persistence — faint ghost overlapping the real line, fades over 600ms
+  
   const ghost = document.createElement('div');
   ghost.className = lnClass(t) + ' no-bloom';
   ghost.textContent = s ?? '';

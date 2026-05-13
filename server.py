@@ -6,14 +6,15 @@ import os
 
 PORT = 3000
 
-# alien-website/ root (one level up from this file)
-BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE = os.path.dirname(os.path.abspath(__file__))
 
 MIME = {
     '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
     '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png',
     '.jpg': 'image/jpeg', '.woff2': 'font/woff2', '.woff': 'font/woff',
     '.wav': 'audio/wav', '.json': 'application/json', '.riv': 'application/octet-stream',
+    '.mp4': 'video/mp4', '.glb': 'model/gltf-binary', '.wasm': 'application/wasm',
+    '.hdr': 'application/octet-stream', '.ktx2': 'image/ktx2',
 }
 
 def guess_mime(path):
@@ -37,7 +38,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
     def proxy_or_404(self, url_path):
         url = f"https://lando.itsoffbrand.io{url_path}"
-        local = os.path.join(BASE, 'main_page', url_path.lstrip('/'))
+        local = os.path.join(BASE, 'home', url_path.lstrip('/'))
         try:
             req = urllib.request.Request(url, headers={
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
@@ -61,29 +62,29 @@ class Handler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         path = urllib.parse.unquote(self.path.split('?')[0])
 
-        # / → main page
         if path in ('/', '/index.html', ''):
-            self.serve_file(os.path.join(BASE, 'main_page', 'index.html'))
+            self.serve_file(os.path.join(BASE, 'home', 'index.html'))
             return
 
-        # /gate → terminal
         if path in ('/gate', '/gate/', '/gate/index.html'):
-            self.serve_file(os.path.join(BASE, 'index.html'))
+            self.serve_file(os.path.join(BASE, 'terminal', 'index.html'))
             return
 
-        # Try main_page/ first (main page assets)
-        main_local = os.path.join(BASE, 'main_page', path.lstrip('/'))
-        if os.path.isfile(main_local):
-            self.serve_file(main_local)
+        home_local = os.path.join(BASE, 'home', path.lstrip('/'))
+        if os.path.isfile(home_local):
+            self.serve_file(home_local)
             return
 
-        # Try root/ next (gate terminal assets: css/, js/, terminal.*)
+        terminal_local = os.path.join(BASE, 'terminal', path.lstrip('/'))
+        if os.path.isfile(terminal_local):
+            self.serve_file(terminal_local)
+            return
+
         root_local = os.path.join(BASE, path.lstrip('/'))
         if os.path.isfile(root_local):
             self.serve_file(root_local)
             return
 
-        # Proxy from lando CDN as fallback
         self.proxy_or_404(path)
 
 socketserver.TCPServer.allow_reuse_address = True

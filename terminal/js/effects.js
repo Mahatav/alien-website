@@ -1,9 +1,5 @@
-/* ═══════════════════════════════════════════════════════════════
-   effects.js — Noise canvas, ambient CRT effects, glitch, radar, waveform
-   Depends on: data.js, ui.js, typewriter.js
-═══════════════════════════════════════════════════════════════ */
 
-// ── NOISE CANVAS ───────────────────────────────────────────────
+
 (function initNoise() {
   const ctx = $noise.getContext('2d');
   function draw() {
@@ -21,7 +17,6 @@
   window.addEventListener('resize', draw);
 })();
 
-// ── DUST PARTICLES ─────────────────────────────────────────────
 function initDust() {
   const layer = document.getElementById('dust-layer');
   if (!layer) return;
@@ -38,7 +33,6 @@ function initDust() {
   }
 }
 
-// ── AMBIENT ROLL LINE ──────────────────────────────────────────
 (function schedRoll() {
   function fire() {
     $roll.classList.remove('rolling'); void $roll.offsetWidth; $roll.classList.add('rolling');
@@ -47,7 +41,6 @@ function initDust() {
   setTimeout(fire, 9000 + Math.random() * 25000);
 })();
 
-// ── STATIC BURST ───────────────────────────────────────────────
 (function schedBurst() {
   function fire() {
     $tBody.style.filter = 'brightness(1.3) contrast(1.1)';
@@ -57,7 +50,6 @@ function initDust() {
   setTimeout(fire, 22000 + Math.random() * 30000);
 })();
 
-// ── SCREEN INSTABILITY EVENTS ──────────────────────────────────
 let bootComplete = false;
 
 function schedInstability() {
@@ -67,16 +59,16 @@ function schedInstability() {
       const type = rand(0, 2);
       const crt = document.getElementById('crt');
       if (type === 0) {
-        // Sync loss
+        
         crt.style.transform = `translateX(${rand(3,6)}px)`;
         setTimeout(() => { crt.style.transform = ''; }, 80);
       } else if (type === 1) {
-        // Brightness collapse
+        
         crt.style.filter = 'brightness(0.4)';
         setTimeout(() => { crt.style.filter = ''; }, 200);
         triggerWaveFlatline(500);
       } else {
-        // Wide rolling bar
+        
         const bar = document.getElementById('roll-line');
         bar.style.height = '10px';
         bar.classList.remove('rolling'); void bar.offsetWidth; bar.classList.add('rolling');
@@ -89,7 +81,6 @@ function schedInstability() {
   }, delay);
 }
 
-// ── AMBIENT TERMINAL OUTPUT ────────────────────────────────────
 const AMBIENT_MSGS = [
   '  [PROCESS: bg-monitor-07 — still active]',
   '  [RESONANCE EVENT LOGGED — 432.000 Hz — DURATION: 0.004s]',
@@ -108,7 +99,6 @@ function schedAmbient() {
   }, delay);
 }
 
-// ── GLITCH EFFECT ──────────────────────────────────────────────
 function doGlitch(cb) {
   $tBody.classList.add('glitching');
   $gBar.classList.add('active');
@@ -124,7 +114,6 @@ function doSweep() {
   $sweep.classList.remove('active'); void $sweep.offsetWidth; $sweep.classList.add('active');
 }
 
-// ── WARNING OVERLAYS ───────────────────────────────────────────
 function showWarning() {
   $warn.classList.add('show');
   const dismiss = () => {
@@ -173,7 +162,6 @@ function showStartupWarning(onDismiss) {
   }, 800);
 }
 
-// ── RADAR CANVAS ───────────────────────────────────────────────
 let radarAngle    = 0;
 let radarBlips    = [];
 let radarScanMode = false;
@@ -187,7 +175,7 @@ function initRadar() {
   const cx = W / 2, cy = H / 2;
   const maxR = Math.min(W, H) / 2 - 4;
 
-  // Static blip positions (in polar: angle, radius 0-1)
+  
   radarBlips = [
     { a: 0.3,  r: 0.45, fade: 0 },
     { a: 1.1,  r: 0.70, fade: 0 },
@@ -201,7 +189,7 @@ function initRadar() {
     ctx.fillStyle = '#060608';
     ctx.fillRect(0, 0, W, H);
 
-    // Concentric rings
+    
     for (let i = 1; i <= 5; i++) {
       ctx.beginPath();
       ctx.arc(cx, cy, maxR * (i / 5), 0, Math.PI * 2);
@@ -210,13 +198,13 @@ function initRadar() {
       ctx.stroke();
     }
 
-    // Cross hairs
+    
     ctx.strokeStyle = 'rgba(170,170,170,0.06)';
     ctx.lineWidth = 0.5;
     ctx.beginPath(); ctx.moveTo(cx, 0);  ctx.lineTo(cx, H);  ctx.stroke();
     ctx.beginPath(); ctx.moveTo(0, cy);  ctx.lineTo(W, cy);  ctx.stroke();
 
-    // Phosphor sweep trail
+    
     for (let t = 0; t < 80; t++) {
       const trailA = radarAngle - (t / 80) * (Math.PI * 0.6);
       const opacity = (1 - t / 80) * 0.10;
@@ -228,7 +216,7 @@ function initRadar() {
       ctx.stroke();
     }
 
-    // Sweep arm
+    
     ctx.beginPath();
     ctx.moveTo(cx, cy);
     ctx.lineTo(cx + Math.cos(radarAngle) * maxR, cy + Math.sin(radarAngle) * maxR);
@@ -236,7 +224,7 @@ function initRadar() {
     ctx.lineWidth = 1;
     ctx.stroke();
 
-    // Blips
+    
     for (const blip of radarBlips) {
       if (blip.fade <= 0) continue;
       const bx = cx + Math.cos(blip.a) * blip.r * maxR;
@@ -251,12 +239,12 @@ function initRadar() {
       ctx.fill();
     }
 
-    // Advance angle (6 RPM normally, 18 RPM during scan)
+    
     const rpm = (radarScanMode && Date.now() < radarScanEnd) ? 18 : 6;
     radarAngle += (rpm / 60) * (Math.PI * 2) / 60;
     if (radarAngle > Math.PI * 2) radarAngle -= Math.PI * 2;
 
-    // Activate blips as sweep crosses them
+    
     for (const blip of radarBlips) {
       const diff = Math.abs(((blip.a - radarAngle + Math.PI * 3) % (Math.PI * 2)) - Math.PI);
       if (diff < 0.12) {
@@ -285,7 +273,6 @@ function triggerRadarScan() {
   if (radarBlips.length > 9) radarBlips = radarBlips.slice(-9);
 }
 
-// ── WAVEFORM CANVAS ────────────────────────────────────────────
 let waveOffset         = 0;
 let waveAmplitude      = 1;
 let waveTargetAmp      = 1;
@@ -345,7 +332,6 @@ function triggerWaveFlatline(ms) {
   setTimeout(() => { waveTargetAmp = 1; }, ms + 300);
 }
 
-// ── SIGNAL INTEGRITY ───────────────────────────────────────────
 let sigBase    = 78;
 let sigPhase   = 0;
 
@@ -376,7 +362,6 @@ function dropSignal(amount, recoverMs) {
   setTimeout(() => { sigBase = Math.min(78, sigBase + amount); }, recoverMs);
 }
 
-// ── MEMORY & TEMPERATURE DRIFT ─────────────────────────────────
 function updateMemTemp() {
   const mins = (Date.now() - sessionStart) / 60000;
   const mem  = Math.min(211, Math.floor(187 + mins));
@@ -394,13 +379,12 @@ function updateMemTemp() {
 setInterval(updateMemTemp, 10000);
 updateMemTemp();
 
-// ── NAV TREE ───────────────────────────────────────────────────
 function buildNavTree() {
   const $nav = document.getElementById('nav-tree');
   if (!$nav) return;
   $nav.innerHTML = '';
 
-  // Archive folders
+  
   for (const [key, folder] of Object.entries(ARCHIVE)) {
     const section  = document.createElement('div');
     section.className = 'nav-section';
@@ -438,7 +422,7 @@ function buildNavTree() {
     $nav.appendChild(section);
   }
 
-  // Narrative section
+  
   const narHdr = document.createElement('div');
   narHdr.className = 'nav-tier-hdr';
   narHdr.textContent = '[NARRATIVE]';
@@ -466,7 +450,6 @@ function buildNavTree() {
   }
 }
 
-// ── FLOATING DIAGNOSTIC WINDOWS ────────────────────────────────
 function createFloatWin(id, title, bodyHTML, autoCloseMs) {
   const existing = document.getElementById(id);
   if (existing) { existing.remove(); }
@@ -482,13 +465,13 @@ function createFloatWin(id, title, bodyHTML, autoCloseMs) {
     <div class="float-win-body">${bodyHTML}</div>
   `;
 
-  // Random position within safe zone
+  
   win.style.left = `${300 + Math.random() * 250}px`;
   win.style.top  = `${120 + Math.random() * 150}px`;
 
   document.body.appendChild(win);
 
-  // Drag
+  
   const hdr = win.querySelector('.float-win-hdr');
   let dragging = false, ox, oy, ol, ot;
   hdr.addEventListener('mousedown', e => {

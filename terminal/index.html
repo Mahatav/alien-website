@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MNEMOSYNE SYSTEMS — ARCHIVE TERMINAL</title>
 
-  <!-- K3: SEO / social meta -->
+  
   <meta name="description" content="MNEMOSYNE SYSTEMS — Deep Watch Protocol Archive Terminal. Restricted access." />
   <meta property="og:title"       content="MNEMOSYNE SYSTEMS — ARCHIVE TERMINAL" />
   <meta property="og:description" content="Deep Watch Protocol Archive Terminal. Restricted access." />
   <meta property="og:type"        content="website" />
 
-  <!-- K3: Inline SVG favicon -->
+  
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23000'/><text x='4' y='26' font-size='24' fill='%23BFD7FF'>◈</text></svg>" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=VT323&display=swap" rel="stylesheet">
 
-  <!-- CSS modules — load order matters -->
+  
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/crt.css" />
   <link rel="stylesheet" href="css/layout.css" />
@@ -26,14 +26,13 @@
 </head>
 <body>
 
-<!-- ── CRT SCREEN ──────────────────────────────────────────── -->
 <div id="crt">
   <div id="space-nebula"></div>
   <div id="starfield-far"></div>
   <div id="starfield-near"></div>
   <div id="terminal-body">
 
-    <!-- Status bar -->
+    
     <div id="status-bar">
       <div class="sb-left">
         <span class="sb-node">NODE7.MNEMOSYNE.ARCH</span>
@@ -50,10 +49,10 @@
       </div>
     </div>
 
-    <!-- Surveillance ticker -->
+    
     <div id="monitor-strip"></div>
 
-    <!-- Gate integrity bar -->
+    
     <div id="gate-bar">
       <span id="gate-label">GATE INTEGRITY  100%</span>
       <div id="gate-track">
@@ -62,10 +61,10 @@
       <span id="gate-timer">--:--</span>
     </div>
 
-    <!-- ── THREE-PANEL WORKSPACE ──────────────────────────── -->
+    
     <div id="workspace">
 
-      <!-- LEFT PANEL: nav tree + sys stats -->
+      
       <div id="left-panel">
 
         <div class="panel-hdr">◈ ARCHIVE INDEX</div>
@@ -110,9 +109,9 @@
           <div id="sig-pct">---%</div>
         </div>
 
-      </div><!-- /left-panel -->
+      </div>
 
-      <!-- CENTER: terminal output + input -->
+      
       <div id="terminal-center">
         <div id="output"></div>
         <div id="input-row">
@@ -131,7 +130,7 @@
         </div>
       </div>
 
-      <!-- RIGHT PANEL: radar + waveform + diagnostics -->
+      
       <div id="right-panel">
 
         <div class="panel-hdr">◈ SIGNAL RADAR</div>
@@ -177,14 +176,13 @@
         <div class="panel-hdr">◈ RECENT EVENTS</div>
         <div id="event-log"></div>
 
-      </div><!-- /right-panel -->
+      </div>
 
-    </div><!-- /workspace -->
+    </div>
 
-  </div><!-- /terminal-body -->
-</div><!-- /crt -->
+  </div>
+</div>
 
-<!-- ── VISUAL EFFECTS ──────────────────────────────────────── -->
 <canvas id="noise-layer"></canvas>
 <div id="glitch-bar"></div>
 <div id="scan-sweep"></div>
@@ -200,7 +198,6 @@ ARCHIVIST PRIME&nbsp;&nbsp;&nbsp;1994-03-07 03:42:19&nbsp;&nbsp;&nbsp;NO FURTHER
 </div>
 <div id="dust-layer"></div>
 
-<!-- ── SECURITY WARNING OVERLAY ────────────────────────────── -->
 <div id="warn-overlay">
   <div class="w-title">!! SECURITY VIOLATION !!</div>
   <div class="w-line">MNEMOSYNE SECURITY PROTOCOL 7-DELTA TRIGGERED</div>
@@ -211,7 +208,6 @@ ARCHIVIST PRIME&nbsp;&nbsp;&nbsp;1994-03-07 03:42:19&nbsp;&nbsp;&nbsp;NO FURTHER
   <div class="w-dismiss">[ PRESS ANY KEY TO ACKNOWLEDGE ]</div>
 </div>
 
-<!-- ── GATE CLOSE OVERLAY ───────────────────────────────────── -->
 <div id="gate-overlay">
   <div class="go-title">!! ACCESS REVOKED !!</div>
   <div class="go-line">GATE INTEGRITY: 0%</div>
@@ -220,7 +216,6 @@ ARCHIVIST PRIME&nbsp;&nbsp;&nbsp;1994-03-07 03:42:19&nbsp;&nbsp;&nbsp;NO FURTHER
   <div class="go-count">RETURNING TO SURFACE IN 3...</div>
 </div>
 
-<!-- JS modules — strict load order (each depends on all previous) -->
 <script src="js/data.js"></script>
 <script src="js/state.js"></script>
 <script src="js/ui.js"></script>

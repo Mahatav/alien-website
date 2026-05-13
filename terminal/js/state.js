@@ -1,7 +1,4 @@
-/* ═══════════════════════════════════════════════════════════════
-   state.js — Player state, persistence, caesar cipher
-   Depends on: data.js
-═══════════════════════════════════════════════════════════════ */
+
 
 function freshState() {
   return { clearance: 0, decrypted: [], attempts: {} };

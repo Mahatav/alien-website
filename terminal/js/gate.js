@@ -1,9 +1,6 @@
-/* ═══════════════════════════════════════════════════════════════
-   gate.js — Gate timer, alerts, close sequence
-   Depends on: data.js, ui.js, typewriter.js, effects.js
-═══════════════════════════════════════════════════════════════ */
 
-let gateDuration  = 480;   // set randomly in initGate()
+
+let gateDuration  = 480;   
 let gateTimeLeft  = 480;
 let gateInterval  = null;
 
@@ -36,7 +33,7 @@ function initGate() {
   const stored  = localStorage.getItem(GATE_KEY);
   let startTime = stored ? parseInt(stored) : null;
 
-  // Random session duration — generated once per visit, stored so refreshing respects it
+  
   const storedDur = localStorage.getItem(GATE_DUR_KEY);
   gateDuration = storedDur ? parseInt(storedDur) : rand(60, 300);
   if (!storedDur) localStorage.setItem(GATE_DUR_KEY, String(gateDuration));
@@ -51,7 +48,7 @@ function initGate() {
 
   if (gateTimeLeft <= 0) { triggerGateClose(); return; }
 
-  // Mark alerts that already passed (e.g. after a page refresh mid-session)
+  
   for (const a of GATE_ALERTS) {
     if (elapsed >= (gateDuration - a.at)) gateAlertsSent.add(a.at);
   }
@@ -64,7 +61,7 @@ function gateTick() {
   gateTimeLeft = Math.max(0, gateTimeLeft - 1);
   updateGateUI();
 
-  // F3: ambient "someone else" warning just before close
+  
   if (gateTimeLeft === 1) {
     appendLnDirect('d', '  [Someone else is in this archive.]');
     bottom();

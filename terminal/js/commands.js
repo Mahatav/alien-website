@@ -1,9 +1,5 @@
-/* ═══════════════════════════════════════════════════════════════
-   commands.js — dispatch(), all commands, file resolver, input events
-   Depends on: all other modules
-═══════════════════════════════════════════════════════════════ */
 
-// ── WORLD STATE ────────────────────────────────────────────────
+
 const WORLD_STATE = {
   filesOpened:  [],
   commandsRun:  [],
@@ -14,7 +10,6 @@ const WORLD_STATE = {
 
 function sessionMinutes() { return (Date.now() - sessionStart) / 60000; }
 
-// ── DISPATCH ───────────────────────────────────────────────────
 function dispatch(raw) {
   const t = raw.trim();
   if (!t) return unlockInput();
@@ -33,7 +28,7 @@ function dispatch(raw) {
   const v = p[0].toLowerCase();
   const a = p.slice(1);
 
-  // Secret: typing current auth token
+  
   if (v.toUpperCase() === authToken) { doTokenSecret(); return; }
 
   switch (v) {
@@ -50,7 +45,7 @@ function dispatch(raw) {
     case 'status':  doStatus();                             break;
     case 'reset':   doReset();                              break;
     case 'ping':    doPing();                               break;
-    // Hidden commands
+    
     case 'trace':   doTrace(a.join(' '));                   break;
     case 'locate':  doLocate(a.join(' '));                  break;
     case 'recover': doRecover();                            break;
@@ -62,7 +57,7 @@ function dispatch(raw) {
     case 'elevate': doElevate();                            break;
     case 'archive': doArchive(a.find(x => x !== '-a'), a.includes('-a')); break;
     case 'nodes':   doNodes();                              break;
-    // Easter eggs
+    
     case 'sudo':    doSudo();                               break;
     case 'hi': case 'hello': doHello();                    break;
     case 'xyzzy':   doXyzzy();                              break;
@@ -77,12 +72,11 @@ function dispatch(raw) {
   }
 }
 
-// ── HELP ───────────────────────────────────────────────────────
 function doHelp() {
   const mins = sessionMinutes();
   const lines = [
     ['d', '=================================================='],
-    ['b', '  COMMAND REFERENCE  //  TERMINAL v2.1.4'],
+    ['b', '  COMMAND REFERENCE  
     ['d', '=================================================='],
     ['',  ''],
     ['a', '  NAVIGATION'],
@@ -115,12 +109,11 @@ function doHelp() {
   queueLines(lines, 'fast', unlockInput);
 }
 
-// ── LS ─────────────────────────────────────────────────────────
 function doLs(showAll, folder) {
   if (!folder) {
     const lines = [
       ['d', '=================================================='],
-      ['a', '  NODE 7 ARCHIVE  //  DEEP WATCH PROTOCOL'],
+      ['a', '  NODE 7 ARCHIVE  
       ['d', '  PATH: /archive/dwp/'],
       ['d', '=================================================='],
       ['', ''],
@@ -181,10 +174,8 @@ function doLs(showAll, folder) {
   }
 }
 
-// ── CLEAR ──────────────────────────────────────────────────────
 function doClear() { $out.innerHTML = ''; unlockInput(); }
 
-// ── OPEN ───────────────────────────────────────────────────────
 function doOpen(input) {
   if (!input) {
     queueLines([['r','  USAGE: open [FOLDER/FILE]  or  open [FILE]']], 'fast', unlockInput);
@@ -210,7 +201,7 @@ function doOpen(input) {
     WORLD_STATE.filesOpened.push(resolved.name);
     logEvent(`OPEN ${resolved.name}`, 'info');
     showNotif(`FILE ACCESS: ${resolved.name}`, 'info');
-    // Show Personnel window after reading PERSONNEL.LOG
+    
     if (resolved.name === 'PERSONNEL.LOG' && !WORLD_STATE.personnelWinShown) {
       WORLD_STATE.personnelWinShown = true;
       setTimeout(() => {
@@ -239,7 +230,7 @@ function doOpen(input) {
     queueLines([...header, ...resolved.file.body], 'norm', unlockInput);
     return;
   }
-  // Archive file — open in new tab
+  
   window.open(resolved.url, '_blank');
   WORLD_STATE.filesOpened.push(resolved.name);
   logEvent(`OPEN ${resolved.name}`, 'info');
@@ -253,7 +244,6 @@ function doOpen(input) {
   ], 'fast', unlockInput);
 }
 
-// ── ACCESS ─────────────────────────────────────────────────────
 function doAccess(code) {
   if (!code) { queueLines([['r','  USAGE: access [code]']], 'fast', unlockInput); return; }
 
@@ -292,11 +282,10 @@ function doAccess(code) {
   });
 }
 
-// ── DECRYPT ────────────────────────────────────────────────────
 function doDecrypt(filename) {
   if (!filename) { queueLines([['r','  USAGE: decrypt [filename]']], 'fast', unlockInput); return; }
 
-  // Allow decrypting by name even without full path
+  
   const up = filename.trim().toUpperCase();
   const fileKey = Object.keys(DECRYPTERS).find(k => k === up || k.startsWith(up));
 
@@ -314,7 +303,7 @@ function doDecrypt(filename) {
     return;
   }
 
-  // Check clearance for the corresponding FILES entry
+  
   const fileData = FILES[fileKey];
   if (fileData && fileData.tier > S.clearance) {
     queueLines([
@@ -327,7 +316,7 @@ function doDecrypt(filename) {
   logEvent(`DECRYPT ATTEMPT: ${fileKey}`, 'info');
   showNotif(`DECRYPTING: ${fileKey}`, 'info');
 
-  // OMEGA_FINAL.DAT — needs OMEGA clearance, shows file body
+  
   if (fileKey === 'OMEGA_FINAL.DAT') {
     if (S.clearance < 3) {
       doGlitch(() => {
@@ -356,7 +345,7 @@ function doDecrypt(filename) {
     return;
   }
 
-  // Standard handler with character-scramble reveal (D4)
+  
   const handler = DECRYPTERS[fileKey];
   doGlitch(() => {
     queueLines([
@@ -365,7 +354,7 @@ function doDecrypt(filename) {
       ['d', '  CIPHER SIGNATURE DETECTED.'],
       ['', ''],
     ], 'fast', () => {
-      // Scramble delay before revealing decoded lines
+      
       setTimeout(() => {
         const result = handler();
         if (result) queueLines(result, 'norm', unlockInput);
@@ -375,7 +364,6 @@ function doDecrypt(filename) {
   });
 }
 
-// ── SCAN ───────────────────────────────────────────────────────
 function doScan() {
   WORLD_STATE.scanCount++;
   triggerRadarScan();
@@ -391,7 +379,7 @@ function doScan() {
   ], 'fast', () => {
     function nextSector() {
       if (idx >= sectors.length) {
-        // Results
+        
         const lastFile = WORLD_STATE.filesOpened.slice(-1)[0];
         const refs = lastFile
           ? [['a', `  [SIG] Residual access signature: ${lastFile}`]]
@@ -446,7 +434,6 @@ function doScan() {
   });
 }
 
-// ── WHOAMI ─────────────────────────────────────────────────────
 function doWhoami() {
   const mins = sessionMinutes();
   const totalFiles = Object.values(ARCHIVE).reduce((s,f) => s+f.files.length, 0) + ROOT_FILES.length;
@@ -469,7 +456,6 @@ function doWhoami() {
   queueLines(lines, 'fast', unlockInput);
 }
 
-// ── DATE ───────────────────────────────────────────────────────
 function doDate() {
   queueLines([
     ['d',`  SYSTEM TIME  :  ${new Date().toUTCString()}`],
@@ -479,7 +465,6 @@ function doDate() {
   ], 'fast', unlockInput);
 }
 
-// ── STATUS ─────────────────────────────────────────────────────
 function doStatus() {
   const min = Math.floor(gateTimeLeft / 60);
   const sec = gateTimeLeft % 60;
@@ -504,7 +489,6 @@ function doStatus() {
   queueLines(lines, 'fast', unlockInput);
 }
 
-// ── RESET ──────────────────────────────────────────────────────
 function doReset() {
   queueLines([['a','  Type CONFIRM to wipe all progress, or anything else to cancel.']], 'fast', () => {
     cmdOverride = raw => {
@@ -528,7 +512,6 @@ function doReset() {
   });
 }
 
-// ── PING ───────────────────────────────────────────────────────
 function doPing() {
   queueLines([['d','  PING deep-watch-network.mnemosyne.local...']], 'fast', () => {
     setTimeout(() => {
@@ -545,8 +528,6 @@ function doPing() {
     }, 500);
   });
 }
-
-// ── HIDDEN COMMANDS ────────────────────────────────────────────
 
 function doTrace(target) {
   const t = target || 'UNKNOWN';
@@ -786,8 +767,6 @@ function doNodes() {
   ], 'norm', unlockInput);
 }
 
-// ── EASTER EGGS ─────────────────────────────────────────────────
-
 function doSudo() {
   showWarning();
   queueLines([['r','  UNAUTHORIZED COMMAND. INCIDENT LOGGED.']], 'fast', unlockInput);
@@ -824,7 +803,7 @@ function doBob() {
 function doLark() {
   queueLines([
     ['',''],
-    ['n','  LARK  //  FIELD LIAISON'],
+    ['n','  LARK  
     ['r','  Status: MISSING'],
     ['d','  Last seen: Cycle 89, Day 412'],
     ['d','  Last report: submitted that morning. Tone: normal.'],
@@ -905,26 +884,24 @@ function doUnknown(v) {
   queueLines(lines, 'fast', unlockInput);
 }
 
-// ── FILE RESOLVER ───────────────────────────────────────────────
-// Returns: { inline, file, name } | { url, name } | { locked, name, tier } | null
 function resolveFile(input) {
   if (!input) return null;
   const up = input.trim().toUpperCase();
 
-  // Narrative FILES — check exact match first
+  
   if (FILES[up]) {
     const f = FILES[up];
     if (f.tier > S.clearance) return { locked: true, name: up, tier: f.tier };
     return { inline: true, name: up, file: f };
   }
 
-  // Root files
+  
   for (const f of ROOT_FILES) {
     if (f.name === up || f.name.startsWith(up))
       return { url: f.real, name: f.name };
   }
 
-  // FOLDER/FILE path
+  
   if (up.includes('/')) {
     const slash   = up.indexOf('/');
     const folderK = up.slice(0, slash);
@@ -937,13 +914,13 @@ function resolveFile(input) {
     return null;
   }
 
-  // Search all archive folders
+  
   for (const folder of Object.values(ARCHIVE)) {
     const f = folder.files.find(x => x.name === up || x.name.startsWith(up));
     if (f) return { url: folder.realPath + f.real, name: f.name };
   }
 
-  // Partial match on FILES keys
+  
   const partialKey = Object.keys(FILES).find(k => k.startsWith(up));
   if (partialKey) {
     const f = FILES[partialKey];
@@ -954,7 +931,6 @@ function resolveFile(input) {
   return null;
 }
 
-// ── INPUT EVENTS ────────────────────────────────────────────────
 $in.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
     e.preventDefault();
@@ -983,7 +959,7 @@ $in.addEventListener('keydown', e => {
     const cmd = parts[0].toLowerCase();
     const pfx = parts[parts.length - 1].toUpperCase();
 
-    // Decrypt: only complete against files with cipher handlers
+    
     if (cmd === 'decrypt') {
       const match = Object.keys(DECRYPTERS).find(k => k.startsWith(pfx));
       if (match) {
@@ -998,11 +974,11 @@ $in.addEventListener('keydown', e => {
       return;
     }
 
-    // Folder autocomplete
+    
     const folderMatch = Object.keys(ARCHIVE).find(k => k.startsWith(pfx));
     if (folderMatch) { parts[parts.length - 1] = folderMatch + '/'; $in.value = parts.join(' '); return; }
 
-    // Folder/file path
+    
     if (pfx.includes('/')) {
       const slash = pfx.indexOf('/');
       const fk = pfx.slice(0, slash);
@@ -1021,7 +997,7 @@ $in.addEventListener('keydown', e => {
       return;
     }
 
-    // Narrative FILES
+    
     const fileMatches = Object.keys(FILES).filter(k => k.startsWith(pfx));
     if (fileMatches.length === 1) {
       parts[parts.length - 1] = fileMatches[0];
@@ -1038,7 +1014,7 @@ $in.addEventListener('keydown', e => {
       return;
     }
 
-    // Root files
+    
     const rootMatch = ROOT_FILES.find(f => f.name.startsWith(pfx));
     if (rootMatch) { parts[parts.length - 1] = rootMatch.name; $in.value = parts.join(' '); }
   }
