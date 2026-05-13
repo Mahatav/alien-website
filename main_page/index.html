@@ -1742,12 +1742,200 @@ _iub.csConfiguration = {"lang":"en","preferenceCookie":{"expireAfter":180},"site
           <h1 class="screen-reader">Skinny Bob</h1>
           <h2 class="screen-reader">The Visitor Who Never Went Home</h2>
         </div>
-        <section class="video-hero-section" style="position: relative; width: 100%; height: 100vh; overflow: hidden; background: #000;">
-          <video width="100%" height="100%" style="width: 100%; height: 100%; object-fit: cover; display: block;" autoplay muted loop playsinline>
-            <source src="YTDown_YouTube_Skinny-Bob-Brightened-up-at-maximum-Eyes_Media_B1KT4SKCniI_001_480p.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </section>
+        <!-- Investigation Board sticky over video -->
+        <div class="inv-sticky-w" style="position:relative;height:250vh;">
+          <div style="position:sticky;top:0;height:100vh;overflow:hidden;background:#000;">
+
+            <!-- Video -->
+            <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;" autoplay muted loop playsinline>
+              <source src="YTDown_YouTube_Skinny-Bob-Brightened-up-at-maximum-Eyes_Media_B1KT4SKCniI_001_480p.mp4" type="video/mp4">
+            </video>
+
+            <!-- Dark overlay to dim video behind board -->
+            <div style="position:absolute;inset:0;background:rgba(0,0,0,.52);z-index:1;"></div>
+
+            <!-- Vignette -->
+            <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,transparent 20%,rgba(0,0,0,.82) 100%);z-index:2;pointer-events:none;"></div>
+
+            <!-- Red string SVG -->
+            <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+              <line x1="175" y1="205" x2="530" y2="395" stroke="#b52b20" stroke-width="1.3" stroke-opacity=".65"/>
+              <line x1="530" y1="395" x2="840" y2="225" stroke="#b52b20" stroke-width="1.3" stroke-opacity=".65"/>
+              <line x1="840" y1="225" x2="1045" y2="435" stroke="#b52b20" stroke-width="1.3" stroke-opacity=".65"/>
+              <line x1="530" y1="395" x2="595" y2="655" stroke="#b52b20" stroke-width="1.3" stroke-opacity=".65"/>
+              <line x1="175" y1="205" x2="288" y2="638" stroke="#b52b20" stroke-width="1" stroke-opacity=".5"/>
+              <line x1="1045" y1="435" x2="595" y2="655" stroke="#b52b20" stroke-width="1" stroke-opacity=".55"/>
+              <line x1="840" y1="225" x2="595" y2="655" stroke="#b52b20" stroke-width="1" stroke-opacity=".4"/>
+              <circle cx="175" cy="205" r="5" fill="#c0392b" opacity=".9"/>
+              <circle cx="530" cy="395" r="5" fill="#c0392b" opacity=".9"/>
+              <circle cx="840" cy="225" r="5" fill="#c0392b" opacity=".9"/>
+              <circle cx="1045" cy="435" r="5" fill="#c0392b" opacity=".9"/>
+              <circle cx="595" cy="655" r="5" fill="#c0392b" opacity=".9"/>
+              <circle cx="288" cy="638" r="5" fill="#c0392b" opacity=".9"/>
+            </svg>
+
+            <style>
+              .inv-note {
+                position:absolute;
+                background:#ede4c8;
+                padding:.9rem 1rem 1.1rem;
+                box-shadow:2px 6px 24px rgba(0,0,0,.8), inset 0 0 0 1px rgba(0,0,0,.07);
+                font-size:.58rem;
+                line-height:1.6;
+                color:#1a1008;
+                font-family:monospace;
+                opacity:0;
+                transform:translateY(10px);
+                transition:opacity .8s ease, transform .8s ease;
+              }
+              .inv-note.visible { opacity:1; transform:translateY(0); }
+              .inv-note strong { font-size:.61rem; display:block; border-bottom:1px solid rgba(0,0,0,.18); padding-bottom:.28rem; margin-bottom:.4rem; letter-spacing:.08em; }
+              .inv-note .inv-red { color:#c0392b; font-size:.53rem; margin-top:.38rem; display:block; }
+              .inv-title-w { position:absolute; inset:0; z-index:7; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 2rem; pointer-events:none; }
+            </style>
+
+            <!-- Note 1: Roswell -->
+            <div class="inv-note" style="left:7%;top:13%;max-width:152px;transform:rotate(-4deg) translateY(10px);z-index:5;" data-inv-note="1">
+              <strong>ROSWELL / JUL 1947</strong>
+              Crash site secured within 24 hrs. Four entities recovered. Material unidentified. Witnesses silenced.
+              <span class="inv-red">→ linked to MNEMOSYNE</span>
+            </div>
+
+            <!-- Note 2: Signal 432Hz -->
+            <div class="inv-note" style="right:7%;top:9%;max-width:150px;transform:rotate(3.5deg) translateY(10px);z-index:5;" data-inv-note="2">
+              <strong>SIGNAL / 432 Hz / 1977</strong>
+              Non-terrestrial transmission intercepted. Pattern matches entity vocal freq. Still active.
+              <span class="inv-red">→ still transmitting</span>
+            </div>
+
+            <!-- Note 3: Skinny Bob -->
+            <div class="inv-note" style="left:4%;top:55%;max-width:145px;transform:rotate(2.5deg) translateY(10px);z-index:5;" data-inv-note="3">
+              <strong>ENTITY / SKINNY BOB</strong>
+              Footage recovered 2011. 3 min of film. Large eyes. No vocal cords. Communicates via frequency modulation.
+              <span class="inv-red">→ see: THE CONTACT</span>
+            </div>
+
+            <!-- Note 4: MNEMOSYNE -->
+            <div class="inv-note" style="right:5%;top:41%;max-width:152px;transform:rotate(-3deg) translateY(10px);z-index:5;" data-inv-note="4">
+              <strong>MNEMOSYNE / 1952</strong>
+              Black program. Memory extraction. Subjects report identical imagery — a dark field, a face. Files missing.
+              <span class="inv-red">→ connection unconfirmed</span>
+            </div>
+
+            <!-- Note 5: Tunguska -->
+            <div class="inv-note" style="left:50%;bottom:9%;max-width:158px;transform:translate(-50%,10px) rotate(-1.5deg);z-index:5;" data-inv-note="5">
+              <strong>TUNGUSKA / 1908</strong>
+              2,000 km² flattened. No crater. No fragments. Witnesses described a second sun.
+              <span class="inv-red">→ predates Roswell by 39 yrs</span>
+            </div>
+
+            <!-- Central typewriter title -->
+            <div class="inv-title-w">
+              <div style="text-align:center;">
+                <!-- Line 1: SKINNY — revealed first -->
+                <div id="inv-line1" class="text-impact-lg-mona" style="color:#fff!important;text-shadow:0 0 80px rgba(0,0,0,1);line-height:1.05;margin:0;opacity:0;transform:translateY(28px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1);"><strong>SKINNY</strong></div>
+                <!-- Line 2: BOB — revealed after -->
+                <div id="inv-line2" class="text-impact-lg-mona" style="color:#fff!important;text-shadow:0 0 80px rgba(0,0,0,1);line-height:1.05;margin:0;opacity:0;transform:translateY(28px);transition:opacity .85s .18s cubic-bezier(.16,1,.3,1),transform .85s .18s cubic-bezier(.16,1,.3,1);">BOB</div>
+                <!-- Line 3: typewriter word — revealed last, then typewriter starts -->
+                <div id="inv-line3" style="display:flex;align-items:baseline;justify-content:center;opacity:0;transform:translateY(28px);transition:opacity .85s .38s cubic-bezier(.16,1,.3,1),transform .85s .38s cubic-bezier(.16,1,.3,1);">
+                  <span id="tw-dynamic" class="text-impact-lg-brier" style="color:#d88989;text-shadow:0 0 80px rgba(0,0,0,1);min-width:2px;display:inline-block;"></span><span id="tw-cursor" class="text-impact-lg-brier" style="color:#fff;font-weight:100;line-height:1;margin-left:2px;opacity:0;">|</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <script>
+          (function(){
+            var sticky = document.querySelector('.inv-sticky-w');
+            var notes  = document.querySelectorAll('[data-inv-note]');
+            var delays = [0, 200, 500, 350, 700];
+
+            // Notes scroll-in via scroll progress
+            function onScroll(){
+              if(!sticky) return;
+              var rect     = sticky.getBoundingClientRect();
+              var total    = sticky.offsetHeight - window.innerHeight;
+              var scrolled = -rect.top;
+              var pct      = Math.max(0, Math.min(1, scrolled / total));
+              notes.forEach(function(n, i){
+                if(pct >= 0.08 + i * 0.06){
+                  setTimeout(function(){ n.classList.add('visible'); }, delays[i] || 0);
+                }
+              });
+            }
+            window.addEventListener('scroll', onScroll, {passive:true});
+            onScroll();
+
+            // Title reveal via IntersectionObserver — fires when section first enters viewport
+            var line1 = document.getElementById('inv-line1');
+            var line2 = document.getElementById('inv-line2');
+            var line3 = document.getElementById('inv-line3');
+            var revealed = false;
+
+            function revealTitle(){
+              if(revealed) return;
+              revealed = true;
+              [line1, line2, line3].forEach(function(el){
+                if(el){ el.style.opacity='1'; el.style.transform='translateY(0)'; }
+              });
+              // start typewriter after lines animate in
+              setTimeout(startTypewriter, 1100);
+            }
+
+            if(sticky && 'IntersectionObserver' in window){
+              new IntersectionObserver(function(entries, obs){
+                if(entries[0].isIntersecting){ revealTitle(); obs.disconnect(); }
+              }, {threshold: 0.05}).observe(sticky);
+            } else {
+              revealTitle();
+            }
+
+            // Typewriter
+            var words  = ['REAL?', 'LISTENING?', 'HERE?'];
+            var colors = ['#d88989', '#3b82f6', '#d88989'];
+            var el  = document.getElementById('tw-dynamic');
+            var cur = document.getElementById('tw-cursor');
+            if(!el || !cur) return;
+
+            var idx = 0, ci = 0, deleting = false, twStarted = false;
+
+            function startCursorBlink(){
+              cur.style.opacity = '1';
+              setInterval(function(){ cur.style.opacity = cur.style.opacity === '0' ? '1' : '0'; }, 530);
+            }
+
+            function startTypewriter(){
+              if(twStarted) return;
+              twStarted = true;
+              startCursorBlink();
+              tick();
+            }
+
+            function tick(){
+              var word = words[idx];
+              el.style.color = colors[idx];
+              if(!deleting){
+                ci++;
+                el.textContent = word.slice(0, ci);
+                if(ci === word.length){ deleting = true; setTimeout(tick, 3200); return; }
+                setTimeout(tick, 110);
+              } else {
+                ci--;
+                el.textContent = word.slice(0, ci);
+                if(ci === 0){
+                  deleting = false;
+                  idx = (idx + 1) % words.length;
+                  setTimeout(tick, 380);
+                  return;
+                }
+                setTimeout(tick, 65);
+              }
+            }
+          })();
+        </script>
+
         <section class="s">
           <div class="c">
             <div class="impact-content-w is-home">
