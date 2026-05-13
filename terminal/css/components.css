@@ -206,10 +206,6 @@
   pointer-events: none;
 }
 
-@media (max-width: 600px) {
-  #output     { padding: 8px 10px; }
-  #input-row  { padding: 5px 10px 7px; }
-}
 
 .classified-container {
   position: relative;

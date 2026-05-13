@@ -1,0 +1,158 @@
+/* ═══════════════════════════════════════════════════════════════════
+   TERMINAL — MOBILE
+   Built from scratch. Owns every style decision below 600px.
+   Vibe: full-bleed CRT terminal, VT323 font, black bg,
+         phosphor-white text, #58a6ff blue + #FF5C5C red accents.
+═══════════════════════════════════════════════════════════════════ */
+
+
+/* ── Panel collapse (size-triggered, not touch-triggered) ───────── */
+@media (max-width: 1100px) { #right-panel { display: none; } }
+@media (max-width: 900px)  { #left-panel  { display: none; } }
+
+
+/* ── Core mobile layout (≤ 600px) ─────────────────────────────── */
+@media (max-width: 600px) {
+
+  /* Base font — VT323 reads well at 14px on phone */
+  body {
+    font-size: 14px;
+    line-height: 1.3;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* ── CRT CONTAINER
+     Remove bezel and glow — full bleed on phone feels native.
+     CRT scanlines, noise and flicker still apply (fixed/inset). */
+  #crt {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* ── STATUS BAR
+     Strip to: clock · badge · audio toggle.
+     Everything else hides — too narrow to be useful. */
+  #status-bar {
+    padding: 5px 14px;
+    min-height: 32px;
+    flex-wrap: nowrap;
+  }
+  .sb-left  { flex: 1; gap: 0; overflow: hidden; }
+  .sb-right { gap: 8px; flex-shrink: 0; }
+
+  .sb-node,
+  #sb-operator,
+  #uptime-display,
+  #threat-level,
+  #pwr-indicator,
+  #rec-indicator { display: none; }
+
+  #sys-clock {
+    min-width: unset;
+    font-size: 0.88rem;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  #audio-toggle {
+    font-size: 0.88rem;
+    padding: 1px 6px;
+    letter-spacing: 0.08em;
+  }
+  #badge {
+    font-size: 0.88rem;
+    padding: 1px 6px;
+    letter-spacing: 1px;
+  }
+
+  /* ── MONITOR STRIP (scrolling warning ticker) */
+  #monitor-strip { height: 14px; }
+  #monitor-strip::before {
+    font-size: 8px;
+    letter-spacing: 0.10em;
+    animation-duration: 20s;
+  }
+
+  /* ── GATE INTEGRITY BAR */
+  #gate-bar {
+    padding: 4px 14px;
+    gap: 10px;
+  }
+  #gate-label {
+    min-width: unset;
+    font-size: 0.88rem;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #gate-track { flex: 1; }
+  #gate-timer {
+    font-size: 1rem;
+    min-width: 42px;
+    letter-spacing: 1px;
+  }
+
+  /* ── TERMINAL OUTPUT — most of the viewport */
+  #output {
+    padding: 12px 14px 6px;
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  /* ── INPUT ROW — anchored to bottom above keyboard */
+  #input-row {
+    padding: 8px 14px 16px;
+    font-size: 1rem;
+    border-top: 1px solid rgba(220, 220, 220, 0.07);
+    /* Safe area inset for notch phones */
+    padding-bottom: max(16px, env(safe-area-inset-bottom, 16px));
+  }
+  #prompt-str {
+    font-size: 1rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  /* Prevent iOS from zooming on input focus (must be ≥ 16px) */
+  #cmd-in { font-size: 16px; }
+
+  /* ── OVERLAYS (security warning / gate closed) */
+  #warn-overlay,
+  #gate-overlay {
+    padding: 24px 20px;
+    gap: 8px;
+  }
+  .w-title, .go-title {
+    font-size: 15px;
+    letter-spacing: 3px;
+  }
+  .w-line, .go-line {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+  .w-dismiss, .go-count {
+    font-size: 10px;
+    margin-top: 14px;
+  }
+
+  /* ── FLOATING WINDOWS (file viewer, etc.) */
+  .float-win {
+    min-width: unset;
+    max-width: calc(100vw - 24px);
+    width: calc(100vw - 24px) !important;
+    left: 12px !important;
+    right: 12px !important;
+  }
+  .float-win-body { max-height: 55vh; }
+
+  /* ── NOTIFICATION STRIP */
+  #notif-strip {
+    top: 6px;
+    right: 6px;
+    max-width: calc(100vw - 12px);
+  }
+  .notif-entry {
+    font-size: 0.88rem;
+    white-space: normal;
+    padding: 4px 8px;
+  }
+}

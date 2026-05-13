@@ -4,13 +4,17 @@
 
 <head>
   <script>
-    // 1/10 chance per session to intercept into the Deep Watch Protocol Terminal.
-    // sessionStorage flag prevents re-triggering on the return trip from the terminal.
+    function navigateToGate() {
+      // Short-lived cookie (30s) — only valid during this navigation, not persistently.
+      var exp = new Date(Date.now() + 30000).toUTCString();
+      document.cookie = 'dwp_unlocked=1; path=/; expires=' + exp + '; SameSite=Lax';
+      window.location.replace('/gate');
+    }
+    // 1/10 chance on every page load to intercept into the Deep Watch Protocol Terminal.
     (function () {
-      if (!sessionStorage.getItem('dwp_visited') && Math.random() < 0.1) {
-        sessionStorage.setItem('dwp_visited', '1');
+      if (Math.random() < 0.1) {
         document.documentElement.style.visibility = 'hidden';
-        window.location.replace('/gate');
+        navigateToGate();
       }
     })();
   </script>
@@ -385,6 +389,145 @@
       mix-blend-mode: normal !important;
       opacity: 1 !important;
     }
+
+
+
+    /* ─────────────────────────────────────────────────────────────────
+       MOBILE OVERRIDES — built from scratch
+       Root cause: the Webflow shared CSS re-declares --color--lime
+       (#d2ff00 green) and the full palette on `body` and specific
+       section selectors inside its own mobile @media blocks.
+       That beats our :root overrides (body > :root in specificity).
+       Fix: mirror those EXACT selectors at the same breakpoints in
+       this <style> tag, which loads AFTER the <link>, so same
+       specificity + later in cascade = our values win.
+    ───────────────────────────────────────────────────────────────── */
+
+    /* ── 991px — shared CSS resets palette on `body` here ─────────── */
+    @media screen and (max-width: 991px) {
+
+      /* Re-declare every variable the shared CSS stomps on */
+      body {
+        --color--lime:                #72a6ff;
+        --color--lime-off:            #ff5a5a;
+        --color--lime-zero:           rgba(114,166,255,0);
+        --color--dark-green:          #090d14;
+        --color--dark-green-tint-1:   #1b2436;
+        --color--dark-green-tint-2:   #2a3447;
+        --color--green-off-white-1:   #dde2ec;
+        --color--green-off-white-2:   #c3cbdb;
+        --color--green-light:         #eef2fb;
+        --color--black:               #ecf2ff;
+        --color--white:               #eef3ff;
+        --color--grey-on-track:       #8fa5c0;
+        --color--grey-1:              #dde2ec;
+        --color--grey-2:              #c3cbdb;
+      }
+
+      /* Nav overlay — deep navy, no green */
+      .w-nav-overlay, .w-nav-menu {
+        background: #060a15 !important;
+        border-top: 1px solid rgba(114,166,255,0.10) !important;
+      }
+      .w-nav-link, .nav-link {
+        color: #c0d3ea !important;
+        border-bottom: 1px solid rgba(114,166,255,0.07) !important;
+        background: transparent !important;
+      }
+      .w-nav-link:hover, .nav-link:hover,
+      .w-nav-link.w--current {
+        color: #eef3ff !important;
+        background: rgba(114,166,255,0.06) !important;
+      }
+      .w-nav-button, .nav-ham {
+        background: rgba(114,166,255,0.08) !important;
+        border-color: rgba(114,166,255,0.20) !important;
+      }
+      .w-icon-nav-menu { color: #7aaae0 !important; }
+      .nav-ham-line, [class*="ham-line"] {
+        background-color: #7aaae0 !important;
+      }
+
+      /* Touch-swipe carousel buttons (home hero on tablet) */
+      .btn-w.is-touch-swipe {
+        background: rgba(114,166,255,0.10) !important;
+        border-color: rgba(114,166,255,0.26) !important;
+        color: #dce8f8 !important;
+      }
+
+      /* Images / canvases */
+      .helmet-grid-item-img-helmet,
+      .helmet-grid-item-reveal-img,
+      .otot-home-img,
+      .footer-bg-img,
+      .image.is-social-card,
+      .image.is-horizontal-scroll,
+      .image.is-otot-home-end,
+      img[src*="helm"], img[src*="lime"], img[src*="green"],
+      canvas[data-rive-object], canvas[data-rive-primary] {
+        filter: grayscale(1) contrast(1.02) brightness(0.93) saturate(0.9) !important;
+      }
+
+      /* GSAP text-reveal animations start with .line spans at y:101% (hidden).
+         On mobile the ScrollTrigger often never fires, leaving text invisible.
+         Override the inline transform so lines are always visible. */
+      [data-anim-high] .line {
+        transform: none !important;
+        opacity: 1 !important;
+        color: #e0e9f7 !important;
+      }
+
+      /* is-otot-home section: force dark bg so remapped --color--lime
+         (now a medium blue) doesn't create a light-on-light situation */
+      .s.is-otot-home {
+        background-color: #070b12 !important;
+      }
+    }
+
+    /* ── 767px — loading screen button ────────────────────────────── */
+    @media screen and (max-width: 767px) {
+      .transition-btn {
+        bottom: 8vh;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 40px);
+        max-width: 320px;
+      }
+      .transition-btn .btn-w {
+        width: 100%;
+        justify-content: center;
+        padding-top: 14px;
+        padding-bottom: 14px;
+      }
+    }
+
+    /* ── 479px — shared CSS resets palette on these section selectors */
+    @media screen and (max-width: 479px) {
+
+      /* Match every selector the shared CSS targets at this breakpoint */
+      body,
+      .c.is-on-track-home,
+      .c.is-calendar-hero,
+      .btn-text.is-footer {
+        --color--lime:                #72a6ff;
+        --color--lime-off:            #ff5a5a;
+        --color--lime-zero:           rgba(114,166,255,0);
+        --color--dark-green:          #090d14;
+        --color--dark-green-tint-1:   #1b2436;
+        --color--dark-green-tint-2:   #2a3447;
+        --color--green-off-white-1:   #dde2ec;
+        --color--green-off-white-2:   #c3cbdb;
+        --color--green-light:         #eef2fb;
+        --color--black:               #ecf2ff;
+        --color--white:               #eef3ff;
+        --color--grey-on-track:       #8fa5c0;
+        --color--grey-1:              #dde2ec;
+        --color--grey-2:              #c3cbdb;
+      }
+
+      /* Loading screen button */
+      .transition-btn { bottom: 6vh; }
+    }
   </style>
 </head>
 
@@ -392,14 +535,14 @@
   <script>
     (function () {
       var attrMap = {
-        'color_lime': 'color_white',
+        'color_lime':              'color_white',
         'color_green-off-white-2': 'color_white',
-        'color_dark-green': 'color_black',
-        'dark-green': 'black',
-        'dark-green-tint-1': 'white',
-        'dark-green-tint-2': 'white',
-        'lime': 'white',
-        'lime-off': 'white'
+        'color_dark-green':        'color_black',
+        'dark-green-tint-1':       'white',
+        'dark-green-tint-2':       'white',
+        'dark-green':              'black',
+        'lime-off':                'white',
+        'lime':                    'white'
       };
 
       function rewriteValue(value) {

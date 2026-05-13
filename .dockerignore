@@ -1,0 +1,9 @@
+.git
+.DS_Store
+main_page
+__pycache__
+*.pyc
+*.pyo
+.env
+README.md
+docker-compose.yml

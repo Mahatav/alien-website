@@ -4,7 +4,7 @@
   position: fixed; inset: 0;
   overflow: hidden;
   background: var(--bg);
-  
+
   border-radius: 14px;
   box-shadow:
     0 0  60px rgba(230,230,230,0.40),
@@ -15,6 +15,7 @@
     inset 28px 0 70px -18px rgba(0,0,0,0.18),
     inset -28px 0 70px -18px rgba(0,0,0,0.18);
 }
+
 
 #space-nebula,
 #starfield-far,

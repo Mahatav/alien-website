@@ -4,7 +4,7 @@ import urllib.request
 import urllib.parse
 import os
 
-PORT = 3000
+PORT = int(os.environ.get('PORT', 8080))
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
@@ -87,7 +87,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
         self.proxy_or_404(path)
 
-socketserver.TCPServer.allow_reuse_address = True
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print(f"Serving at http://localhost:{PORT}")
+class ThreadingServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
+    allow_reuse_address = True
+    daemon_threads = True
+
+with ThreadingServer(("", PORT), Handler) as httpd:
+    print(f"Serving at http://0.0.0.0:{PORT}", flush=True)
     httpd.serve_forever()
