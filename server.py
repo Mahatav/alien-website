@@ -37,13 +37,13 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.send_error(500, str(e))
 
     def proxy_or_404(self, url_path):
-        url = f"https://lando.itsoffbrand.io{url_path}"
+        url = f"https://mnemosyne.itsalien.io{url_path}"
         local = os.path.join(BASE, 'home', url_path.lstrip('/'))
         try:
             req = urllib.request.Request(url, headers={
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
-                'Referer': 'https://landonorris.com/',
-                'Origin': 'https://landonorris.com/'
+                'Referer': 'https://mnemosyne.io/',
+                'Origin': 'https://mnemosyne.io/'
             })
             with urllib.request.urlopen(req) as resp:
                 data = resp.read()

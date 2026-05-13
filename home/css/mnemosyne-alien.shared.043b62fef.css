@@ -2257,7 +2257,7 @@ blockquote {
   display: flex;
 }
 
-.c.is-lando-exe {
+.c.is-mnemosyne-exe {
   z-index: 1;
   padding-left: 11rem;
   padding-right: 11rem;
@@ -2392,7 +2392,7 @@ blockquote {
   position: relative;
 }
 
-.s.is-lando-exe {
+.s.is-mnemosyne-exe {
   color: var(--color--dark-green);
   position: relative;
 }
@@ -3092,7 +3092,7 @@ blockquote {
   position: absolute;
 }
 
-.page-ln4-pos {
+.page-alien4-pos {
   z-index: 1;
   pointer-events: none;
   justify-content: center;
@@ -3250,13 +3250,13 @@ blockquote {
   inset: 0%;
 }
 
-.image.is-ln4-logo {
+.image.is-alien4-logo {
   width: 1.875rem;
   height: 2.125rem;
   display: none;
 }
 
-.image.is-ln4-logo:where(.w-variant-88b83061-c887-c094-eb94-cbb8cabca5e0) {
+.image.is-alien4-logo:where(.w-variant-88b83061-c887-c094-eb94-cbb8cabca5e0) {
   display: inline-block;
 }
 
@@ -5375,7 +5375,7 @@ blockquote {
 }
 
 .on-t-hero-stats-ui-img-fill {
-  background-image: url("../images/67d864ec2ce7efa1414e36a6_ln4-ui-pattern.webp");
+  background-image: url("../images/67d864ec2ce7efa1414e36a6_alien4-ui-pattern.webp");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: auto 130%;
@@ -5979,7 +5979,7 @@ blockquote {
   position: relative;
 }
 
-.ln-calendar-track-frame {
+.alien-calendar-track-frame {
   z-index: 5;
   pointer-events: none;
   color: var(--color--lime);
@@ -6548,7 +6548,7 @@ blockquote {
 }
 
 .off-t-hero-img {
-  background-image: url("../images/67dc366b25025ea1a39995c4_ln4-off-t-hero-img.webp");
+  background-image: url("../images/67dc366b25025ea1a39995c4_alien4-off-t-hero-img.webp");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -6694,7 +6694,7 @@ blockquote {
   inset: -12rem auto auto 0%;
 }
 
-.page-ln4-w {
+.page-alien4-w {
   pointer-events: auto;
   color: var(--color--dark-green);
   grid-column-gap: var(--gap);
@@ -6704,7 +6704,7 @@ blockquote {
   display: flex;
 }
 
-.page-ln4-svg {
+.page-alien4-svg {
   color: currentColor;
   width: 2.75rem;
   height: 2.75rem;
@@ -7689,7 +7689,7 @@ blockquote {
     align-items: flex-start;
   }
 
-  .c.is-lando-exe {
+  .c.is-mnemosyne-exe {
     padding-right: var(--gap);
     padding-left: var(--gap);
   }
@@ -9676,11 +9676,11 @@ blockquote {
     display: flex;
   }
 
-  .ln-calendar-track-frame {
+  .alien-calendar-track-frame {
     display: none;
   }
 
-  .ln-calendar-track-frame.mobile {
+  .alien-calendar-track-frame.mobile {
     width: 100%;
     display: flex;
     position: absolute;
@@ -9831,7 +9831,7 @@ blockquote {
     top: 0;
   }
 
-  .page-ln4-svg {
+  .page-alien4-svg {
     width: 2.5rem;
     height: 2.5rem;
   }
