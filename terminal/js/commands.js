@@ -76,7 +76,7 @@ function doHelp() {
   const mins = sessionMinutes();
   const lines = [
     ['d', '=================================================='],
-    ['b', '  COMMAND REFERENCE  
+    ['b', '  COMMAND REFERENCE  '],
     ['d', '=================================================='],
     ['',  ''],
     ['a', '  NAVIGATION'],
@@ -113,7 +113,7 @@ function doLs(showAll, folder) {
   if (!folder) {
     const lines = [
       ['d', '=================================================='],
-      ['a', '  NODE 7 ARCHIVE  
+      ['a', '  NODE 7 ARCHIVE  '],
       ['d', '  PATH: /archive/dwp/'],
       ['d', '=================================================='],
       ['', ''],
@@ -803,7 +803,7 @@ function doBob() {
 function doLark() {
   queueLines([
     ['',''],
-    ['n','  LARK  
+    ['n','  LARK  '],
     ['r','  Status: MISSING'],
     ['d','  Last seen: Cycle 89, Day 412'],
     ['d','  Last report: submitted that morning. Tone: normal.'],

@@ -95,8 +95,8 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  MNEMOSYNE SYSTEMS INC.'],
-      ['b', '  ARCHIVAL TERMINAL  
-      ['d', '  SUBSYSTEM v2.1.4  
+      ['b', '  ARCHIVAL TERMINAL  '],
+      ['d', '  SUBSYSTEM v2.1.4  '],
       ['d', '=================================================='],
       ['',  ''],
       ['n', '  NOTICE TO OPERATOR:'],
@@ -131,7 +131,7 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  PERSONNEL FILE — ARCHIVE NODE 7'],
-      ['d', '  LAST UPDATED: 1994-03-08  
+      ['d', '  LAST UPDATED: 1994-03-08  '],
       ['d', '=================================================='],
       ['',  ''],
       ['n', '  ROSTER — CYCLE 2024-OMEGA (LAST ACTIVE CYCLE)'],
@@ -285,7 +285,7 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  SUBJECT FILE — DESIGNATION: "SKINNY BOB"'],
-      ['d', '  CLEARANCE: DELTA  
+      ['d', '  CLEARANCE: DELTA  '],
       ['d', '  FILE INTEGRITY: 91%'],
       ['d', '=================================================='],
       ['',  ''],
@@ -366,7 +366,7 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  ACOUSTIC ANALYSIS — THE RESONANCE EVENT'],
-      ['d', '  ANALYST: DR. ████████  
+      ['d', '  ANALYST: DR. ████████  '],
       ['d', '  FILE: REASONANCE.WAV  [6.3MB — DETERIORATING]'],
       ['d', '=================================================='],
       ['',  ''],
@@ -404,7 +404,7 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  ARCHIVIST PRIME — PERSONAL LOG'],
-      ['b', '  AUTO-SAVED ENTRY  
+      ['b', '  AUTO-SAVED ENTRY  '],
       ['d', '  [RECOVERED FROM AUTO-SAVE BUFFER ON WAKEUP]'],
       ['d', '=================================================='],
       ['',  ''],
@@ -448,8 +448,8 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  DEBRIEF — ARIEL SCHOOL INCIDENT'],
-      ['b', '  DATE: SEPTEMBER 16, 1994  
-      ['d', '  CLEARANCE: SIGMA  
+      ['b', '  DATE: SEPTEMBER 16, 1994  '],
+      ['d', '  CLEARANCE: SIGMA  '],
       ['d', '=================================================='],
       ['',  ''],
       ['n', '  Sixty-two students, ages 6 to 12.'],
@@ -488,7 +488,7 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  THEORETICAL DOCUMENT — THE VESSEL PROTOCOL'],
-      ['d', '  AUTHOR: ARCHIVIST PRIME  
+      ['d', '  AUTHOR: ARCHIVIST PRIME  '],
       ['d', '  FILE INTEGRITY: 78%'],
       ['d', '=================================================='],
       ['',  ''],
@@ -530,7 +530,7 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  DOCUMENT: HARMONIC FORCES — TERTIARY DISPATCH'],
-      ['d', '  SOURCE: THIRD STONE  
+      ['d', '  SOURCE: THIRD STONE  '],
       ['d', '=================================================='],
       ['',  ''],
       ['n', '  Your concept of "harmony" is correct. Incomplete,'],
@@ -562,7 +562,7 @@ const FILES = {
     body: [
       ['d', '=================================================='],
       ['b', '  FINAL TRANSMISSION — THIRD STONE'],
-      ['b', '  TO: ARCHIVIST PRIME 
+      ['b', '  TO: ARCHIVIST PRIME '],
       ['d', '  DATE: [ONGOING — SIGNAL STILL ACTIVE AS OF BOOT]'],
       ['d', '=================================================='],
       ['',  ''],
@@ -669,7 +669,7 @@ const DECRYPTERS = {
 const BOOT_PHASE1 = [
   ['r', '████████████████████████████████████████████████'],
   ['b', '  MNEMOSYNE SYSTEMS INC.'],
-  ['b', '  DEEP WATCH PROTOCOL  
+  ['b', '  DEEP WATCH PROTOCOL  '],
   ['r', '  !! RESTRICTED ACCESS — AUTHORISED PERSONNEL ONLY !!'],
   ['r', '████████████████████████████████████████████████'],
   ['',  ''],

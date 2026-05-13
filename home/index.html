@@ -123,10 +123,18 @@
     }
 
     .transition-rive {
-      position: relative;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
       z-index: 2;
       filter: grayscale(1) contrast(1.15) brightness(0.92);
       opacity: 0.84;
+    }
+
+    .transition-rive canvas {
+      width: 100% !important;
+      height: 100% !important;
     }
 
     /* === FIXED TRANSITION BTN: Anchored cleanly to the bottom === */
@@ -1692,7 +1700,13 @@
           </div>
         </div>
       </a></div>
-    <div class="js__embed w-embed w-script"></div>
+    <div class="js__embed w-embed w-script"><script src="js/transitions-rive-isolate.js"></script></div>
+    <script>
+      document.querySelector('.transition-btn .btn-w').addEventListener('click', function(e) {
+        e.preventDefault();
+        if (typeof window.pageTransitionIn === 'function') window.pageTransitionIn();
+      });
+    </script>
   </div>
   <div data-start="hidden" overflow-clip="x" class="page-w">
     <main data-taxi="" class="main-w">
@@ -3690,7 +3704,7 @@
           </div>
           <div class="footer-bg-gradient"></div>
         </section>
-        <div class="gl-wrap w-embed"></div>
+        <div class="gl-wrap w-embed"><canvas class="gl"></canvas></div>
         <div data-gl="background" class="gl-background"></div>
       </div>
     </main>
