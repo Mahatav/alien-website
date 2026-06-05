@@ -132,7 +132,7 @@ function showStartupWarning(onDismiss) {
     <div class="w-title">!! UNAUTHORISED ACCESS DETECTED !!</div>
     <div class="w-line">THIS SYSTEM IS THE EXCLUSIVE PROPERTY OF</div>
     <div class="w-line" style="color:var(--fg-hi); letter-spacing:3px; font-size:13px; margin:4px 0;">
-      MNEMOSYNE SYSTEMS INC.
+      DARKWELL INDUSTRIES
     </div>
     <div class="w-line">DEEP WATCH PROTOCOL — CLASSIFIED MAINFRAME</div>
     <div class="w-line" style="color:var(--red-hi); margin-top:14px;">

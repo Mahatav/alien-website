@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>document.cookie = 'dwp_unlocked=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';</script>
+  <script>
+    // The gate is pure chance — no cookies, no exceptions. Every load that lands here
+    // has a 1-in-10 chance of opening; the other 9 times you're bounced to the home page.
+    (function () {
+      var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+      if (isLocal) return; // leave the gate open for local dev (:8080 / :3000)
+
+      // The home page rolls its own 1-in-10 and redirects winners here. Pass those arrivals
+      // through so a real visitor's odds stay 1/10 overall, not 1/100. Anything else — a
+      // direct hit, a refresh, a bookmark, a shared link — rolls the dice right now.
+      var fromHomeRoll = false;
+      try {
+        var ref = new URL(document.referrer);
+        fromHomeRoll = ref.origin === location.origin && !/\/gate\/?$/.test(ref.pathname);
+      } catch (e) { fromHomeRoll = false; }
+
+      if (!fromHomeRoll && Math.random() >= 0.1) {
+        window.location.replace('/');
+      }
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MNEMOSYNE SYSTEMS — ARCHIVE TERMINAL</title>
+  <title>DARKWELL INDUSTRIES — ARCHIVE TERMINAL</title>
 
   
-  <meta name="description" content="MNEMOSYNE SYSTEMS — Deep Watch Protocol Archive Terminal. Restricted access." />
-  <meta property="og:title"       content="MNEMOSYNE SYSTEMS — ARCHIVE TERMINAL" />
+  <meta name="description" content="DARKWELL INDUSTRIES — Deep Watch Protocol Archive Terminal. Restricted access." />
+  <meta property="og:title"       content="DARKWELL INDUSTRIES — ARCHIVE TERMINAL" />
   <meta property="og:description" content="Deep Watch Protocol Archive Terminal. Restricted access." />
   <meta property="og:type"        content="website" />
 
@@ -37,7 +57,7 @@
     
     <div id="status-bar">
       <div class="sb-left">
-        <span class="sb-node">NODE7.MNEMOSYNE.ARCH</span>
+        <span class="sb-node">NODE7.DARKWELL.ARCH</span>
         <span id="sb-operator">OPERATOR: GUEST</span>
         <span id="threat-level">THREAT: ELEVATED</span>
       </div>
@@ -191,7 +211,7 @@
 <div id="roll-line"></div>
 <div id="crt-drift-bar"></div>
 <div id="crt-brightness-drift"></div>
-<div id="burn-in">MNEMOSYNE SYSTEMS INC.&nbsp;&nbsp;&nbsp;ARCHIVAL TERMINAL&nbsp;&nbsp;&nbsp;NODE 7&nbsp;&nbsp;&nbsp;DEEP WATCH PROTOCOL
+<div id="burn-in">DARKWELL INDUSTRIES&nbsp;&nbsp;&nbsp;ARCHIVAL TERMINAL&nbsp;&nbsp;&nbsp;NODE 7&nbsp;&nbsp;&nbsp;DEEP WATCH PROTOCOL
 TERMINAL ID: DWP-NODE-007-ALPHA&nbsp;&nbsp;&nbsp;BIOS v2.1.4&nbsp;&nbsp;&nbsp;SIGNAL MONITOR: ACTIVE
 SECTOR FAULT AT 0x00FF4A23&nbsp;&nbsp;&nbsp;LARK&nbsp;&nbsp;&nbsp;FIELD LIAISON&nbsp;&nbsp;&nbsp;MISSING
 CYCLE 89 DAY 412&nbsp;&nbsp;&nbsp;SUBJECT B&nbsp;&nbsp;&nbsp;RESONANCE&nbsp;&nbsp;&nbsp;432 Hz
@@ -202,7 +222,7 @@ ARCHIVIST PRIME&nbsp;&nbsp;&nbsp;1994-03-07 03:42:19&nbsp;&nbsp;&nbsp;NO FURTHER
 
 <div id="warn-overlay">
   <div class="w-title">!! SECURITY VIOLATION !!</div>
-  <div class="w-line">MNEMOSYNE SECURITY PROTOCOL 7-DELTA TRIGGERED</div>
+  <div class="w-line">DARKWELL SECURITY PROTOCOL 7-DELTA TRIGGERED</div>
   <div class="w-line">OPERATOR TERMINAL: FLAGGED</div>
   <div class="w-line" style="color:var(--red-hi); margin-top:8px;">INCIDENT LOGGED AT 0x00FF19B3</div>
   <div class="w-line">MEMORY ADDRESS CAPTURED. ORIGIN TRIANGULATED.</div>

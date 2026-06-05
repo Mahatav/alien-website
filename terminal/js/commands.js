@@ -513,7 +513,7 @@ function doReset() {
 }
 
 function doPing() {
-  queueLines([['d','  PING deep-watch-network.mnemosyne.local...']], 'fast', () => {
+  queueLines([['d','  PING deep-watch-network.darkwell.local...']], 'fast', () => {
     setTimeout(() => {
       queueLines([
         ['n','  64 bytes from 432.0.0.1      :  seq=1 ttl=∞ time=0.001ms'],

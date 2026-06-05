@@ -4,17 +4,21 @@
 
 <head>
   <script>
-    function navigateToGate() {
-      // Short-lived cookie (30s) — only valid during this navigation, not persistently.
-      var exp = new Date(Date.now() + 30000).toUTCString();
-      document.cookie = 'dwp_unlocked=1; path=/; expires=' + exp + '; SameSite=Lax';
-      window.location.replace('/gate');
-    }
-    // 1/10 chance on every page load to intercept into the Deep Watch Protocol Terminal.
+    // 1-in-10 chance on every page load to slip into the Deep Watch Protocol Terminal.
+    // No cookie — the roll itself is the only gate. The terminal lets these redirected
+    // winners through (see terminal/index.html) so the overall odds stay exactly 1/10.
     (function () {
-      if (Math.random() < 0.1) {
+      // Don't re-roll if we were just bounced back from the gate — re-rolling here would
+      // feed visitors straight back in and inflate the real odds above 1/10.
+      var cameFromGate = false;
+      try {
+        var ref = new URL(document.referrer);
+        cameFromGate = ref.origin === location.origin && /\/gate\/?$/.test(ref.pathname);
+      } catch (e) { cameFromGate = false; }
+
+      if (!cameFromGate && Math.random() < 0.1) {
         document.documentElement.style.visibility = 'hidden';
-        navigateToGate();
+        window.location.replace('/gate');
       }
     })();
   </script>
@@ -525,22 +529,26 @@
        These rules handle exceptions that don't scale cleanly.
     ════════════════════════════════════════════════════════════ */
 
-    /* Release GSAP horizontal-pin on all screen sizes — eliminates dead scroll space */
-    .c.is-horiz-scroll,
-    .horizontal-pin-wrap,
-    .horizontal-pin-spacer,
-    .horizontal-pin-sticky {
-      position: relative !important;
-      overflow: visible !important;
-      height: auto !important;
-    }
+    /* ── Tablet + all phones: release GSAP horizontal-pin ───
+       Scoped to <=991px so desktop keeps the real horizontal slider.
+       Removing this guard kills the timeline on every screen size. */
+    @media screen and (max-width: 991px) {
+      .c.is-horiz-scroll,
+      .horizontal-pin-wrap,
+      .horizontal-pin-spacer,
+      .horizontal-pin-sticky {
+        position: relative !important;
+        overflow: visible !important;
+        height: auto !important;
+      }
 
-    /* Flatten the horizontal track so cards stack vertically instead of scrolling sideways */
-    .horizontal-track {
-      display: flex !important;
-      flex-direction: column !important;
-      width: auto !important;
-      transform: none !important;
+      /* Flatten the horizontal track so cards stack vertically instead of scrolling sideways */
+      .horizontal-track {
+        display: flex !important;
+        flex-direction: column !important;
+        width: auto !important;
+        transform: none !important;
+      }
     }
 
     /* ── All phones (≤ 767px) ───────────────────────────────── */
@@ -3927,9 +3935,12 @@
   </script>
 
   <script>
-    /* Kill all GSAP ScrollTrigger pin animations — eliminates phantom scroll dead-zones */
+    /* Kill GSAP ScrollTrigger pin animations on mobile only — eliminates phantom
+       scroll dead-zones there. On desktop the horizontal timeline slider needs
+       these pins, so this is gated to <=991px to match the CSS release rule above. */
     (function killPins() {
       function run() {
+        if (!window.matchMedia('(max-width: 991px)').matches) return;
         var ST = window.ScrollTrigger;
         if (!ST) return;
         ST.getAll().forEach(function(t) { t.kill(true); });

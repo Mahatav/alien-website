@@ -7,12 +7,12 @@ let gateInterval  = null;
 const GATE_ALERTS = [
   { at: 5*60, glitch: false, lines: [
     ['r', '  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'],
-    ['r', '  [MNEMOSYNE-SEC] AUTO-LOCKOUT: 5 MINUTES REMAINING'],
-    ['r', '  [MNEMOSYNE-SEC] EXTENDED SESSION FLAGGED FOR REVIEW'],
+    ['r', '  [DARKWELL-SEC] AUTO-LOCKOUT: 5 MINUTES REMAINING'],
+    ['r', '  [DARKWELL-SEC] EXTENDED SESSION FLAGGED FOR REVIEW'],
     ['r', '  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'],
   ]},
   { at: 3*60, glitch: false, lines: [
-    ['r', '  !! [MNEMOSYNE-SEC] AUTO-LOCKOUT: 3 MINUTES !!'],
+    ['r', '  !! [DARKWELL-SEC] AUTO-LOCKOUT: 3 MINUTES !!'],
     ['r', '  !! SECURITY RESPONSE TEAM HAS BEEN DISPATCHED !!'],
   ]},
   { at: 90, glitch: true, lines: [

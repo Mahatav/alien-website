@@ -94,7 +94,7 @@ const FILES = {
     tier: 0, modified: '1994-03-08',
     body: [
       ['d', '=================================================='],
-      ['b', '  MNEMOSYNE SYSTEMS INC.'],
+      ['b', '  DARKWELL INDUSTRIES'],
       ['b', '  ARCHIVAL TERMINAL  '],
       ['d', '  SUBSYSTEM v2.1.4  '],
       ['d', '=================================================='],
@@ -472,7 +472,7 @@ const FILES = {
       ['n', '   The adults nearby heard nothing.'],
       ['n', '   As expected."'],
       ['',  ''],
-      ['n', '  MNEMOSYNE ASSESSMENT:'],
+      ['n', '  DARKWELL ASSESSMENT:'],
       ['n', '  Classified SIGMA because children described the'],
       ['n', '  VESSEL PROTOCOL in language nearly identical to'],
       ['n', '  Third Stone\'s own field dispatches — which they'],
@@ -668,7 +668,7 @@ const DECRYPTERS = {
 
 const BOOT_PHASE1 = [
   ['r', '████████████████████████████████████████████████'],
-  ['b', '  MNEMOSYNE SYSTEMS INC.'],
+  ['b', '  DARKWELL INDUSTRIES'],
   ['b', '  DEEP WATCH PROTOCOL  '],
   ['r', '  !! RESTRICTED ACCESS — AUTHORISED PERSONNEL ONLY !!'],
   ['r', '████████████████████████████████████████████████'],
@@ -705,7 +705,7 @@ const BOOT_PHASE4 = [
   ['r', '  [ALERT] SESSION ID: A7F3-9B2C-4D11-ALPHA'],
   ['r', '  [ALERT] BIOMETRIC CAPTURE: ............. ACTIVE'],
   ['r', '  [ALERT] THIS SESSION IS BEING RECORDED'],
-  ['r', '  [ALERT] MNEMOSYNE SECURITY — NOTIFIED'],
+  ['r', '  [ALERT] DARKWELL SECURITY — NOTIFIED'],
   ['',  ''],
   ['a', '  LEGAL NOTICE: UNAUTHORISED ACCESS IS A VIOLATION'],
   ['a', '  OF 18 USC §1030 AND APPLICABLE FEDERAL STATUTE.'],

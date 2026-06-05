@@ -1,0 +1,60 @@
+name: Deploy to GitHub Pages
+
+# The repo layout (home/, terminal/, data/) is wired together by server.py at runtime.
+# GitHub Pages has no server, so this workflow assembles the same URL structure as a
+# static site before deploying:
+#   home/*     -> /            (landing page)
+#   terminal/* -> /gate/       (archive terminal — server.py served this at /gate)
+#   data/*     -> /gate/data/  (lore assets; data.js references them relative to /gate/)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; cancel in-progress runs for the same ref.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble static site
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+          # Landing page and its assets at the site root.
+          cp -R home/. _site/
+          # Archive terminal under /gate/ (mirrors server.py's /gate route).
+          mkdir -p _site/gate
+          cp -R terminal/. _site/gate/
+          # Lore assets under /gate/data/ — terminal/js/data.js fetches "data/..." relative to /gate/.
+          cp -R data _site/gate/data
+          # Serve everything verbatim (no Jekyll processing of underscore/hashed filenames).
+          touch _site/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
