@@ -2,22 +2,25 @@
 <html lang="en">
 <head>
   <script>
-    // The gate is pure chance — no cookies, no exceptions. Every load that lands here
-    // has a 1-in-10 chance of opening; the other 9 times you're bounced to the home page.
+    // The gate is pure chance. Every load that lands here has a 1-in-10 chance of opening;
+    // the other 9 times you're pushed back to the home page.
     (function () {
-      var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-      if (isLocal) return; // leave the gate open for local dev (:8080 / :3000)
+      // The nginx stack (:3000) and the live site enforce the roll like production.
+      // Only the local dev server (any OTHER localhost port, e.g. :8080) leaves it open.
+      var host = location.hostname;
+      var isLocalDev = (host === 'localhost' || host === '127.0.0.1') && location.port !== '3000';
+      if (isLocalDev) return;
 
-      // The home page rolls its own 1-in-10 and redirects winners here. Pass those arrivals
-      // through so a real visitor's odds stay 1/10 overall, not 1/100. Anything else — a
-      // direct hit, a refresh, a bookmark, a shared link — rolls the dice right now.
-      var fromHomeRoll = false;
+      // One-shot pass handed off by the home page's 1-in-10 win — consumed the instant we
+      // read it, so a reload / bookmark / direct hit gets no pass and must roll the dice now
+      // (keeps the home visitor's overall odds at 1/10, not 1/100, without a reusable token).
+      var hasPass = false;
       try {
-        var ref = new URL(document.referrer);
-        fromHomeRoll = ref.origin === location.origin && !/\/gate\/?$/.test(ref.pathname);
-      } catch (e) { fromHomeRoll = false; }
+        hasPass = sessionStorage.getItem('gatePass') === '1';
+        sessionStorage.removeItem('gatePass');
+      } catch (e) { hasPass = false; }
 
-      if (!fromHomeRoll && Math.random() >= 0.1) {
+      if (!hasPass && Math.random() >= 0.1) {
         window.location.replace('/');
       }
     })();

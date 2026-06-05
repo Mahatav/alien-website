@@ -2257,7 +2257,7 @@ blockquote {
   display: flex;
 }
 
-.c.is-mnemosyne-exe {
+.c.is-darkwell-exe {
   z-index: 1;
   padding-left: 11rem;
   padding-right: 11rem;
@@ -2392,7 +2392,7 @@ blockquote {
   position: relative;
 }
 
-.s.is-mnemosyne-exe {
+.s.is-darkwell-exe {
   color: var(--color--dark-green);
   position: relative;
 }
@@ -7689,7 +7689,7 @@ blockquote {
     align-items: flex-start;
   }
 
-  .c.is-mnemosyne-exe {
+  .c.is-darkwell-exe {
     padding-right: var(--gap);
     padding-left: var(--gap);
   }
