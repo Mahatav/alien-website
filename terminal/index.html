@@ -21,7 +21,10 @@
       } catch (e) { hasPass = false; }
 
       if (!hasPass && Math.random() >= 0.1) {
-        window.location.replace('/');
+        // Up one level to the home page — works whether the gate is at /gate/ (root domain)
+        // or /alien-website/gate/ (project subpath).
+        var home = location.pathname.replace(/gate\/?[^/]*$/, '');
+        window.location.replace(home || '/');
       }
     })();
   </script>

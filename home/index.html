@@ -20,7 +20,10 @@
         // Hand the gate a one-shot pass so it doesn't double-roll this win (consumed on arrival).
         try { sessionStorage.setItem('gatePass', '1'); } catch (e) {}
         document.documentElement.style.visibility = 'hidden';
-        window.location.replace('/gate');
+        // Relative to this page's directory so it works at a subpath (mahatav.github.io/alien-website/)
+        // and at a root custom domain alike.
+        var base = location.pathname.replace(/[^/]*$/, '');
+        window.location.replace(base + 'gate/');
       }
     })();
   </script>
@@ -1893,11 +1896,11 @@
     </div>
   </div>
   <div data-nav-wrap="" data-nav-theme="light" class="nav">
-    <div class="nav-inner"><a title="Home" data-nav-group="brand" href="/" aria-current="page"
+    <div class="nav-inner"><a title="Home" data-nav-group="brand" href="./" aria-current="page"
         class="nav-brand-link w-inline-block w--current" style="display:none;">
         <div class="nav-brand w-embed"><img src="images/alien-head-logo.svg" alt="Darkwell Industries" style="height:44px;width:auto;color:var(--color--grey-1)"></div>
       </a>
-      <div class="page-alien4-pos"><a title="Go to home" href="/" aria-current="page"
+      <div class="page-alien4-pos"><a title="Go to home" href="./" aria-current="page"
           class="nav-middle w-inline-block w--current">
           <div class="page-alien4-svg w-embed"><img class="nav-alien-logo-img normal" src="images/alien-head-logo.svg" alt="Darkwell Industries" style="color:var(--color--grey-1)"><img class="nav-alien-logo-img inverted" src="images/alien-head-logo.svg" alt="" aria-hidden="true" style="color:var(--color--grey-1)"></div>
           <div screen-reader="">Go to home</div>
@@ -3482,7 +3485,7 @@
                       <div class="eyebrow-w c-green-off-white-2">
                         <div class="text-eyebrow">pages</div>
                       </div>
-                      <div class="footer-links-layout"><a data-anim="text-hover" href="/" aria-current="page"
+                      <div class="footer-links-layout"><a data-anim="text-hover" href="./" aria-current="page"
                           class="text-link-w w-inline-block w--current">
                           <div class="text-clip-w">
                             <div data-anim-high="right, lime" split-text="lines,chars" class="btn-text is-footer">Home
