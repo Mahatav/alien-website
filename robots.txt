@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /gate/
+Disallow: /data/
+
+Sitemap: https://darkwell.io/sitemap.xml

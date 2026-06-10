@@ -169,7 +169,7 @@ td, th {
 }
 
 @font-face {
-  font-family: webflow-icons;
+  font-family: dw-icons;
   src: url("data:application/x-font-ttf;charset=utf-8;base64,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") format("truetype");
   font-weight: normal;
   font-style: normal;
@@ -184,7 +184,7 @@ td, th {
   font-style: normal;
   font-weight: normal;
   line-height: 1;
-  font-family: webflow-icons !important;
+  font-family: dw-icons !important;
 }
 
 .w-icon-slider-right:before {
@@ -233,6 +233,26 @@ img {
   vertical-align: middle;
   max-width: 100%;
   display: inline-block;
+}
+
+.asset-placeholder {
+  background: #eef0f3;
+  box-shadow: inset 0 0 0 1px rgba(146, 155, 164, 0.22);
+}
+
+.horizontal-item-img-w .asset-placeholder,
+.callout-socials-card-w .asset-placeholder,
+.helmet-grid-item-img-helmet,
+.helmet-grid-item-reveal-img,
+.footer-bg-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.nav-alien-logo-img.asset-placeholder,
+.nav-brand .asset-placeholder {
+  object-fit: contain;
 }
 
 html.w-mod-touch * {
@@ -296,88 +316,6 @@ pre.w-code-block code > span {
 
 .w-optimization {
   display: contents;
-}
-
-.w-webflow-badge, .w-webflow-badge > img {
-  box-sizing: unset;
-  width: unset;
-  height: unset;
-  max-height: unset;
-  max-width: unset;
-  min-height: unset;
-  min-width: unset;
-  margin: unset;
-  padding: unset;
-  float: unset;
-  clear: unset;
-  border: unset;
-  border-radius: unset;
-  background: unset;
-  background-image: unset;
-  background-position: unset;
-  background-size: unset;
-  background-repeat: unset;
-  background-origin: unset;
-  background-clip: unset;
-  background-attachment: unset;
-  background-color: unset;
-  box-shadow: unset;
-  transform: unset;
-  direction: unset;
-  font-family: unset;
-  font-weight: unset;
-  color: unset;
-  font-size: unset;
-  line-height: unset;
-  font-style: unset;
-  font-variant: unset;
-  text-align: unset;
-  letter-spacing: unset;
-  -webkit-text-decoration: unset;
-  text-decoration: unset;
-  text-indent: unset;
-  text-transform: unset;
-  list-style-type: unset;
-  text-shadow: unset;
-  vertical-align: unset;
-  cursor: unset;
-  white-space: unset;
-  word-break: unset;
-  word-spacing: unset;
-  word-wrap: unset;
-  transition: unset;
-}
-
-.w-webflow-badge {
-  white-space: nowrap;
-  cursor: pointer;
-  box-shadow: 0 0 0 1px #0000001a, 0 1px 3px #0000001a;
-  visibility: visible !important;
-  opacity: 1 !important;
-  z-index: 2147483647 !important;
-  color: #aaadb0 !important;
-  width: auto !important;
-  height: auto !important;
-  overflow: unset !important;
-  background-color: #fff !important;
-  border-radius: 3px !important;
-  margin: 0 !important;
-  padding: 6px !important;
-  font-size: 12px !important;
-  line-height: 14px !important;
-  text-decoration: none !important;
-  display: inline-block !important;
-  position: fixed !important;
-  inset: auto 12px 12px auto !important;
-  transform: none !important;
-}
-
-.w-webflow-badge > img {
-  position: unset;
-  visibility: unset !important;
-  opacity: 1 !important;
-  vertical-align: middle !important;
-  display: inline-block !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -2441,7 +2379,7 @@ blockquote {
 
 .text-title-lg-mona {
   font-variation-settings: "wght" 750, "wdth" 93;
-  letter-spacing: -.125rem;
+  letter-spacing: 0;
   text-transform: uppercase;
   font-size: 4.5rem;
   line-height: .886;
@@ -2545,7 +2483,7 @@ blockquote {
 
 .text-eyebrow.large {
   font-variation-settings: "wght" 812, "wdth" 81.3;
-  letter-spacing: -.01rem;
+  letter-spacing: 0;
   font-size: 1.125rem;
 }
 
@@ -2929,7 +2867,7 @@ blockquote {
 
 .text-body-reg-mona {
   font-variation-settings: "wght" 500, "wdth" 100;
-  letter-spacing: -.0125rem;
+  letter-spacing: 0;
   text-transform: none;
   font-size: 1.25rem;
   line-height: 1.25;
@@ -2942,7 +2880,7 @@ blockquote {
 .text-impact-lg-mona {
   font-size: var(--text--impact);
   font-variation-settings: "wght" 660, "wdth" 93;
-  letter-spacing: -.0625rem;
+  letter-spacing: 0;
   text-transform: uppercase;
   line-height: 90.6%;
 }
@@ -2954,7 +2892,7 @@ blockquote {
 
 .text-impact-lg-mona.reduce {
   font-variation-settings: "wght" 750, "wdth" 93;
-  letter-spacing: -.25rem;
+  letter-spacing: 0;
   font-size: 7rem;
   line-height: .816;
 }
@@ -2964,7 +2902,7 @@ blockquote {
 }
 
 .text-impact-lg-brier {
-  letter-spacing: -.1875rem;
+  letter-spacing: 0;
   font-family: Brier, Arial, sans-serif;
   font-size: 8.25rem;
   line-height: 83%;
@@ -4176,7 +4114,7 @@ blockquote {
 
 .helmet-grid-item-reveal-img {
   clip-path: ellipse(100% 0% at 50% 0);
-  background-image: url("../images/68ea48448e634fcc425b0e28_transp.webp");
+  background-image: url("../images/placeholder-evidence.svg");
   background-position: 50%;
   background-size: cover;
   width: 100%;
@@ -4591,7 +4529,7 @@ blockquote {
 }
 
 .text-quote {
-  letter-spacing: -.03125rem;
+  letter-spacing: 0;
   font-family: Brier, Arial, sans-serif;
   font-size: 1.5rem;
   line-height: .95;
@@ -4599,7 +4537,7 @@ blockquote {
 
 .text-impact-reg-mona {
   font-variation-settings: "wght" 750, "wdth" 93;
-  letter-spacing: -.25rem;
+  letter-spacing: 0;
   text-transform: uppercase;
   font-size: 7rem;
   line-height: .816;
@@ -4610,7 +4548,7 @@ blockquote {
 }
 
 .text-impact-reg-brier {
-  letter-spacing: -.21875rem;
+  letter-spacing: 0;
   text-transform: uppercase;
   font-family: Brier, Arial, sans-serif;
   font-size: 7.3125rem;
@@ -4638,13 +4576,13 @@ blockquote {
 }
 
 .text-title-reg-mona {
-  letter-spacing: -.125rem;
+  letter-spacing: 0;
   font-size: 2.625rem;
   line-height: .886;
 }
 
 .text-title-reg-brier {
-  letter-spacing: -.125rem;
+  letter-spacing: 0;
   font-family: Brier, Arial, sans-serif;
   font-size: 2.75rem;
   font-weight: 700;
@@ -4657,14 +4595,14 @@ blockquote {
 
 .text-impact-sm-mona {
   font-variation-settings: "wght" 660, "wdth" 93;
-  letter-spacing: -.0625px;
+  letter-spacing: 0;
   text-transform: uppercase;
   font-size: 5.25rem;
   line-height: .856;
 }
 
 .text-impact-sm-brier {
-  letter-spacing: -.125rem;
+  letter-spacing: 0;
   text-transform: uppercase;
   font-family: Brier, Arial, sans-serif;
   font-size: 5.4375rem;
@@ -4678,14 +4616,14 @@ blockquote {
 
 .text-body-lg-mona {
   font-variation-settings: "wght" 500, "wdth" 100;
-  letter-spacing: -.0625rem;
+  letter-spacing: 0;
   text-transform: none;
   font-size: 2.25rem;
   line-height: 1.1;
 }
 
 .text-body-lg-brier {
-  letter-spacing: -.0625rem;
+  letter-spacing: 0;
   font-family: Brier, Arial, sans-serif;
   font-size: 2.25rem;
   font-weight: 700;
@@ -4745,9 +4683,10 @@ blockquote {
   justify-content: center;
   width: 100%;
   height: 2.625rem;
-  font-family: 'VT323', monospace;
-  font-size: 2.25rem;
+  font-family: "Mona Sans Variable", Arial, sans-serif;
+  font-size: 1.25rem;
   font-weight: 700;
+  font-variation-settings: "wght" 760, "wdth" 78;
   line-height: 1;
   letter-spacing: 0;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.06);
@@ -5153,7 +5092,7 @@ blockquote {
 
 .text-on-t-hero-heading {
   font-variation-settings: "wdth" 95, "wght" 700;
-  letter-spacing: -.1875rem;
+  letter-spacing: 0;
   text-transform: uppercase;
   flex: none;
   font-family: Mona Sans Variable, Arial, sans-serif;
@@ -5220,7 +5159,7 @@ blockquote {
 
 .text-on-t-stat-label-reg {
   font-variation-settings: "wght" 700, "wdth" 75;
-  letter-spacing: -.00625rem;
+  letter-spacing: 0;
   text-transform: uppercase;
   font-size: 2.0625rem;
   line-height: .97;
@@ -5375,7 +5314,7 @@ blockquote {
 }
 
 .on-t-hero-stats-ui-img-fill {
-  background-image: url("../images/67d864ec2ce7efa1414e36a6_alien4-ui-pattern.webp");
+  background-image: url("../images/placeholder-evidence.svg");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: auto 130%;
@@ -5605,7 +5544,7 @@ blockquote {
 
 .text-on-t-large-number {
   font-variation-settings: "wght" 700, "wdth" 75;
-  letter-spacing: -.1rem;
+  letter-spacing: 0;
   text-transform: uppercase;
   font-size: 17.5rem;
   line-height: .8;
@@ -5613,7 +5552,7 @@ blockquote {
 
 .text-on-t-large-number.is-podium {
   font-variation-settings: "wght" 693, "wdth" 75;
-  letter-spacing: -.225rem;
+  letter-spacing: 0;
 }
 
 .text-on-t-large-number.unit {
@@ -6107,7 +6046,7 @@ blockquote {
 }
 
 .text-body-sm-mona {
-  letter-spacing: -.0125rem;
+  letter-spacing: 0;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.3;
@@ -6202,7 +6141,7 @@ blockquote {
 }
 
 .menu-img-no-blend.is-2 {
-  background-image: url("../images/67d963fb414eee985ba72cb6_pre-f1-car-img.webp");
+  background-image: url("../images/placeholder-evidence.svg");
 }
 
 .nav-menu-img-w {
@@ -6253,7 +6192,7 @@ blockquote {
 }
 
 .menu-img-top.is-2 {
-  background-image: url("../images/67d963fb414eee985ba72cb6_pre-f1-car-img.webp");
+  background-image: url("../images/placeholder-evidence.svg");
 }
 
 .nav-menu-w {
@@ -6435,7 +6374,7 @@ blockquote {
 .nav-menu-bg {
   z-index: -1;
   opacity: .12;
-  background-image: url("../fonts/67dbeb1e708b818bc15a8d17_blobs_nav.svg");
+  background-image: url("../images/placeholder-evidence.svg");
   background-position: 50%;
   background-repeat: repeat-x;
   background-size: auto 170%;
@@ -6548,7 +6487,7 @@ blockquote {
 }
 
 .off-t-hero-img {
-  background-image: url("../images/67dc366b25025ea1a39995c4_alien4-off-t-hero-img.webp");
+  background-image: url("../images/placeholder-evidence.svg");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -6839,7 +6778,7 @@ blockquote {
 .part-i-video-w {
   z-index: 10;
   aspect-ratio: 68.25 / 36.5625;
-  background-image: url("../fonts/background-image.svg");
+  background-image: url("../images/placeholder-evidence.svg");
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -9268,7 +9207,7 @@ blockquote {
   }
 
   .text-impact-reg-mona, .text-impact-reg-brier {
-    letter-spacing: -.1rem;
+    letter-spacing: 0;
     font-size: 4rem;
   }
 

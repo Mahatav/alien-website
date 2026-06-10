@@ -70,6 +70,12 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.serve_file(os.path.join(BASE, 'terminal', 'index.html'))
             return
 
+        if path.startswith('/gate/'):
+            gate_asset = os.path.join(BASE, 'terminal', path[len('/gate/'):])
+            if os.path.isfile(gate_asset):
+                self.serve_file(gate_asset)
+                return
+
         home_local = os.path.join(BASE, 'home', path.lstrip('/'))
         if os.path.isfile(home_local):
             self.serve_file(home_local)

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder evidence image</title>
+  <desc id="desc">A neutral gray image placeholder with a mountain and sun icon.</desc>
+  <rect width="1200" height="900" fill="#eef0f3"/>
+  <rect x="145" y="210" width="910" height="560" rx="44" fill="none" stroke="#929ba4" stroke-width="30"/>
+  <path d="M174 740 475 430l223 265 112-118 226 163v30H174z" fill="#929ba4"/>
+  <circle cx="810" cy="375" r="82" fill="#929ba4"/>
+</svg>
